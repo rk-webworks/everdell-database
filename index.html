@@ -12,9 +12,14 @@
     main{max-width:1100px;margin:24px auto;padding:0 16px}
     .box,.card{background:#fffdf8;border:1px solid #ddd8ca;border-radius:16px;box-shadow:0 4px 15px #0001}
     .box{padding:18px}
+    .category-tabs{display:inline-flex;gap:4px;margin-bottom:12px;padding:4px;border:1px solid #d8d2c4;border-radius:12px;background:#ebe7dc}
+    .category-tab{min-width:96px;padding:9px 16px;border:0;border-radius:9px;background:transparent;color:#65665f;font:inherit;font-weight:700;cursor:pointer}
+    .category-tab[aria-selected="true"]{background:#fffdf8;color:#314d35;box-shadow:0 1px 5px #0002}
+    .category-tab:focus-visible{outline:2px solid #66835b;outline-offset:2px}
     .search,select{padding:12px;border:1px solid #d8d2c4;border-radius:10px;background:white;font-size:15px}
     .search{width:100%}
     .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .filters.power-mode{grid-template-columns:1fr}
     .filters select{width:100%}
     .count{color:#6b6c65;margin:18px 2px 10px;min-height:24px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -37,16 +42,22 @@
     .jp{font-size:21px;margin:4px 0 0}
     .points{flex:0 0 auto;min-width:38px;padding:7px 8px;border:2px solid #8b651d;border-radius:50%;background:linear-gradient(145deg,#f0d47a,#c89a34);box-shadow:inset 0 1px 1px #fff8c8,0 2px 4px #5c431f33;color:#302307;text-align:center;font-weight:800}
     .points.has-icon{min-width:0;padding:0;border:0;background:none;box-shadow:none}
-    .points-icon{display:block;width:56px;height:56px;object-fit:contain}
+    .points-icon{display:block;width:56px;height:56px;object-fit:contain;transform-origin:center}
+    .points-icon[src$="vp_minus2.png"],.points-icon[src$="vp_0.png"]{transform:scale(.9)}
+    .points-icon[src$="vp_4.png"],.points-icon[src$="vp_6.png"]{transform:scale(.989)}
+    .points-icon[src$="vp_5.png"]{transform:scale(.993)}
+    .power-card{--theme-color:#4f7773;--theme-soft:#e4efed}
+    .power-titles{margin-top:7px;color:#77756d;font-size:13px;line-height:1.45}
+    .power-title-jp{font-weight:700;color:#5e6059}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
     .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
     .detail-label{font-weight:700;color:#555}
     .cost-info,.open-info{display:inline-flex;align-items:center;gap:6px}
     .cost-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
-    .cost-item{display:inline-flex;align-items:center;gap:3px;font-weight:700;line-height:1}
-    .cost-icon{display:block;width:1.7em;height:1.7em;object-fit:contain;flex:0 0 auto}
+    .cost-item{display:inline-flex;align-items:center;gap:3px;font-weight:400;line-height:1}
+    .cost-icon{display:block;width:1.45em;height:1.45em;object-fit:contain;flex:0 0 auto}
     .resin-icon-adjust{transform:scale(.82);transform-origin:center}
-    .cost-amount{display:inline-block;line-height:1;font-variant-numeric:tabular-nums}
+    .cost-amount{display:inline-block;font-size:1em;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
     .inline-icon{display:inline-block;object-fit:contain;margin:0 .06em}
     .effect-resource-icon,.effect-card-icon,.effect-vp-icon,.effect-pearl-icon,.effect-color-icon{width:1.35em;height:1.35em;vertical-align:-.28em;transform-origin:center}
     .effect-vp-icon{transform:scale(1.25);margin-inline:.2em}
@@ -57,7 +68,7 @@
     .related-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-top:9px;font-size:13px}
     .related-row>.detail-label{flex:0 0 auto}
     .relation-condition{display:inline-flex;align-items:center;gap:3px;color:#555}
-    .relation-color-icon{display:block;width:1.35em;height:1.35em;object-fit:contain;transform:scale(1.3);transform-origin:center;margin-inline:.22em;flex:0 0 auto}
+    .relation-color-icon{display:block;width:1.35em;height:1.35em;object-fit:contain;transform:scale(1.5);transform-origin:center;margin-inline:.32em;flex:0 0 auto}
     .card-link{font-weight:700;text-decoration-thickness:1px;text-underline-offset:3px}
     .link-theme-green{color:var(--green-link)}
     .link-theme-brown{color:var(--brown-link)}
@@ -72,8 +83,8 @@
     .back-to-top{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;width:44px;height:44px;padding:0;border:1px solid #cfc8ba;border-radius:50%;background:#fffdf8e8;box-shadow:0 3px 12px #0002;color:#4f5f4b;font:inherit;font-size:20px;line-height:1;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s,visibility .18s;cursor:pointer;-webkit-tap-highlight-color:transparent}
     .back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
     .back-to-top:focus-visible{outline:2px solid #66835b;outline-offset:3px}
-    @media(max-width:750px){.grid,.filters{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:500px){.grid,.filters{grid-template-columns:1fr}.back-to-top{display:grid}}
+    @media(max-width:900px){.grid,.filters{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.grid,.filters{grid-template-columns:1fr}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.back-to-top{display:grid}}
   </style>
 </head>
 <body>
@@ -82,6 +93,10 @@
     <p>英語カード名・日本語名・効果から検索できます</p>
   </header>
   <main>
+    <div class="category-tabs" role="tablist" aria-label="表示カテゴリ">
+      <button id="category-cards" class="category-tab" type="button" role="tab" aria-selected="true" data-category="cards">カード</button>
+      <button id="category-powers" class="category-tab" type="button" role="tab" aria-selected="false" data-category="powers">特殊能力</button>
+    </div>
     <div class="box">
       <input id="q" class="search" type="search" placeholder="カード名・効果を検索…" aria-label="カード名または効果を検索">
       <div class="filters">
@@ -96,12 +111,17 @@
   <button id="back-to-top" class="back-to-top" type="button" aria-label="ページ先頭へ戻る" title="ページ先頭へ戻る">↑</button>
   <script>
     let cards = [];
+    let powers = [];
+    let activeCategory = 'cards';
+    const loadErrors = { cards: null, powers: null };
 
     const elements = {
       query: document.getElementById('q'),
       set: document.getElementById('set'),
       theme: document.getElementById('theme'),
       type: document.getElementById('type'),
+      filters: document.querySelector('.filters'),
+      categoryTabs: [...document.querySelectorAll('[data-category]')],
       count: document.getElementById('count'),
       grid: document.getElementById('grid'),
       backToTop: document.getElementById('back-to-top')
@@ -189,14 +209,33 @@
       });
     }
 
-    function createFilterOptions() {
-      populateFilter(elements.set, [...new Set(cards.map(card => card.set).filter(Boolean))]);
-      populateFilter(elements.theme, Object.entries(themeLabels).map(([value, label]) => ({ value, label })));
-      populateFilter(elements.type, [
-        { value: '動物', label: '動物' },
-        { value: '建物', label: '建物' },
-        ...[...new Set(cards.map(card => card.type).filter(Boolean))].map(value => ({ value, label: value }))
-      ]);
+    function resetFilter(select, label) {
+      select.replaceChildren(new Option(label, ''));
+    }
+
+    function configureFilters() {
+      resetFilter(elements.set, 'セット：すべて');
+      resetFilter(elements.theme, '色：すべて');
+      resetFilter(elements.type, '種類：すべて');
+
+      if (activeCategory === 'cards') {
+        populateFilter(elements.set, [...new Set(cards.map(card => card.set).filter(Boolean))]);
+        populateFilter(elements.theme, Object.entries(themeLabels).map(([value, label]) => ({ value, label })));
+        populateFilter(elements.type, [
+          { value: '動物', label: '動物' },
+          { value: '建物', label: '建物' },
+          ...[...new Set(cards.map(card => card.type).filter(Boolean))].map(value => ({ value, label: value }))
+        ]);
+      } else {
+        populateFilter(elements.set, [...new Set(powers.map(power => power.set).filter(Boolean))]);
+      }
+
+      const isPowerView = activeCategory === 'powers';
+      elements.theme.hidden = isPowerView;
+      elements.type.hidden = isPowerView;
+      elements.filters.classList.toggle('power-mode', isPowerView);
+      elements.query.placeholder = isPowerView ? '特殊能力名・肩書・効果を検索…' : 'カード名・効果を検索…';
+      elements.query.setAttribute('aria-label', isPowerView ? '特殊能力名、肩書または効果を検索' : 'カード名または効果を検索');
     }
 
     function loadFavoriteIds() {
@@ -254,7 +293,7 @@
       }
 
       const colorByLabel = Object.fromEntries(Object.values(colorIcons).map(icon => [icon.label, icon]));
-      html = html.replace(/(?<!\p{Script=Han})([緑茶赤青紫])(?=(?:\d|の|[、。・／/（）\s]|$))/gu, (_, label) => {
+      html = html.replace(/(?<!\p{Script=Han})([緑茶赤青紫])(?=(?:以外|[をに]|\d|の|[、。・／/（）\s]|$))/gu, (_, label) => {
         const icon = colorByLabel[label];
         return iconHtml(icon.image, icon.label, 'inline-icon effect-color-icon');
       });
@@ -349,7 +388,56 @@
       </article>`;
     }
 
+    function renderPower(power) {
+      const isFavorite = favoriteIds.has(power.id);
+      return `<article class="card power-card">
+        <div class="card-head">
+          <div class="card-title">
+            <div class="en">${escapeHtml(power.name_en)}</div>
+            <div class="jp">${escapeHtml(power.name_jp)}</div>
+            <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>
+          </div>
+          <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(power.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(power.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
+        </div>
+        <span class="badge">${escapeHtml(power.set)}</span>
+        <div class="effect">${renderEffect(power.effect)}</div>
+      </article>`;
+    }
+
+    function renderPowers() {
+      if (loadErrors.powers) {
+        elements.count.textContent = '特殊能力を読み込めませんでした。';
+        elements.grid.innerHTML = '<div class="status error">特殊能力データの読み込みに失敗しました。ページを再読み込みしてください。</div>';
+        return;
+      }
+
+      const query = elements.query.value.trim().toLocaleLowerCase('ja');
+      const selectedSet = elements.set.value;
+      const filtered = powers.filter(power => {
+        const searchable = [power.name_jp, power.name_en, power.title_jp, power.title_en, power.effect].join(' ').toLocaleLowerCase('ja');
+        return (!query || searchable.includes(query)) && (!selectedSet || power.set === selectedSet);
+      });
+      const list = [
+        ...filtered.filter(power => favoriteIds.has(power.id)),
+        ...filtered.filter(power => !favoriteIds.has(power.id))
+      ];
+
+      elements.count.textContent = `${list.length} / ${powers.length} 件`;
+      elements.grid.innerHTML = list.length
+        ? list.map(renderPower).join('')
+        : '<div class="status">該当する特殊能力がありません。</div>';
+    }
+
     function render() {
+      if (activeCategory === 'powers') {
+        renderPowers();
+        return;
+      }
+      if (loadErrors.cards) {
+        elements.count.textContent = 'カードを読み込めませんでした。';
+        elements.grid.innerHTML = '<div class="status error">カードデータの読み込みに失敗しました。ページを再読み込みしてください。</div>';
+        return;
+      }
       const query = elements.query.value.trim().toLocaleLowerCase('ja');
       const selectedSet = elements.set.value;
       const selectedTheme = elements.theme.value;
@@ -374,11 +462,13 @@
         : '<div class="status">該当するカードがありません。</div>';
     }
 
-    function showLoadError(error) {
-      console.error(error);
-      elements.count.textContent = 'カードを読み込めませんでした。';
-      elements.grid.setAttribute('aria-busy', 'false');
-      elements.grid.innerHTML = '<div class="status error">カードデータの読み込みに失敗しました。ページを再読み込みするか、Webサーバー経由で開いてください。</div>';
+    function switchCategory(category) {
+      if (!['cards', 'powers'].includes(category) || category === activeCategory) return;
+      activeCategory = category;
+      elements.categoryTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.category === category)));
+      elements.query.value = '';
+      configureFilters();
+      render();
     }
 
     elements.grid.addEventListener('click', event => {
@@ -404,6 +494,7 @@
     });
 
     [elements.query, elements.set, elements.theme, elements.type].forEach(element => element.addEventListener('input', render));
+    elements.categoryTabs.forEach(tab => tab.addEventListener('click', () => switchCategory(tab.dataset.category)));
 
     function updateBackToTop() {
       elements.backToTop.classList.toggle('is-visible', window.scrollY > 480);
@@ -417,18 +508,34 @@
     updateBackToTop();
 
     async function init() {
-      try {
-        const response = await fetch('./cards.json');
-        if (!response.ok) throw new Error(`cards.json: HTTP ${response.status}`);
+      const loadJsonArray = async (file, rootKey) => {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
         const data = await response.json();
-        if (!data || !Array.isArray(data.cards)) throw new Error('cards.json の cards が配列ではありません。');
-        cards = data.cards;
-        createFilterOptions();
-        elements.grid.setAttribute('aria-busy', 'false');
-        render();
-      } catch (error) {
-        showLoadError(error);
+        if (!data || !Array.isArray(data[rootKey])) throw new Error(`${file} の ${rootKey} が配列ではありません。`);
+        return data[rootKey];
+      };
+
+      const [cardsResult, powersResult] = await Promise.allSettled([
+        loadJsonArray('./cards.json', 'cards'),
+        loadJsonArray('./worker_powers.json', 'powers')
+      ]);
+
+      if (cardsResult.status === 'fulfilled') cards = cardsResult.value;
+      else {
+        loadErrors.cards = cardsResult.reason;
+        console.error(cardsResult.reason);
       }
+
+      if (powersResult.status === 'fulfilled') powers = powersResult.value;
+      else {
+        loadErrors.powers = powersResult.reason;
+        console.error(powersResult.reason);
+      }
+
+      configureFilters();
+      elements.grid.setAttribute('aria-busy', 'false');
+      render();
     }
 
     init();
