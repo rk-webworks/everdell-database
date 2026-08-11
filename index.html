@@ -1,5 +1,421 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Everdell 日本語カード検索</title><style>body{margin:0;font-family:system-ui,sans-serif;background:#f4f1e8;color:#303229}header{background:linear-gradient(135deg,#314d35,#70875f);color:#fff;padding:32px 16px;text-align:center}main{max-width:1100px;margin:24px auto;padding:0 16px}.box,.card{background:#fffdf8;border:1px solid #ddd8ca;border-radius:16px;box-shadow:0 4px 15px #0001}.box{padding:18px}.search,select{padding:12px;border:1px solid #d8d2c4;border-radius:10px;background:white;font-size:15px}.search{width:100%;box-sizing:border-box}.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.filters select{width:100%}.count{color:#6b6c65;margin:18px 2px 10px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:17px;cursor:pointer}.card:hover{transform:translateY(-2px)}.en{font-weight:700;font-size:17px}.jp{font-size:21px;margin:4px 0 12px}.badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}.effect{margin-top:10px;line-height:1.65;font-size:14px;color:#555;white-space:pre-line}.empty{text-align:center;padding:50px;color:#777;grid-column:1/-1}@media(max-width:750px){.grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.grid,.filters{grid-template-columns:1fr}}</style></head><body><header><h1>🌳 Everdell 日本語カード検索</h1><p>英語カード名・日本語名・効果から検索できます</p></header><main><div class="box"><input id="q" class="search" placeholder="カード名・効果を検索…"><div class="filters"><select id="set"><option value="">セット：すべて</option></select><select id="color"><option value="">色：すべて</option></select><select id="attribute"><option value="">属性：すべて</option></select><select id="type"><option value="">種類：すべて</option></select></div></div><div id="count" class="count"></div><div id="grid" class="grid"></div></main><script>
-const cards=[
-['Barge Toad','船頭ガエル','あなたの街にある《農場》1枚につき小枝2個を得る。','一般の動物','緑','生産','基本'],['Chip Sweep','リスの掃除屋','あなたの街にある緑の生産カード1枚の効果を発動する。','一般の動物','緑','生産','基本'],['Doctor','医者','果実を3個まで支払ってもよい。支払った果実1個につき、1勝利点を得る。','特別な動物','緑','生産','基本'],['Harvester/Husband','旦那','《夫人》と区画を共有してもよい。\nあなたの街に1枚以上の《農場》が存在し、このカードが《夫人》と区域を共有しているなら、資材を1個を得る。','一般の動物','緑','生産','基本'],['Miner Mole','鉱夫モグラ','相手の街にある緑の生産カード1枚をコピーし効果を発動する。','一般の動物','緑','生産','基本'],['Monk','修道士','他のプレイヤー1人に果実を2個まで与えてもよい。与えた果実1個につき2勝利点を得る。\n修道院のカードの2つめを開放する。','特別な動物','緑','生産','基本'],['Peddler','行商人','資材を2個まで支払ってもよい。そうしたなら同じ数の資材を得る。','一般の動物','緑','生産','基本'],['Teacher','教師','カードを2枚引き、そのうち1枚を手札に加え、もう1枚を他のプレイヤーに与える。','一般の動物','緑','生産','基本'],['Woodcarver','木彫師','小枝を3個まで支払ってもよい。支払った小枝1個につき1勝利点を得る。','一般の動物','緑','生産','基本'],['Fair Grounds','移動遊園地','カードを2枚引く。','一般の建物','緑','生産','基本'],['Farm','農場','果実を1個得る。','一般の建物','緑','生産','基本'],['General Store','雑貨屋','果実を1個得る。あなたの街に《農場》があるなら追加で果実を1個得る。','一般の建物','緑','生産','基本'],['Mine','鉱山','小石を1個得る。','一般の建物','緑','生産','基本'],['Resin Refinery','樹液精製所','樹液を1個得る。','一般の建物','緑','生産','基本'],['Storehouse','倉庫','このカードに小枝3個、樹液2個、小石1個、果実2個のいずれかを置く。\nアクションマスに労働者コマを置いたとき、このカード上にある資材をすべて得る。','一般の建物','緑','生産','基本'],['Twig Barge','小枝の運搬船','小枝を2個得る。','一般の建物','緑','生産','基本'],['Bard','吟遊詩人','手札から5枚まで捨て札にしてもよい。捨てたカード1枚につき1勝利点を得る。','特別な動物','茶','旅行者','基本'],['Fool','道化師','このカードは、他のプレイヤーの街にある空白の区域にプレイする。','特別な動物','茶','旅行者','基本'],['Postal Pigeon','伝書バト','カードの山の上から2枚公開する。そのうち勝利点3までの1枚をコストを無視してプレイすることができる。プレイしなかったカードは捨て札にする。','一般の動物','茶','旅行者','基本'],['Ranger','野伏せ','配置されているあなたの労働者コマのうち1個を別のマスに動かし、そのアクションを実行する。\n牢獄のカードの2つめを開放する。','特別な動物','茶','旅行者','基本'],['Shepherd','牧師','果実を3個得る。その後、あなたの街にある《礼拝堂》のカードに置かれている勝利点1個につき1勝利点を得る。','特別な動物','茶','旅行者','基本'],['Undertaker','葬儀屋','広場から3枚カードを捨て札とし、補充したのちに、広場からカードを1枚引く。\n墓地のカードの2つめを解放する。','特別な動物','茶','旅行者','基本'],['Wanderer','旅人','街の区域に配置せず、街のそばにおく。\nカードを3枚引く。','一般の動物','茶','旅行者','基本'],['Ruins','遺跡','あなたの街から建物カード1枚を捨て札とする。そのコストと同じ資材を得て、カードを2枚引く。','一般の建物','茶','旅行者','基本'],['Queen','王妃','勝利点3までのカード1枚をコストを無視してプレイする。','特別な動物','赤','目的地','基本'],['Cemetery','墓地','労働者コマはゲーム終了時までこのカードに留まる。\nカードの山もしくは捨て山の上のいずれか1つからカード4枚を公開し、1枚をコストを無視してプレイする。プレイしなかったカードは捨て札にする。','特別な建物','赤','目的地','基本'],['Chapel','礼拝堂','このカード上に1勝利点を置く。その後、このカードに置かれている1勝利点につきカードを2枚引く。','特別な建物','赤','目的地','基本'],['Inn','宿屋','コストから資材を3個減らし、広場から動物または建物カード1枚をプレイする。','一般の建物','赤','目的地','基本'],['Lookout','物見櫓','任意の森の小道または森カード上のアクションマスをコピーする。','特別な建物','赤','目的地','基本'],['Monastery','修道院','労働者コマはゲーム終了時までこのカードに留まる。\n他のプレイヤー1人に資源を2個与え、4勝利点を得る。','特別な建物','赤','目的地','基本'],['Post Office','郵便局','他のプレイヤーにカードを2枚渡した後、任意の枚数のカードを捨て札としてよい。その後、手札上限までカードを引く。','一般の建物','赤','目的地','基本'],['University','大学','あなたの街から動物または建物カード1枚を捨て札とする。そのコストと同じ資材を得て、資材1個と1勝利点を得る。','特別な建物','赤','目的地','基本'],['Historian','歴史家','動物または建物カードをプレイするたび、カードを1枚引く。','特別な動物','青','政治','基本'],['Innkeeper','宿屋の主人','他の「カードをプレイする」効果とは併用できない。\n動物カードをプレイするとき、あなたの街からこのカードを捨て札にしてもよい。そうしたならコストから果実を3個減らす。','特別な動物','青','政治','基本'],['Judge','裁判官','他の「カードをプレイする」効果とは併用できない。\n動物もしくは建物カードをプレイするとき、必要な資材1個を別の資材1個とみなしてもよい。','特別な動物','青','政治','基本'],['Shopkeeper','店主','動物カードをプレイするたび、果実を1個得る。','特別な動物','青','政治','基本'],['Clocktower','時計台','このカードをプレイしたとき、このカード上に勝利点3を置く。次の季節の準備の開始時に、ここから1勝利点を支払ってもよい。そうしたなら、あなたが労働者コマを配置している森の小道もしくは森カード上の1マスのアクションを実行する。','特別な建物','青','政治','基本'],['Courthouse','裁判所','あなたが建物カードをプレイするたび、小枝、樹液、小石いずれかを1個得る。','特別な建物','青','政治','基本'],['Crane','クレーン','他の「カードをプレイする」効果とは併用できない。\n建物カードをプレイするとき、あなたの街からこのカードを捨て札にしてもよい。そうしたならコストから資材を3個減らす。','特別な建物','青','政治','基本'],['Dungeon','牢獄','他の「カードをプレイする」効果とは併用できない。\n動物または建物カードをプレイするとき、このカードの下にあなたの街に配置されている動物カードを1枚裏向きで入れてもよい。そうしたなら、コストから資材を3個減らす。','特別な建物','青','政治','基本'],['Architect','建築家','ゲーム終了時、所有している樹液または小石1個につき1勝利点を得る（最大6点）。','特別な動物','紫','祝福','基本'],['King','王','達成した基本イベント1つにつき1勝利点、達成した特殊イベント1つにつき2勝利点を得る。','特別な動物','紫','祝福','基本'],['Wife/Gatherer','夫人','《旦那》と区域を共有してもよい。\nゲーム終了時、《旦那》と区域を共有していれば勝利点3を得る。','特別な動物','紫','祝福','基本'],['Castle','城','ゲーム終了時、あなたの街にある一般の建物カード1枚につき1勝利点を得る。','特別な建物','紫','祝福','基本'],['Ever Tree','永遠の樹','ゲーム終了時、あなたの街にある紫の祝福カード1枚につき1勝利点を得る。','特別な建物','紫','祝福','基本'],['Palace','宮殿','ゲーム終了時、あなたの街にある特別な建物カード1枚につき1勝利点を得る。','特別な建物','紫','祝福','基本'],['School','学校','ゲーム終了時、あなたの街にある一般の動物カード1枚につき1勝利点を得る。','特別な建物','紫','祝福','基本'],['Theater','劇場','ゲーム終了時、あなたの街にある特別な動物カード1枚につき1勝利点を得る。','特別な建物','紫','祝福','基本']];
-const opts={set:[...new Set(cards.map(c=>c[6]))],color:[...new Set(cards.map(c=>c[4]))],attribute:[...new Set(cards.map(c=>c[5]))],type:[...new Set(cards.map(c=>c[3]))]};for(const [id,vs] of Object.entries(opts))vs.forEach(v=>document.getElementById(id).insertAdjacentHTML('beforeend',`<option>${v}</option>`));function render(){let q=document.getElementById('q').value.toLowerCase();let fs=['set','color','attribute','type'].map(id=>document.getElementById(id).value);let list=cards.filter(c=>(!q||c.slice(0,3).join(' ').toLowerCase().includes(q))&&(!fs[0]||c[6]==fs[0])&&(!fs[1]||c[4]==fs[1])&&(!fs[2]||c[5]==fs[2])&&(!fs[3]||c[3]==fs[3]));document.getElementById('count').textContent=`${list.length} / ${cards.length} 枚`;document.getElementById('grid').innerHTML=list.length?list.map(c=>`<article class="card"><div class="en">${c[0]}</div><div class="jp">${c[1]}</div><span class="badge">${c[4]}</span><span class="badge">${c[5]}</span><span class="badge">${c[3]}</span><div class="effect">${c[2]}</div></article>`).join(''):'<div class="empty">該当するカードがありません。</div>'}document.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',render));render();
-</script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Everdell 日本語カード検索</title>
+  <style>
+    :root{--green:#66835b;--brown:#9a6847;--red:#a84f48;--blue:#4c7395;--purple:#76598c;--green-link:#3f6539;--brown-link:#7c4d31;--red-link:#8e3f39;--blue-link:#365f82;--purple-link:#654879}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,sans-serif;background:#f4f1e8;color:#303229}
+    header{background:linear-gradient(135deg,#314d35,#70875f);color:#fff;padding:32px 16px;text-align:center}
+    main{max-width:1100px;margin:24px auto;padding:0 16px}
+    .box,.card{background:#fffdf8;border:1px solid #ddd8ca;border-radius:16px;box-shadow:0 4px 15px #0001}
+    .box{padding:18px}
+    .search,select{padding:12px;border:1px solid #d8d2c4;border-radius:10px;background:white;font-size:15px}
+    .search{width:100%}
+    .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .filters select{width:100%}
+    .count{color:#6b6c65;margin:18px 2px 10px;min-height:24px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{padding:17px;border:2px solid var(--theme-color,#66835b);border-top-width:9px;background:linear-gradient(180deg,var(--theme-soft,#edf3e9) 0,#fffdf8 105px);scroll-margin-top:16px;transition:transform .15s,box-shadow .15s}
+    .card:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0002}
+    .card:target{outline:3px solid var(--theme-color,#66835b);outline-offset:3px}
+    .theme-green{--theme-color:var(--green);--theme-soft:#e7efe3}
+    .theme-brown{--theme-color:var(--brown);--theme-soft:#f2e8df}
+    .theme-red{--theme-color:var(--red);--theme-soft:#f4e3e1}
+    .theme-blue{--theme-color:var(--blue);--theme-soft:#e3ebf2}
+    .theme-purple{--theme-color:var(--purple);--theme-soft:#ece5f1}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:-2px -2px 12px;padding:2px 2px 10px;border-bottom:2px solid color-mix(in srgb,var(--theme-color,#66835b) 48%,transparent)}
+    .card-title{min-width:0}
+    .card-tools{display:flex;align-items:flex-start;gap:4px;flex:0 0 auto}
+    .favorite-button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:transparent;color:#817a6d;font:inherit;font-size:22px;line-height:1;cursor:pointer}
+    .favorite-button:hover{background:#fff9;color:#9a6b16}
+    .favorite-button[aria-pressed="true"]{color:#b47b12}
+    .favorite-button:focus-visible{outline:2px solid var(--theme-color,#66835b);outline-offset:2px}
+    .en{font-weight:700;font-size:17px}
+    .jp{font-size:21px;margin:4px 0 0}
+    .points{flex:0 0 auto;min-width:38px;padding:7px 8px;border:2px solid #8b651d;border-radius:50%;background:linear-gradient(145deg,#f0d47a,#c89a34);box-shadow:inset 0 1px 1px #fff8c8,0 2px 4px #5c431f33;color:#302307;text-align:center;font-weight:800}
+    .points.has-icon{min-width:0;padding:0;border:0;background:none;box-shadow:none}
+    .points-icon{display:block;width:56px;height:56px;object-fit:contain}
+    .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
+    .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
+    .detail-label{font-weight:700;color:#555}
+    .cost-info,.open-info{display:inline-flex;align-items:center;gap:6px}
+    .cost-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .cost-item{display:inline-flex;align-items:center;gap:3px;font-weight:700;line-height:1}
+    .cost-icon{display:block;width:1.7em;height:1.7em;object-fit:contain;flex:0 0 auto}
+    .resin-icon-adjust{transform:scale(.82);transform-origin:center}
+    .cost-amount{display:inline-block;line-height:1;font-variant-numeric:tabular-nums}
+    .inline-icon{display:inline-block;object-fit:contain;margin:0 .06em}
+    .effect-resource-icon,.effect-card-icon,.effect-vp-icon,.effect-pearl-icon,.effect-color-icon{width:1.35em;height:1.35em;vertical-align:-.28em;transform-origin:center}
+    .effect-vp-icon{transform:scale(1.25);margin-inline:.2em}
+    .effect-pearl-icon{transform:scale(1.6);margin-inline:.42em}
+    .effect-color-icon{transform:scale(1.3);margin-inline:.24em}
+    .open-info{color:#7a4d27}
+    .open-points-icon{display:block;width:2.15em;height:2.15em;object-fit:contain;flex:0 0 auto}
+    .related-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-top:9px;font-size:13px}
+    .related-row>.detail-label{flex:0 0 auto}
+    .relation-condition{display:inline-flex;align-items:center;gap:3px;color:#555}
+    .relation-color-icon{display:block;width:1.35em;height:1.35em;object-fit:contain;transform:scale(1.3);transform-origin:center;margin-inline:.22em;flex:0 0 auto}
+    .card-link{font-weight:700;text-decoration-thickness:1px;text-underline-offset:3px}
+    .link-theme-green{color:var(--green-link)}
+    .link-theme-brown{color:var(--brown-link)}
+    .link-theme-red{color:var(--red-link)}
+    .link-theme-blue{color:var(--blue-link)}
+    .link-theme-purple{color:var(--purple-link)}
+    .related-text{color:#555}
+    .card-link:hover{text-decoration-thickness:2px}
+    .effect{margin-top:10px;line-height:1.65;font-size:14px;color:#555;white-space:pre-line}
+    .status{text-align:center;padding:50px;color:#777;grid-column:1/-1}
+    .status.error{color:#9d3434;background:#fff7f5;border:1px solid #e3bab4;border-radius:14px}
+    @media(max-width:750px){.grid,.filters{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.grid,.filters{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌳 Everdell 日本語カード検索</h1>
+    <p>英語カード名・日本語名・効果から検索できます</p>
+  </header>
+  <main>
+    <div class="box">
+      <input id="q" class="search" type="search" placeholder="カード名・効果を検索…" aria-label="カード名または効果を検索">
+      <div class="filters">
+        <select id="set" aria-label="セットで絞り込む"><option value="">セット：すべて</option></select>
+        <select id="theme" aria-label="色で絞り込む"><option value="">色：すべて</option></select>
+        <select id="type" aria-label="種類で絞り込む"><option value="">種類：すべて</option></select>
+      </div>
+    </div>
+    <div id="count" class="count" aria-live="polite">カードを読み込んでいます…</div>
+    <div id="grid" class="grid" aria-busy="true"><div class="status">カードを読み込んでいます…</div></div>
+  </main>
+  <script>
+    let cards = [];
+
+    const elements = {
+      query: document.getElementById('q'),
+      set: document.getElementById('set'),
+      theme: document.getElementById('theme'),
+      type: document.getElementById('type'),
+      count: document.getElementById('count'),
+      grid: document.getElementById('grid')
+    };
+
+    const resources = {
+      twig: { label: '小枝', image: 'twig.png' },
+      resin: { label: '樹液', image: 'resin.png' },
+      pebble: { label: '小石', image: 'pebble.png' },
+      fruit: { label: '果実', image: 'fruit.png' }
+    };
+
+    const effectIcons = {
+      '「カード」': { image: 'card.png', label: 'カード' },
+      '資材': { image: 'resource_any.png', label: '資材' },
+      '果実': { image: 'fruit.png', label: '果実' },
+      '小枝': { image: 'twig.png', label: '小枝' },
+      '樹液': { image: 'resin.png', label: '樹液' },
+      '小石': { image: 'pebble.png', label: '小石' },
+      '真珠': { image: 'pearl.png', label: '真珠' },
+      '「勝利点」': { image: 'vp_blank.png', label: '勝利点' }
+    };
+
+    const colorIcons = {
+      green: { image: 'green.png', label: '緑' },
+      brown: { image: 'brown.png', label: '茶' },
+      red: { image: 'red.png', label: '赤' },
+      blue: { image: 'blue.png', label: '青' },
+      purple: { image: 'purple.png', label: '紫' }
+    };
+
+    const themeLabels = {
+      green: '緑',
+      brown: '茶',
+      red: '赤',
+      blue: '青',
+      purple: '紫'
+    };
+
+    const favoritesStorageKey = 'everdell-favorite-card-ids';
+    const favoriteIds = loadFavoriteIds();
+
+    const victoryPointImages = new Map([
+      [-2, 'vp_minus2.png'],
+      [0, 'vp_0.png'],
+      [1, 'vp_1.png'],
+      [2, 'vp_2.png'],
+      [3, 'vp_3.png'],
+      [4, 'vp_4.png'],
+      [5, 'vp_5.png'],
+      [6, 'vp_6.png']
+    ]);
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function cardAnchor(card) {
+      return `card-${encodeURIComponent(card.id)}`;
+    }
+
+    function iconHtml(image, label, className = 'inline-icon') {
+      return `<img class="${className}" src="./images/${image}" alt="${escapeHtml(label)}" title="${escapeHtml(label)}">`;
+    }
+
+    function victoryPointIcon(value, className) {
+      const points = Number(value);
+      const image = victoryPointImages.get(points);
+      return image ? iconHtml(image, `${points}勝利点`, className) : '';
+    }
+
+    function populateFilter(select, options) {
+      options.forEach(item => {
+        const value = typeof item === 'string' ? item : item.value;
+        const label = typeof item === 'string' ? item : item.label;
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = label;
+        select.append(option);
+      });
+    }
+
+    function createFilterOptions() {
+      populateFilter(elements.set, [...new Set(cards.map(card => card.set).filter(Boolean))]);
+      populateFilter(elements.theme, Object.entries(themeLabels).map(([value, label]) => ({ value, label })));
+      populateFilter(elements.type, [
+        { value: '動物', label: '動物' },
+        { value: '建物', label: '建物' },
+        ...[...new Set(cards.map(card => card.type).filter(Boolean))].map(value => ({ value, label: value }))
+      ]);
+    }
+
+    function loadFavoriteIds() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(favoritesStorageKey) || '[]');
+        return new Set(Array.isArray(stored) ? stored.filter(id => typeof id === 'string') : []);
+      } catch (error) {
+        console.warn('お気に入りを読み込めませんでした。', error);
+        return new Set();
+      }
+    }
+
+    function saveFavoriteIds() {
+      try {
+        localStorage.setItem(favoritesStorageKey, JSON.stringify([...favoriteIds]));
+      } catch (error) {
+        console.warn('お気に入りを保存できませんでした。', error);
+      }
+    }
+
+    function toggleFavorite(cardId) {
+      favoriteIds.has(cardId) ? favoriteIds.delete(cardId) : favoriteIds.add(cardId);
+      saveFavoriteIds();
+      render();
+    }
+
+    function renderCost(cost = {}) {
+      const items = Object.entries(resources)
+        .map(([key, resource]) => ({ ...resource, amount: Number(cost[key] ?? 0) }))
+        .filter(item => item.amount > 0)
+        .map(item => `<span class="cost-item">${iconHtml(item.image, item.label, item.image === 'resin.png' ? 'cost-icon resin-icon-adjust' : 'cost-icon')}<span class="cost-amount">${item.amount}</span></span>`)
+        .join('');
+      return items || '<span class="cost-item">なし</span>';
+    }
+
+    function renderEffectText(text) {
+      let html = escapeHtml(text);
+
+      html = html.replace(/[1-6]勝利点/g, match => {
+        const value = match.charAt(0);
+        return victoryPointIcon(value, 'inline-icon effect-vp-icon');
+      });
+
+      for (const [text, icon] of Object.entries(effectIcons)) {
+        const className = text === '「勝利点」'
+          ? 'inline-icon effect-vp-icon'
+          : text === '「カード」'
+            ? 'inline-icon effect-card-icon'
+            : text === '真珠'
+              ? 'inline-icon effect-pearl-icon'
+              : text === '樹液'
+                ? 'inline-icon effect-resource-icon resin-icon-adjust'
+                : 'inline-icon effect-resource-icon';
+        html = html.replaceAll(text, iconHtml(icon.image, icon.label, className));
+      }
+
+      const colorByLabel = Object.fromEntries(Object.values(colorIcons).map(icon => [icon.label, icon]));
+      html = html.replace(/(?<!\p{Script=Han})([緑茶赤青紫])(?=(?:\d|の|[、。・／/（）\s]|$))/gu, (_, label) => {
+        const icon = colorByLabel[label];
+        return iconHtml(icon.image, icon.label, 'inline-icon effect-color-icon');
+      });
+
+      return html;
+    }
+
+    function renderEffect(effect) {
+      return String(effect ?? '')
+        .split(/(《[^》]*》)/g)
+        .map(part => part.startsWith('《') && part.endsWith('》') ? escapeHtml(part) : renderEffectText(part))
+        .join('');
+    }
+
+    function renderVictoryPoints(value) {
+      const points = Number(value ?? 0);
+      const icon = victoryPointIcon(points, 'points-icon');
+      if (icon) return `<div class="points has-icon" title="勝利点 ${points}">${icon}</div>`;
+      return `<div class="points" title="勝利点" aria-label="勝利点 ${escapeHtml(points)}">${escapeHtml(points)}</div>`;
+    }
+
+    function renderOpen(value) {
+      const points = Number(value);
+      const icon = victoryPointIcon(points, 'open-points-icon');
+      const display = icon || `<span>${escapeHtml(points)}</span>`;
+      return `<span class="open-info"><span class="detail-label">オープン：</span>${display}</span>`;
+    }
+
+    function resolveLinkTargets(link) {
+      if (!link) return [];
+      return String(link)
+        .split('/')
+        .map(name => name.trim())
+        .filter(Boolean)
+        .map(name => ({ name, card: cards.find(card => card.name_jp === name) }));
+    }
+
+    function renderSpecificLinks(link) {
+      const targets = resolveLinkTargets(link);
+      if (!targets.length) return '';
+      const links = targets.map(({ name, card: target }) => {
+        if (!target) return `<span class="related-text">${escapeHtml(name)}</span>`;
+        const targetTheme = ['green', 'brown', 'red', 'blue', 'purple'].includes(target.theme) ? target.theme : 'green';
+        const label = `${name}（${target.name_en}）`;
+        return `<a class="card-link link-theme-${targetTheme}" href="#${escapeHtml(cardAnchor(target))}" data-card-id="${escapeHtml(target.id)}">${escapeHtml(label)}</a>`;
+      }).join(' / ');
+      return `<div class="related-row link-row"><span class="detail-label">関連カード：</span><span>${links}</span></div>`;
+    }
+
+    function renderRelationCondition(relation) {
+      if (!relation || !relation.target || !relation.range) return '';
+      const target = escapeHtml(relation.target);
+      const range = String(relation.range);
+      const colorIcon = Object.values(colorIcons).find(icon => icon.label === range);
+
+      if (colorIcon) {
+        const icon = iconHtml(colorIcon.image, colorIcon.label, 'relation-color-icon');
+        return `<div class="related-row relation-row"><span class="detail-label">関連カード：</span><span class="relation-condition">${icon}<span>の${target}</span></span></div>`;
+      }
+
+      const label = range === 'すべて'
+        ? `すべての${relation.target}`
+        : range === '一般'
+          ? `一般の${relation.target}`
+          : range === '特別'
+            ? `特別な${relation.target}`
+          : range === '特定'
+            ? relation.target
+            : `${range}の${relation.target}`;
+      return `<div class="related-row relation-row"><span class="detail-label">関連カード：</span><span class="related-text">${escapeHtml(label)}</span></div>`;
+    }
+
+    function renderRelatedInfo(card) {
+      if (card.link) return renderSpecificLinks(card.link);
+      return renderRelationCondition(card.relation);
+    }
+
+    function renderCard(card) {
+      const theme = ['green', 'brown', 'red', 'blue', 'purple'].includes(card.theme) ? card.theme : 'green';
+      const openInfo = Object.hasOwn(card, 'open') ? renderOpen(card.open) : '';
+      const isFavorite = favoriteIds.has(card.id);
+
+      return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}">
+        <div class="card-head">
+          <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp">${escapeHtml(card.name_jp)}</div></div>
+          <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>${renderVictoryPoints(card.victory_points)}</div>
+        </div>
+        <span class="badge">${escapeHtml(card.set)}</span><span class="badge">${escapeHtml(card.type)}</span>
+        <div class="effect">${renderEffect(card.effect)}</div>
+        <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span></span>${openInfo}</div>
+        ${renderRelatedInfo(card)}
+      </article>`;
+    }
+
+    function render() {
+      const query = elements.query.value.trim().toLocaleLowerCase('ja');
+      const selectedSet = elements.set.value;
+      const selectedTheme = elements.theme.value;
+      const selectedType = elements.type.value;
+      const filtered = cards.filter(card => {
+        const searchable = [card.name_jp, card.name_en, card.effect].join(' ').toLocaleLowerCase('ja');
+        const matchesType = !selectedType
+          || (['動物', '建物'].includes(selectedType) ? card.type.includes(selectedType) : card.type === selectedType);
+        return (!query || searchable.includes(query))
+          && (!selectedSet || card.set === selectedSet)
+          && (!selectedTheme || card.theme === selectedTheme)
+          && matchesType;
+      });
+      const list = [
+        ...filtered.filter(card => favoriteIds.has(card.id)),
+        ...filtered.filter(card => !favoriteIds.has(card.id))
+      ];
+
+      elements.count.textContent = `${list.length} / ${cards.length} 枚`;
+      elements.grid.innerHTML = list.length
+        ? list.map(renderCard).join('')
+        : '<div class="status">該当するカードがありません。</div>';
+    }
+
+    function showLoadError(error) {
+      console.error(error);
+      elements.count.textContent = 'カードを読み込めませんでした。';
+      elements.grid.setAttribute('aria-busy', 'false');
+      elements.grid.innerHTML = '<div class="status error">カードデータの読み込みに失敗しました。ページを再読み込みするか、Webサーバー経由で開いてください。</div>';
+    }
+
+    elements.grid.addEventListener('click', event => {
+      const favoriteButton = event.target.closest('[data-favorite-id]');
+      if (favoriteButton) {
+        toggleFavorite(favoriteButton.dataset.favoriteId);
+        return;
+      }
+      const link = event.target.closest('[data-card-id]');
+      if (!link) return;
+      event.preventDefault();
+      const targetId = link.dataset.cardId;
+      elements.query.value = '';
+      elements.set.value = '';
+      elements.theme.value = '';
+      elements.type.value = '';
+      render();
+      const target = document.getElementById(cardAnchor(cards.find(card => card.id === targetId)));
+      if (target) {
+        history.replaceState(null, '', `#${target.id}`);
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    [elements.query, elements.set, elements.theme, elements.type].forEach(element => element.addEventListener('input', render));
+
+    async function init() {
+      try {
+        const response = await fetch('./cards.json');
+        if (!response.ok) throw new Error(`cards.json: HTTP ${response.status}`);
+        const data = await response.json();
+        if (!data || !Array.isArray(data.cards)) throw new Error('cards.json の cards が配列ではありません。');
+        cards = data.cards;
+        createFilterOptions();
+        elements.grid.setAttribute('aria-busy', 'false');
+        render();
+      } catch (error) {
+        showLoadError(error);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

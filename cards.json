@@ -1,0 +1,1469 @@
+{
+    "cards":  [
+                  {
+                      "id":  "BASE-001",
+                      "name_en":  "Barge Toad",
+                      "name_jp":  "船頭ガエル",
+                      "effect":  "あなたの街にある《農場》1枚につき小枝を2個得る。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "小枝の運搬船",
+                                       "range":  "特定"
+                                   },
+                      "link":  "小枝の運搬船"
+                  },
+                  {
+                      "id":  "BASE-002",
+                      "name_en":  "Chip Sweep",
+                      "name_jp":  "リスの掃除屋",
+                      "effect":  "あなたの街にある緑1枚の効果を適用する。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "樹液精製所",
+                                       "range":  "特定"
+                                   },
+                      "link":  "樹液精製所"
+                  },
+                  {
+                      "id":  "BASE-003",
+                      "name_en":  "Harvester/Husband",
+                      "name_jp":  "旦那",
+                      "effect":  "《夫人》と区域を共有してもよい。\nあなたの街に1枚以上の《農場》が存在し、このカードが《夫人》と区域を共有しているなら、資材を1個得る。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "農場",
+                                       "range":  "特定"
+                                   },
+                      "link":  "農場"
+                  },
+                  {
+                      "id":  "BASE-004",
+                      "name_en":  "Miner Mole",
+                      "name_jp":  "鉱夫モグラ",
+                      "effect":  "相手の街にある緑1枚をコピーし効果を適用する。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "鉱山",
+                                       "range":  "特定"
+                                   },
+                      "link":  "鉱山"
+                  },
+                  {
+                      "id":  "BASE-005",
+                      "name_en":  "Peddler",
+                      "name_jp":  "行商人",
+                      "effect":  "資材を2個まで支払ってもよい。そうしたなら、同じ数の資材を得る。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "遺跡",
+                                       "range":  "特定"
+                                   },
+                      "link":  "遺跡"
+                  },
+                  {
+                      "id":  "BASE-006",
+                      "name_en":  "Teacher",
+                      "name_jp":  "教師",
+                      "effect":  "「カード」を2枚引き、そのうち1枚を手札に加え、もう1枚を他のプレイヤーに与える。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "学校",
+                                       "range":  "特定"
+                                   },
+                      "link":  "学校"
+                  },
+                  {
+                      "id":  "BASE-007",
+                      "name_en":  "Woodcarver",
+                      "name_jp":  "木彫師",
+                      "effect":  "小枝を3個まで支払ってもよい。支払った小枝1個につき1勝利点を得る。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "倉庫",
+                                       "range":  "特定"
+                                   },
+                      "link":  "倉庫"
+                  },
+                  {
+                      "id":  "BASE-008",
+                      "name_en":  "Doctor",
+                      "name_jp":  "医者",
+                      "effect":  "果実を3個まで支払ってもよい。支払った果実1個につき1勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  4,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  4
+                               },
+                      "relation":  {
+                                       "target":  "大学",
+                                       "range":  "特定"
+                                   },
+                      "link":  "大学"
+                  },
+                  {
+                      "id":  "BASE-009",
+                      "name_en":  "Monk",
+                      "name_jp":  "修道士",
+                      "effect":  "他のプレイヤー1人に果実を2個まで与えてもよい。与えた果実1個につき2勝利点を得る。\n※修道院のカードの2つめを開放する。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  1
+                               },
+                      "relation":  {
+                                       "target":  "修道院",
+                                       "range":  "特定"
+                                   },
+                      "link":  "修道院"
+                  },
+                  {
+                      "id":  "BASE-010",
+                      "name_en":  "Fair Grounds",
+                      "name_jp":  "移動遊園地",
+                      "effect":  "「カード」を2枚引く。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  3,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  2,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "道化師",
+                                       "range":  "特定"
+                                   },
+                      "link":  "道化師"
+                  },
+                  {
+                      "id":  "BASE-011",
+                      "name_en":  "Farm",
+                      "name_jp":  "農場",
+                      "effect":  "果実を1個得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1
+                               },
+                      "relation":  {
+                                       "target":  "旦那/夫人",
+                                       "range":  "特定"
+                                   },
+                      "link":  "旦那/夫人"
+                  },
+                  {
+                      "id":  "BASE-012",
+                      "name_en":  "General Store",
+                      "name_jp":  "雑貨屋",
+                      "effect":  "果実を1個得る。あなたの街に《農場》があるなら追加で果実を1個得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "店主",
+                                       "range":  "特定"
+                                   },
+                      "link":  "店主"
+                  },
+                  {
+                      "id":  "BASE-013",
+                      "name_en":  "Mine",
+                      "name_jp":  "鉱山",
+                      "effect":  "小石を1個得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "鉱夫モグラ",
+                                       "range":  "特定"
+                                   },
+                      "link":  "鉱夫モグラ"
+                  },
+                  {
+                      "id":  "BASE-014",
+                      "name_en":  "Resin Refinery",
+                      "name_jp":  "樹液精製所",
+                      "effect":  "樹液を1個得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "リスの掃除屋",
+                                       "range":  "特定"
+                                   },
+                      "link":  "リスの掃除屋"
+                  },
+                  {
+                      "id":  "BASE-015",
+                      "name_en":  "Storehouse",
+                      "name_jp":  "倉庫",
+                      "effect":  "このカードに小枝×3、樹液×2、小石×1、果実×2のいずれかを置く。\nアクションマスに労働者コマを置いたとき、このカード上にある資材をすべて得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "木彫師",
+                                       "range":  "特定"
+                                   },
+                      "link":  "木彫師"
+                  },
+                  {
+                      "id":  "BASE-016",
+                      "name_en":  "Twig Barge",
+                      "name_jp":  "小枝の運搬船",
+                      "effect":  "小枝を2個得る。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "船頭ガエル",
+                                       "range":  "特定"
+                                   },
+                      "link":  "船頭ガエル"
+                  },
+                  {
+                      "id":  "BASE-017",
+                      "name_en":  "Postal Pigeon",
+                      "name_jp":  "伝書バト",
+                      "effect":  "カードの山の上から2枚公開する。そのうち3勝利点までの1枚をコストを無視してプレイすることができる。プレイしなかったカードは捨て札にする。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "郵便局",
+                                       "range":  "特定"
+                                   },
+                      "link":  "郵便局"
+                  },
+                  {
+                      "id":  "BASE-018",
+                      "name_en":  "Wanderer",
+                      "name_jp":  "旅人",
+                      "effect":  "街の区域に配置せず、街のそばにおく。\n「カード」を3枚引く。",
+                      "type":  "一般の動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "物見櫓",
+                                       "range":  "特定"
+                                   },
+                      "link":  "物見櫓"
+                  },
+                  {
+                      "id":  "BASE-019",
+                      "name_en":  "Bard",
+                      "name_jp":  "吟遊詩人",
+                      "effect":  "手札から5枚まで「カード」を捨て札にしてもよい。1枚につき1勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "劇場",
+                                       "range":  "特定"
+                                   },
+                      "link":  "劇場"
+                  },
+                  {
+                      "id":  "BASE-020",
+                      "name_en":  "Fool",
+                      "name_jp":  "道化師",
+                      "effect":  "このカードは、他のプレイヤーの街にある空白の区域にプレイする。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  -2,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "移動遊園地",
+                                       "range":  "特定"
+                                   },
+                      "link":  "移動遊園地"
+                  },
+                  {
+                      "id":  "BASE-021",
+                      "name_en":  "Ranger",
+                      "name_jp":  "野伏せ",
+                      "effect":  "配置されているあなたの労働者コマのうち1個を別のマスに動かし、そのアクションを実行する。\n牢獄のカードの2つめを開放する。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "牢獄",
+                                       "range":  "特定"
+                                   },
+                      "link":  "牢獄"
+                  },
+                  {
+                      "id":  "BASE-022",
+                      "name_en":  "Shepherd",
+                      "name_jp":  "牧師",
+                      "effect":  "果実を3個得る。その後、あなたの街にある《礼拝堂》におかれている1勝利点につき、1勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "礼拝堂",
+                                       "range":  "特定"
+                                   },
+                      "link":  "礼拝堂"
+                  },
+                  {
+                      "id":  "BASE-023",
+                      "name_en":  "Undertaker",
+                      "name_jp":  "葬儀屋",
+                      "effect":  "広場から3枚カードを捨て札とし、補充したのちに、広場からカードを1枚引く。\n※墓地のカードの2つめを解放する。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "墓地",
+                                       "range":  "特定"
+                                   },
+                      "link":  "墓地"
+                  },
+                  {
+                      "id":  "BASE-024",
+                      "name_en":  "Ruins",
+                      "name_jp":  "遺跡",
+                      "effect":  "あなたの街から建物カード1枚を捨て札とする。そのコストと同じ資材を得て、「カード」を2枚引く。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "relation":  {
+                                       "target":  "行商人",
+                                       "range":  "特定"
+                                   },
+                      "link":  "行商人"
+                  },
+                  {
+                      "id":  "BASE-025",
+                      "name_en":  "Queen",
+                      "name_jp":  "王妃",
+                      "effect":  "3勝利点までの「カード」1枚をコストを無視してプレイする。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  4,
+                      "theme":  "red",
+                      "cost":  {
+                                   "fruit":  5
+                               },
+                      "relation":  {
+                                       "target":  "宮殿",
+                                       "range":  "特定"
+                                   },
+                      "link":  "宮殿"
+                  },
+                  {
+                      "id":  "BASE-026",
+                      "name_en":  "Inn",
+                      "name_jp":  "宿屋",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\nコストから資材を3個減らし、広場から動物または建物カード1枚をプレイする。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1
+                               },
+                      "open":  1,
+                      "relation":  {
+                                       "target":  "宿屋の主人",
+                                       "range":  "特定"
+                                   },
+                      "link":  "宿屋の主人"
+                  },
+                  {
+                      "id":  "BASE-027",
+                      "name_en":  "Post Office",
+                      "name_jp":  "郵便局",
+                      "effect":  "他のプレイヤーに「カード」を2枚渡したのちに、任意の枚数の「カード」を捨て札としてもよい。その後、手札上限まで補充する。",
+                      "type":  "一般の建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  2
+                               },
+                      "open":  1,
+                      "relation":  {
+                                       "target":  "伝書バト",
+                                       "range":  "特定"
+                                   },
+                      "link":  "伝書バト"
+                  },
+                  {
+                      "id":  "BASE-028",
+                      "name_en":  "Cemetery",
+                      "name_jp":  "墓地",
+                      "effect":  "労働者コマはゲーム終了時までこのカードに留まる。\nカードの山もしくは捨て山の上のいずれか1つから「カード」4枚を公開し、1枚をコストを無視してプレイする。プレイしなかったカードは捨て札にする。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "red",
+                      "cost":  {
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "葬儀屋",
+                                       "range":  "特定"
+                                   },
+                      "link":  "葬儀屋"
+                  },
+                  {
+                      "id":  "BASE-029",
+                      "name_en":  "Chapel",
+                      "name_jp":  "礼拝堂",
+                      "effect":  "このカード上に1勝利点を置く。その後、このカードに置かれている1勝利点につきカードを2枚引く。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "牧師",
+                                       "range":  "特定"
+                                   },
+                      "link":  "牧師"
+                  },
+                  {
+                      "id":  "BASE-030",
+                      "name_en":  "Lookout",
+                      "name_jp":  "物見櫓",
+                      "effect":  "任意の森の小道または森カード上のアクションマスをコピーする。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "旅人",
+                                       "range":  "特定"
+                                   },
+                      "link":  "旅人"
+                  },
+                  {
+                      "id":  "BASE-031",
+                      "name_en":  "Monastery",
+                      "name_jp":  "修道院",
+                      "effect":  "労働者コマはゲーム終了時までこのカードに留まる。\n他のプレイヤー1人に資材を2個与え、4勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "修道士",
+                                       "range":  "特定"
+                                   },
+                      "link":  "修道士"
+                  },
+                  {
+                      "id":  "BASE-032",
+                      "name_en":  "University",
+                      "name_jp":  "大学",
+                      "effect":  "あなたの街から動物または建物カード1枚を捨て札とする。そのコストと同じ資材を得て、資材1個と1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "resin":  1,
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "医者",
+                                       "range":  "特定"
+                                   },
+                      "link":  "医者"
+                  },
+                  {
+                      "id":  "BASE-033",
+                      "name_en":  "Historian",
+                      "name_jp":  "歴史家",
+                      "effect":  "動物または建物カードをプレイするたび、「カード」を1枚引く。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "時計台",
+                                       "range":  "特定"
+                                   },
+                      "link":  "時計台"
+                  },
+                  {
+                      "id":  "BASE-034",
+                      "name_en":  "Innkeeper",
+                      "name_jp":  "宿屋の主人",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\n動物カードをプレイするとき、あなたの街からこのカードを捨て札にしてもよい。そうしたなら、コストから果実を3個減らす。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  1
+                               },
+                      "relation":  {
+                                       "target":  "宿屋",
+                                       "range":  "特定"
+                                   },
+                      "link":  "宿屋"
+                  },
+                  {
+                      "id":  "BASE-035",
+                      "name_en":  "Judge",
+                      "name_jp":  "裁判官",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\n動物もしくは建物カードをプレイするとき、必要な資材1個を別の資材1個とみなしてもよい。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "裁判所",
+                                       "range":  "特定"
+                                   },
+                      "link":  "裁判所"
+                  },
+                  {
+                      "id":  "BASE-036",
+                      "name_en":  "Shopkeeper",
+                      "name_jp":  "店主",
+                      "effect":  "動物カードをプレイするたび、果実を1個得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "雑貨屋",
+                                       "range":  "特定"
+                                   },
+                      "link":  "雑貨屋"
+                  },
+                  {
+                      "id":  "BASE-037",
+                      "name_en":  "Clocktower",
+                      "name_jp":  "時計台",
+                      "effect":  "このカードをプレイしたとき、このカード上に3「勝利点」を置く。次の季節の準備の開始時に、ここから「勝利点」を1個支払ってもよい。そうしたなら、あなたが労働者コマを配置している森の小道もしくは森カード上の1マスのアクションを実行する。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "twig":  3,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "歴史家",
+                                       "range":  "特定"
+                                   },
+                      "link":  "歴史家"
+                  },
+                  {
+                      "id":  "BASE-038",
+                      "name_en":  "Courthouse",
+                      "name_jp":  "裁判所",
+                      "effect":  "建物カードをプレイするたび、小枝、樹液、小石のいずれかを1個得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  1,
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "裁判官",
+                                       "range":  "特定"
+                                   },
+                      "link":  "裁判官"
+                  },
+                  {
+                      "id":  "BASE-039",
+                      "name_en":  "Crane",
+                      "name_jp":  "クレーン",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\n建物カードをプレイするとき、あなたの街からこのカードを捨て札にしてもよい。そうしたなら、コストから資材を3個減らす。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "建築家",
+                                       "range":  "特定"
+                                   },
+                      "link":  "建築家"
+                  },
+                  {
+                      "id":  "BASE-040",
+                      "name_en":  "Dungeon",
+                      "name_jp":  "牢獄",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\n動物または建物カードをプレイするとき、このカードの下にあなたの街に配置されている動物カード1枚を裏向きで入れてもよい。そうしたなら、コストから資材を3個減らす。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  0,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "resin":  1,
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "野伏せ",
+                                       "range":  "特定"
+                                   },
+                      "link":  "野伏せ"
+                  },
+                  {
+                      "id":  "BASE-041",
+                      "name_en":  "Architect",
+                      "name_jp":  "建築家",
+                      "effect":  "ゲーム終了時、所有している樹液または小石1個につき1勝利点を得る（最大6点）。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  4
+                               },
+                      "relation":  {
+                                       "target":  "クレーン",
+                                       "range":  "特定"
+                                   },
+                      "link":  "クレーン"
+                  },
+                  {
+                      "id":  "BASE-042",
+                      "name_en":  "King",
+                      "name_jp":  "王",
+                      "effect":  "達成した基本イベント1つにつき1勝利点、\n達成した特殊イベント1つにつき2勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  4,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  6
+                               },
+                      "relation":  {
+                                       "target":  "城",
+                                       "range":  "特定"
+                                   },
+                      "link":  "城"
+                  },
+                  {
+                      "id":  "BASE-043",
+                      "name_en":  "Wife/Gatherer",
+                      "name_jp":  "夫人",
+                      "effect":  "《旦那》と区域を共有してもよい。\nゲーム終了時、《旦那》と区域を共有していれば3勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "農場",
+                                       "range":  "特定"
+                                   },
+                      "link":  "農場"
+                  },
+                  {
+                      "id":  "BASE-044",
+                      "name_en":  "Castle",
+                      "name_jp":  "城",
+                      "effect":  "ゲーム終了時、あなたの街にある一般の建物カード1枚につき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  4,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  3,
+                                   "pebble":  3
+                               },
+                      "relation":  {
+                                       "target":  "王",
+                                       "range":  "特定"
+                                   },
+                      "link":  "王"
+                  },
+                  {
+                      "id":  "BASE-045",
+                      "name_en":  "Ever Tree",
+                      "name_jp":  "永遠の樹",
+                      "effect":  "ゲーム終了時、あなたの街にある紫1枚につき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  5,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  3,
+                                   "resin":  3,
+                                   "pebble":  3
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "すべて"
+                                   }
+                  },
+                  {
+                      "id":  "BASE-046",
+                      "name_en":  "Palace",
+                      "name_jp":  "宮殿",
+                      "effect":  "ゲーム終了時、あなたの街にある特別な建物カード1枚につき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  4,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  3,
+                                   "pebble":  3
+                               },
+                      "relation":  {
+                                       "target":  "王妃",
+                                       "range":  "特定"
+                                   },
+                      "link":  "王妃"
+                  },
+                  {
+                      "id":  "BASE-047",
+                      "name_en":  "School",
+                      "name_jp":  "学校",
+                      "effect":  "ゲーム終了時、あなたの街にある一般の動物カード1枚につき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  2
+                               },
+                      "relation":  {
+                                       "target":  "教師",
+                                       "range":  "特定"
+                                   },
+                      "link":  "教師"
+                  },
+                  {
+                      "id":  "BASE-048",
+                      "name_en":  "Theater",
+                      "name_jp":  "劇場",
+                      "effect":  "ゲーム終了時、あなたの街にある特別な動物カード1枚につき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "基本",
+                      "victory_points":  3,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  3,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "吟遊詩人",
+                                       "range":  "特定"
+                                   },
+                      "link":  "吟遊詩人"
+                  },
+                  {
+                      "id":  "PERA-001",
+                      "name_en":  "Ferry Ferret",
+                      "name_jp":  "フェレットの船頭",
+                      "effect":  "あなたが真珠を2個以上保有しているなら、2勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "真珠",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "渡し船",
+                                       "range":  "特定"
+                                   },
+                      "link":  "渡し船"
+                  },
+                  {
+                      "id":  "PERA-002",
+                      "name_en":  "Harbor",
+                      "name_jp":  "港",
+                      "effect":  "あなたが真珠を2個以上保有しているなら、資材を2個得る。",
+                      "type":  "特別な建物",
+                      "set":  "真珠",
+                      "victory_points":  3,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  3,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "船大工",
+                                       "range":  "特定"
+                                   },
+                      "link":  "船大工"
+                  },
+                  {
+                      "id":  "PERA-003",
+                      "name_en":  "Messenger",
+                      "name_jp":  "伝令",
+                      "effect":  "建物カード1枚と区域を共有しなければならない。河の取引所を訪れる際に、このカードは区域を共有している建物カードと同じ色とみなす。\n「カード」を1枚引き、1勝利点を得る。",
+                      "type":  "一般の動物",
+                      "set":  "真珠",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "橋",
+                                       "range":  "特定"
+                                   },
+                      "link":  "橋"
+                  },
+                  {
+                      "id":  "PERA-004",
+                      "name_en":  "Pirate",
+                      "name_jp":  "海賊",
+                      "effect":  "街の区域に配置せず、街のそばにおく。\n手札から「カード」を4枚まで捨て札とし、捨て札と同じ枚数の「カード」を引く。引いた「カード」を公開し、基礎勝利点の合計が7点以上の場合、真珠1個を得る。",
+                      "type":  "一般の動物",
+                      "set":  "真珠",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "海賊船",
+                                       "range":  "特定"
+                                   },
+                      "link":  "海賊船"
+                  },
+                  {
+                      "id":  "PERA-005",
+                      "name_en":  "Pirate Ship",
+                      "name_jp":  "海賊船",
+                      "effect":  "他のプレイヤーの街にある空白の区域へと移動させる。その後、プレイヤーが保有している真珠1個につき資材1個と1勝利点を得る。（最大で3個と3点）",
+                      "type":  "一般の建物",
+                      "set":  "真珠",
+                      "victory_points":  0,
+                      "theme":  "red",
+                      "relation":  {
+                                       "target":  "海賊",
+                                       "range":  "特定"
+                                   },
+                      "link":  "海賊"
+                  },
+                  {
+                      "id":  "PERA-006",
+                      "name_en":  "Ferry",
+                      "name_jp":  "渡し船",
+                      "effect":  "表向きの河の取引所カード1枚の効果をコピーする。",
+                      "type":  "特別な建物",
+                      "set":  "真珠",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  2
+                               },
+                      "open":  1,
+                      "relation":  {
+                                       "target":  "フェレットの船頭",
+                                       "range":  "特定"
+                                   },
+                      "link":  "フェレットの船頭"
+                  },
+                  {
+                      "id":  "PERA-007",
+                      "name_en":  "Bridge",
+                      "name_jp":  "橋",
+                      "effect":  "あなたが保有している真珠1個につき、手札の保有上限が1枚増える。加えて、あなたが真珠1個を得るたび「カード」を2枚引く。",
+                      "type":  "特別な建物",
+                      "set":  "真珠",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "twig":  2,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "伝令",
+                                       "range":  "特定"
+                                   },
+                      "link":  "伝令"
+                  },
+                  {
+                      "id":  "PERA-008",
+                      "name_en":  "Shipwright",
+                      "name_jp":  "船大工",
+                      "effect":  "ゲーム終了時、あなたの街にある《真珠の入り江》カード1枚につき1勝利点を得る。ただし、装飾品は含まない。",
+                      "type":  "特別な動物",
+                      "set":  "真珠",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  4
+                               },
+                      "relation":  {
+                                       "target":  "港",
+                                       "range":  "特定"
+                                   },
+                      "link":  "港"
+                  },
+                  {
+                      "id":  "NEWL-001",
+                      "name_en":  "Lamplighter",
+                      "name_jp":  "点灯夫",
+                      "effect":  "カードの山や広場、または駅から「カード」を自由に2枚選んで引いてもよい。",
+                      "type":  "一般の動物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  1
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "一般"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-002",
+                      "name_en":  "Magician",
+                      "name_jp":  "手品師",
+                      "effect":  "あなたの街から他の動物または建物カード1枚を捨て札としてもよい。そうしたなら、1勝利点と資材を1個得る。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "赤"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-003",
+                      "name_en":  "Mayor",
+                      "name_jp":  "市長",
+                      "effect":  "1勝利点を得る。加えて、あなたの街のカードが配置されている区域5つにつき、1勝利点を得る。\n※街のそばに配置されたカードは含まない",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  4
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "特別"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-004",
+                      "name_en":  "Miller",
+                      "name_jp":  "製粉屋",
+                      "effect":  "小石を1個支払ってもよい。そうしたなら、3勝利点を得る。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "紫"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-005",
+                      "name_en":  "Greenhouse",
+                      "name_jp":  "温室",
+                      "effect":  "《農場》と区域を共有してもよい。\n「カード」を1枚引く。《農場》と区域を共有している場合、資材を1個得る。",
+                      "type":  "一般の建物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  2
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "緑"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-006",
+                      "name_en":  "Tea House",
+                      "name_jp":  "茶屋",
+                      "effect":  "他のプレイヤーに「カード」を1枚与えてもよい。そうしたなら、資材を1個得て、「カード」を1枚引く。",
+                      "type":  "一般の建物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  2
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "一般"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-007",
+                      "name_en":  "Bank",
+                      "name_jp":  "金融機関",
+                      "effect":  "このカード上に1勝利点をおく。このカード上におかれた1勝利点につき、手札上限を1枚増やす。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "green",
+                      "cost":  {
+                                   "resin":  2,
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "紫"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-008",
+                      "name_en":  "Freight Car",
+                      "name_jp":  "貨物車両",
+                      "effect":  "このカードをプレイした時のみ、このカード上に小枝、樹液、小石、果実をそれぞれ2個ずつおく。\nこのカード上にある資材を2個得る。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  3,
+                      "theme":  "green",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  2,
+                                   "pebble":  2
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "特別"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-009",
+                      "name_en":  "Gardener",
+                      "name_jp":  "園芸家",
+                      "effect":  "あなたの街にある異なる緑の効果を適用してもよい。",
+                      "type":  "一般の動物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "緑"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-010",
+                      "name_en":  "Poet",
+                      "name_jp":  "詩人",
+                      "effect":  "カードの色を1つ指定し、広場からその色と同じカードを全て引く。引いたカード1枚につき、1勝利点を得る。\n※広場にあるこのカードをプレイした場合、カードを引く前に広場を補充する。",
+                      "type":  "一般の動物",
+                      "set":  "新緑",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "一般"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-011",
+                      "name_en":  "Air Balloon",
+                      "name_jp":  "気球",
+                      "effect":  "街の区域に配置せず、街のそばにおく。\n相手の街にある茶1枚をコピーし効果を適用する。\n※《道化師》《大通り》《遺跡》はコピーできない",
+                      "type":  "一般の建物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "twig":  3
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "茶"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-012",
+                      "name_en":  "Main Road",
+                      "name_jp":  "中央通り",
+                      "effect":  "街の区域に配置せず、街のそばにおく。\nあなたの街の区域を1つ追加。\n※このカードは取り除かれず、コピーや効果を再適用する効果も受けない。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  0,
+                      "theme":  "brown",
+                      "cost":  {
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "一般"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-013",
+                      "name_en":  "Chipsmith",
+                      "name_jp":  "リスの鍛冶屋",
+                      "effect":  "あなたの街にある異なる緑2枚の効果を適用する。",
+                      "type":  "一般の動物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "red",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "赤"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-014",
+                      "name_en":  "Conductor",
+                      "name_jp":  "車掌",
+                      "effect":  "相手の街にある赤1枚をコピーし効果を適用する。\n※《墓地》《教会》《修道院》《海賊船》はコピーできない",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "red",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "特別"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-015",
+                      "name_en":  "Hotel",
+                      "name_jp":  "ホテル",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\nコストから資材を3個減らし、手札から動物または建物カード1枚をプレイする。",
+                      "type":  "一般の建物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  2,
+                                   "pebble":  1
+                               },
+                      "open":  2,
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "茶"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-016",
+                      "name_en":  "Locomotive",
+                      "name_jp":  "機関車",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\nコストから資材を3個減らし、駅から動物または建物カード1枚をプレイする。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  3,
+                      "theme":  "red",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "緑"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-017",
+                      "name_en":  "Diplomat",
+                      "name_jp":  "外交官",
+                      "effect":  "動物カードをプレイするたび、他のプレイヤーに「カード」を1枚与えてもよい。そうしたなら、1勝利点を得て、「カード」を1枚引く。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "青"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-018",
+                      "name_en":  "Inventor",
+                      "name_jp":  "発明家",
+                      "effect":  "他の「カードをプレイする」効果とは併用できない。\n動物または建物カードをプレイするとき、あなたの街からこのカードを捨て札にしてもよい。そうしたなら、コストから資材を3個減らす。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  1,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "fruit":  2
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "青"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-019",
+                      "name_en":  "City Hall",
+                      "name_jp":  "市役所",
+                      "effect":  "建物カードをプレイするたび、他のプレイヤーに「カード」を1枚与えてもよい。そうしたなら、1勝利点を得て、「カード」を1枚引く。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "青"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-020",
+                      "name_en":  "Museum",
+                      "name_jp":  "博物館",
+                      "effect":  "動物または建物カードをプレイするたび、「カード」を2枚引いてもよい。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "blue",
+                      "cost":  {
+                                   "twig":  1,
+                                   "resin":  2,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "特別"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-021",
+                      "name_en":  "Baker",
+                      "name_jp":  "パン職人",
+                      "effect":  "ゲーム終了時、所有している果実1個につき1勝利点を得る（最大3点）。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  3
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "緑"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-022",
+                      "name_en":  "Photographer",
+                      "name_jp":  "写真家",
+                      "effect":  "ゲーム終了時、他のプレイヤーの紫1枚をコピーする。勝利点の計算はあなたの街を参照する。",
+                      "type":  "特別な動物",
+                      "set":  "新緑",
+                      "victory_points":  2,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "fruit":  4
+                               },
+                      "relation":  {
+                                       "target":  "建物",
+                                       "range":  "紫"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-023",
+                      "name_en":  "Ever Wall",
+                      "name_jp":  "永遠の壁",
+                      "effect":  "街の区域に配置せず、街のそばにおく。\nゲーム終了時、あなたの街のカードが配置されている区域5つにつき、2勝利点を得る。\n※街のそばに配置されたカードは含まない",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  6,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  4,
+                                   "resin":  4,
+                                   "pebble":  3
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "紫"
+                                   }
+                  },
+                  {
+                      "id":  "NEWL-024",
+                      "name_en":  "Library",
+                      "name_jp":  "図書館",
+                      "effect":  "ゲーム終了時、あなたの街にあるカードの色1つにつき1勝利点を得る。",
+                      "type":  "特別な建物",
+                      "set":  "新緑",
+                      "victory_points":  3,
+                      "theme":  "purple",
+                      "cost":  {
+                                   "twig":  2,
+                                   "resin":  1,
+                                   "pebble":  1
+                               },
+                      "relation":  {
+                                       "target":  "動物",
+                                       "range":  "青"
+                                   }
+                  }
+              ]
+}
