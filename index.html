@@ -18,11 +18,17 @@
     .category-tab:focus-visible{outline:2px solid #66835b;outline-offset:2px}
     .search,select{padding:12px;border:1px solid #d8d2c4;border-radius:10px;background:white;font-size:15px}
     .search{width:100%}
+    select{font-family:inherit;line-height:1.4}
+    select option{font-family:inherit;font-size:15px;font-weight:400;line-height:1.4;padding-block:8px}
     .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
     .filters.power-mode{grid-template-columns:1fr}
-    .filters select{width:100%}
+    .filters select{width:100%;height:44px;padding-block:0;line-height:1.4}
     .count{color:#6b6c65;margin:18px 2px 10px;min-height:24px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid{display:block}
+    .set-section{margin:0 0 24px}
+    .set-heading{display:flex;align-items:center;gap:9px;margin:0 2px 12px;padding:0 2px 8px;border-bottom:2px solid #d8d2c4;color:#4e5149;font-size:18px;line-height:1.3}
+    .set-heading-icon{display:block;width:auto;height:1.7em;max-width:5.5em;object-fit:contain;flex:0 0 auto}
+    .section-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
     .card{padding:17px;border:2px solid var(--theme-color,#66835b);border-top-width:9px;background:linear-gradient(180deg,var(--theme-soft,#edf3e9) 0,#fffdf8 105px);scroll-margin-top:16px;transition:transform .15s,box-shadow .15s}
     .card:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0002}
     .card:target{outline:3px solid var(--theme-color,#66835b);outline-offset:3px}
@@ -43,13 +49,16 @@
     .points{flex:0 0 auto;min-width:38px;padding:7px 8px;border:2px solid #8b651d;border-radius:50%;background:linear-gradient(145deg,#f0d47a,#c89a34);box-shadow:inset 0 1px 1px #fff8c8,0 2px 4px #5c431f33;color:#302307;text-align:center;font-weight:800}
     .points.has-icon{min-width:0;padding:0;border:0;background:none;box-shadow:none}
     .points-icon{display:block;width:56px;height:56px;object-fit:contain;transform-origin:center}
-    .points-icon[src$="vp_minus2.png"],.points-icon[src$="vp_0.png"]{transform:scale(.9)}
-    .points-icon[src$="vp_4.png"],.points-icon[src$="vp_6.png"]{transform:scale(.989)}
-    .points-icon[src$="vp_5.png"]{transform:scale(.993)}
+    .points-icon[src*="vp_minus2.png"],.points-icon[src*="vp_0.png"]{transform:scale(.9)}
+    .points-icon[src*="vp_4.png"],.points-icon[src*="vp_6.png"]{transform:scale(.989)}
+    .points-icon[src*="vp_5.png"]{transform:scale(.993)}
     .power-card{--theme-color:#4f7773;--theme-soft:#e4efed}
-    .power-titles{margin-top:7px;color:#77756d;font-size:13px;line-height:1.45}
+    .power-title-row{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:100%;margin-top:7px;min-width:0}
+    .power-titles{flex:0 1 auto;min-width:0;color:#77756d;font-size:13px;line-height:1.45}
     .power-title-jp{font-weight:700;color:#5e6059}
+    .power-set-icon{display:block;width:auto;height:24px;max-width:88px;object-fit:contain;flex:0 0 auto}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
+    .card-set-icon{display:inline-block;width:auto;height:24px;max-width:88px;object-fit:contain;vertical-align:middle;margin:2px 5px 2px 2px}
     .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
     .detail-label{font-weight:700;color:#555}
     .cost-info,.open-info{display:inline-flex;align-items:center;gap:6px}
@@ -84,8 +93,8 @@
     .back-to-top{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;width:44px;height:44px;padding:0;border:1px solid #cfc8ba;border-radius:50%;background:#fffdf8e8;box-shadow:0 3px 12px #0002;color:#4f5f4b;font:inherit;font-size:20px;line-height:1;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s,visibility .18s;cursor:pointer;-webkit-tap-highlight-color:transparent}
     .back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
     .back-to-top:focus-visible{outline:2px solid #66835b;outline-offset:3px}
-    @media(max-width:900px){.grid,.filters{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:500px){.grid,.filters{grid-template-columns:1fr}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.back-to-top{display:grid}}
+    @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon,.power-set-icon{height:21px;max-width:78px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.back-to-top{display:grid}}
   </style>
 </head>
 <body>
@@ -162,8 +171,20 @@
       purple: '紫'
     };
 
+    const setIcons = {
+      '真珠の入り江': 'set_pearlbrook.png',
+      '新緑の汽笛': 'set_newleaf.png',
+      'LEGENDS': 'set_legends.png',
+      'EXTRA!': 'set_extra.png',
+      'CORRIN': 'set_crown.png',
+      'RUGWORT': 'set_rugwort.png',
+      '大鐘の祝祭': 'set_bellfaire.png',
+      'Mistwood': 'set_mistwood.png'
+    };
+
     const favoritesStorageKey = 'everdell-favorite-card-ids';
     const favoriteIds = loadFavoriteIds();
+    const imageVersion = '20260814';
 
     const victoryPointImages = new Map([
       [-2, 'vp_minus2.png'],
@@ -189,8 +210,42 @@
       return `card-${encodeURIComponent(card.id)}`;
     }
 
+    function imageUrl(image) {
+      return `./images/${image}?v=${imageVersion}`;
+    }
+
     function iconHtml(image, label, className = 'inline-icon') {
-      return `<img class="${className}" src="./images/${image}" alt="${escapeHtml(label)}" title="${escapeHtml(label)}">`;
+      return `<img class="${className}" src="${imageUrl(image)}" alt="${escapeHtml(label)}" title="${escapeHtml(label)}">`;
+    }
+
+    function setIconHtml(setName, className) {
+      const image = setIcons[setName];
+      return image
+        ? `<img class="${className}" src="${imageUrl(image)}" alt="${escapeHtml(setName)}" title="${escapeHtml(setName)}" onerror="this.hidden=true">`
+        : '';
+    }
+
+    function setOrder(items) {
+      return [...new Set(items.map(item => item.set).filter(Boolean))];
+    }
+
+    function renderGroupedItems(items, allItems, renderItem) {
+      const favorites = items.filter(item => favoriteIds.has(item.id));
+      const regularItems = items.filter(item => !favoriteIds.has(item.id));
+      const sections = [];
+
+      if (favorites.length) {
+        sections.push(`<section class="set-section favorite-section"><h2 class="set-heading">お気に入り</h2><div class="section-grid">${favorites.map(renderItem).join('')}</div></section>`);
+      }
+
+      for (const setName of setOrder(allItems)) {
+        const members = regularItems.filter(item => item.set === setName);
+        if (!members.length) continue;
+        const headingIcon = setName === '基本' ? '' : setIconHtml(setName, 'set-heading-icon');
+        sections.push(`<section class="set-section" data-set="${escapeHtml(setName)}"><h2 class="set-heading">${headingIcon}<span>${escapeHtml(setName)}</span></h2><div class="section-grid">${members.map(renderItem).join('')}</div></section>`);
+      }
+
+      return sections.join('');
     }
 
     function victoryPointIcon(value, className) {
@@ -382,6 +437,7 @@
       const theme = ['green', 'brown', 'red', 'blue', 'purple'].includes(card.theme) ? card.theme : 'green';
       const openInfo = Object.hasOwn(card, 'open') ? renderOpen(card.open) : '';
       const costNote = card.cost_note ? `<span class="cost-note">（${escapeHtml(card.cost_note)}）</span>` : '';
+      const setIcon = card.set === '基本' ? '' : setIconHtml(card.set, 'card-set-icon');
       const isFavorite = favoriteIds.has(card.id);
 
       return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}">
@@ -389,7 +445,7 @@
           <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp">${escapeHtml(card.name_jp)}</div></div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>${renderVictoryPoints(card.victory_points)}</div>
         </div>
-        <span class="badge">${escapeHtml(card.set)}</span><span class="badge">${escapeHtml(card.type)}</span>
+        ${setIcon}<span class="badge">${escapeHtml(card.type)}</span>
         <div class="effect">${renderEffect(card.effect)}</div>
         <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span>${costNote}</span>${openInfo}</div>
         ${renderRelatedInfo(card)}
@@ -398,16 +454,19 @@
 
     function renderPower(power) {
       const isFavorite = favoriteIds.has(power.id);
+      const setIcon = setIconHtml(power.set, 'power-set-icon');
       return `<article class="card power-card">
         <div class="card-head">
           <div class="card-title">
             <div class="en">${escapeHtml(power.name_en)}</div>
             <div class="jp">${escapeHtml(power.name_jp)}</div>
-            <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>
+            <div class="power-title-row">
+              <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>
+              ${setIcon}
+            </div>
           </div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(power.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(power.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
-        <span class="badge">${escapeHtml(power.set)}</span>
         <div class="effect">${renderEffect(power.effect)}</div>
       </article>`;
     }
@@ -425,14 +484,9 @@
         const searchable = [power.name_jp, power.name_en, power.title_jp, power.title_en, power.effect].join(' ').toLocaleLowerCase('ja');
         return (!query || searchable.includes(query)) && (!selectedSet || power.set === selectedSet);
       });
-      const list = [
-        ...filtered.filter(power => favoriteIds.has(power.id)),
-        ...filtered.filter(power => !favoriteIds.has(power.id))
-      ];
-
-      elements.count.textContent = `${list.length} / ${powers.length} 件`;
-      elements.grid.innerHTML = list.length
-        ? list.map(renderPower).join('')
+      elements.count.textContent = `${filtered.length} / ${powers.length} 件`;
+      elements.grid.innerHTML = filtered.length
+        ? renderGroupedItems(filtered, powers, renderPower)
         : '<div class="status">該当する特殊能力がありません。</div>';
     }
 
@@ -459,14 +513,9 @@
           && (!selectedTheme || card.theme === selectedTheme)
           && matchesType;
       });
-      const list = [
-        ...filtered.filter(card => favoriteIds.has(card.id)),
-        ...filtered.filter(card => !favoriteIds.has(card.id))
-      ];
-
-      elements.count.textContent = `${list.length} / ${cards.length} 枚`;
-      elements.grid.innerHTML = list.length
-        ? list.map(renderCard).join('')
+      elements.count.textContent = `${filtered.length} / ${cards.length} 枚`;
+      elements.grid.innerHTML = filtered.length
+        ? renderGroupedItems(filtered, cards, renderCard)
         : '<div class="status">該当するカードがありません。</div>';
     }
 
