@@ -58,6 +58,7 @@
     .cost-icon{display:block;width:1.45em;height:1.45em;object-fit:contain;flex:0 0 auto}
     .resin-icon-adjust{transform:scale(.82);transform-origin:center}
     .cost-amount{display:inline-block;font-size:1em;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+    .cost-note{color:#666;font-size:1em;font-weight:400;line-height:1.35}
     .inline-icon{display:inline-block;object-fit:contain;margin:0 .06em}
     .effect-resource-icon,.effect-card-icon,.effect-vp-icon,.effect-pearl-icon,.effect-color-icon{width:1.35em;height:1.35em;vertical-align:-.28em;transform-origin:center}
     .effect-vp-icon{transform:scale(1.25);margin-inline:.2em}
@@ -309,7 +310,13 @@
     }
 
     function renderVictoryPoints(value) {
-      const points = Number(value ?? 0);
+      const isBlank = value == null || (typeof value === 'string' && value.trim() === '');
+      if (isBlank) {
+        const icon = iconHtml('vp_blank.png', '勝利点', 'points-icon');
+        return `<div class="points has-icon" title="勝利点">${icon}</div>`;
+      }
+
+      const points = Number(value);
       const icon = victoryPointIcon(points, 'points-icon');
       if (icon) return `<div class="points has-icon" title="勝利点 ${points}">${icon}</div>`;
       return `<div class="points" title="勝利点" aria-label="勝利点 ${escapeHtml(points)}">${escapeHtml(points)}</div>`;
@@ -374,6 +381,7 @@
     function renderCard(card) {
       const theme = ['green', 'brown', 'red', 'blue', 'purple'].includes(card.theme) ? card.theme : 'green';
       const openInfo = Object.hasOwn(card, 'open') ? renderOpen(card.open) : '';
+      const costNote = card.cost_note ? `<span class="cost-note">（${escapeHtml(card.cost_note)}）</span>` : '';
       const isFavorite = favoriteIds.has(card.id);
 
       return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}">
@@ -383,7 +391,7 @@
         </div>
         <span class="badge">${escapeHtml(card.set)}</span><span class="badge">${escapeHtml(card.type)}</span>
         <div class="effect">${renderEffect(card.effect)}</div>
-        <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span></span>${openInfo}</div>
+        <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span>${costNote}</span>${openInfo}</div>
         ${renderRelatedInfo(card)}
       </article>`;
     }
