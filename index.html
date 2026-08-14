@@ -58,10 +58,28 @@
     .power-title-jp{font-weight:700;color:#5e6059}
     .power-set-icon{display:block;width:auto;height:24px;max-width:88px;object-fit:contain;flex:0 0 auto}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
-    .card-set-icon{display:inline-block;width:auto;height:24px;max-width:88px;object-fit:contain;vertical-align:middle;margin:2px 5px 2px 2px}
+    .card-set-icon{display:inline-block;width:auto;height:20px;max-width:74px;object-fit:contain;vertical-align:middle;margin:2px 5px 2px 2px;transform-origin:center}
+    .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.08)}
+    .card-set-icon[src*="set_newleaf.png"]{transform:scale(1.23)}
+    .card-set-icon[src*="set_legends.png"]{transform:scale(.86)}
+    .card-set-icon[src*="set_extra.png"]{transform:scale(.85)}
+    .card-set-icon[src*="set_crown.png"],.card-set-icon[src*="set_corrin.png"]{transform:scale(.87)}
+    .card-set-icon[src*="set_rugwort.png"]{transform:scale(.85)}
+    .card-info-row{display:flex;align-items:center;gap:8px;min-width:0}
+    .card-info-left{display:flex;flex:1 1 auto;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}
+    .feature-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:5px}
+    .feature-item{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+    .feature-icon{display:block;width:auto;height:24px;max-width:30px;object-fit:contain;flex:0 0 auto}
+    .feature-placement-icon{transform:scale(1.8);transform-origin:center;margin-inline:12px}
+    .feature-location-exclusive-locked-icon{transform:scale(2.15);margin-inline:15px}
+    .feature-label{font-size:10px;font-weight:400;line-height:1.2;color:#666}
+    .open-feature{display:inline-flex;align-items:center;flex:0 0 auto}
+    .open-feature-icon{transform:scale(1.5);transform-origin:center;margin-inline:6px}
+    .town-slot-feature{display:flex;align-items:center;flex:0 0 auto;margin-left:auto}
+    .town-slot-icon{display:block;width:auto;height:24px;max-width:34px;object-fit:contain}
     .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
     .detail-label{font-weight:700;color:#555}
-    .cost-info,.open-info{display:inline-flex;align-items:center;gap:6px}
+    .cost-info{display:inline-flex;align-items:center;gap:6px}
     .cost-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
     .cost-item{display:inline-flex;align-items:center;gap:3px;font-weight:400;line-height:1}
     .cost-icon{display:block;width:1.45em;height:1.45em;object-fit:contain;flex:0 0 auto}
@@ -73,8 +91,11 @@
     .effect-vp-icon{transform:scale(1.25);margin-inline:.2em}
     .effect-pearl-icon{transform:scale(1.6);margin-inline:.42em}
     .effect-color-icon{transform:scale(1.3);margin-inline:.24em}
-    .open-info{color:#7a4d27}
-    .open-points-icon{display:block;width:2.15em;height:2.15em;object-fit:contain;flex:0 0 auto}
+    .effect-bracket-icon{width:1.55em;height:1.3em;vertical-align:-.3em;object-fit:contain;transform-origin:center}
+    .effect-bracket-location-icon,.effect-bracket-ambassador-icon{transform:scale(1.15);margin-inline:.14em}
+    .effect-bracket-locked-icon{transform:scale(1.55);margin-inline:.42em}
+    .effect-bracket-tuck-icon{transform:scale(1.05);margin-inline:.1em}
+    .effect-bracket-set-icon{transform:scale(1.25);margin-inline:.22em}
     .related-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-top:9px;font-size:13px}
     .related-row>.detail-label{flex:0 0 auto}
     .relation-condition{display:inline-flex;align-items:center;gap:3px;color:#555}
@@ -90,11 +111,12 @@
     .effect{margin-top:10px;line-height:1.65;font-size:14px;color:#555;white-space:pre-line}
     .status{text-align:center;padding:50px;color:#777;grid-column:1/-1}
     .status.error{color:#9d3434;background:#fff7f5;border:1px solid #e3bab4;border-radius:14px}
-    .back-to-top{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;width:44px;height:44px;padding:0;border:1px solid #cfc8ba;border-radius:50%;background:#fffdf8e8;box-shadow:0 3px 12px #0002;color:#4f5f4b;font:inherit;font-size:20px;line-height:1;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s,visibility .18s;cursor:pointer;-webkit-tap-highlight-color:transparent}
-    .back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
-    .back-to-top:focus-visible{outline:2px solid #66835b;outline-offset:3px}
+    .scroll-controls{display:none;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;flex-direction:column;gap:8px}
+    .scroll-button{display:grid;width:44px;height:44px;padding:0;border:1px solid #cfc8ba;border-radius:50%;background:#fffdf8e8;box-shadow:0 3px 12px #0002;color:#4f5f4b;font:inherit;font-size:20px;line-height:1;place-items:center;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s,visibility .18s;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .scroll-button.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+    .scroll-button:focus-visible{outline:2px solid #66835b;outline-offset:3px}
     @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon,.power-set-icon{height:21px;max-width:78px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.back-to-top{display:grid}}
+    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:18px;max-width:68px}.power-set-icon{height:21px;max-width:78px}.feature-icon,.town-slot-icon{height:22px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.scroll-controls{display:flex}}
   </style>
 </head>
 <body>
@@ -118,7 +140,10 @@
     <div id="count" class="count" aria-live="polite">カードを読み込んでいます…</div>
     <div id="grid" class="grid" aria-busy="true"><div class="status">カードを読み込んでいます…</div></div>
   </main>
-  <button id="back-to-top" class="back-to-top" type="button" aria-label="ページ先頭へ戻る" title="ページ先頭へ戻る">↑</button>
+  <div class="scroll-controls" aria-label="ページ内移動">
+    <button id="back-to-top" class="scroll-button" type="button" aria-label="ページ先頭へ戻る" title="ページ先頭へ戻る">↑</button>
+    <button id="go-to-bottom" class="scroll-button" type="button" aria-label="ページ最下部へ移動" title="ページ最下部へ移動">↓</button>
+  </div>
   <script>
     let cards = [];
     let powers = [];
@@ -134,7 +159,8 @@
       categoryTabs: [...document.querySelectorAll('[data-category]')],
       count: document.getElementById('count'),
       grid: document.getElementById('grid'),
-      backToTop: document.getElementById('back-to-top')
+      backToTop: document.getElementById('back-to-top'),
+      goToBottom: document.getElementById('go-to-bottom')
     };
 
     const resources = {
@@ -182,9 +208,47 @@
       'Mistwood': 'set_mistwood.png'
     };
 
+    const featureIcons = {
+      location_exclusive: { image: 'feature_location_exclusive.png', label: '専用の場所' },
+      location_exclusive_locked: { image: 'feature_location_exclusive_locked.png', label: '鍵付き専用の場所' },
+      tuck: { image: 'feature_tuck.png', label: 'カードを差し込む' },
+      tuck_locked: { image: 'feature_tuck_locked.png', label: '鍵付きでカードを差し込む' },
+      ambassador: { image: 'feature_ambassador.png', label: '大使' }
+    };
+
+    const bracketEffectIcons = {
+      '占有地': { image: 'feature_location_exclusive.png', label: '占有地', className: 'effect-bracket-location-icon' },
+      '鍵付き占有地': { image: 'feature_location_exclusive_locked.png', label: '鍵付き占有地', className: 'effect-bracket-locked-icon' },
+      '葬儀屋': { image: 'feature_location_exclusive_locked.png', label: '葬儀屋', className: 'effect-bracket-locked-icon' },
+      '修道士': { image: 'feature_location_exclusive_locked.png', label: '修道士', className: 'effect-bracket-locked-icon' },
+      'カード下': { image: 'feature_tuck.png', label: 'カード下', className: 'effect-bracket-tuck-icon' },
+      '鍵付きカード下': { image: 'feature_tuck_locked.png', label: '鍵付きカード下', className: 'effect-bracket-tuck-icon' },
+      '野伏せ': { image: 'feature_tuck_locked.png', label: '野伏せ', className: 'effect-bracket-tuck-icon' },
+      'カエル大使': { image: 'feature_ambassador.png', label: 'カエル大使', className: 'effect-bracket-ambassador-icon' },
+      '大使': { image: 'feature_ambassador.png', label: '大使', className: 'effect-bracket-ambassador-icon' },
+      '区域追加': { image: 'feature_town_slot.png', label: '区域追加', className: 'effect-bracket-tuck-icon' },
+      'OPEN 1': { image: 'feature_open_1.png', label: 'OPEN 1', className: 'effect-bracket-tuck-icon' },
+      'OPEN 2': { image: 'feature_open_2.png', label: 'OPEN 2', className: 'effect-bracket-tuck-icon' },
+      'OPEN 3': { image: 'feature_open_3.png', label: 'OPEN 3', className: 'effect-bracket-tuck-icon' },
+      '真珠の入り江': { image: 'set_pearlbrook.png', label: '真珠の入り江', className: 'effect-bracket-set-icon' },
+      '新緑の汽笛': { image: 'set_newleaf.png', label: '新緑の汽笛', className: 'effect-bracket-set-icon' },
+      'LEGENDS': { image: 'set_legends.png', label: 'LEGENDS', className: 'effect-bracket-set-icon' },
+      'EXTRA!': { image: 'set_extra.png', label: 'EXTRA!', className: 'effect-bracket-set-icon' },
+      'CORRIN': { image: 'set_crown.png', label: 'CORRIN', className: 'effect-bracket-set-icon' },
+      'RUGWORT': { image: 'set_rugwort.png', label: 'RUGWORT', className: 'effect-bracket-set-icon' },
+      '大鐘の祝祭': { image: 'set_bellfaire.png', label: '大鐘の祝祭', className: 'effect-bracket-set-icon' },
+      'Mistwood': { image: 'set_mistwood.png', label: 'Mistwood', className: 'effect-bracket-set-icon' }
+    };
+
+    const openFeatureImages = new Map([
+      [1, 'feature_open_1.png'],
+      [2, 'feature_open_2.png'],
+      [3, 'feature_open_3.png']
+    ]);
+
     const favoritesStorageKey = 'everdell-favorite-card-ids';
     const favoriteIds = loadFavoriteIds();
-    const imageVersion = '20260814';
+    const imageVersion = '20260814-scroll1';
 
     const victoryPointImages = new Map([
       [-2, 'vp_minus2.png'],
@@ -222,6 +286,37 @@
       const image = setIcons[setName];
       return image
         ? `<img class="${className}" src="${imageUrl(image)}" alt="${escapeHtml(setName)}" title="${escapeHtml(setName)}" onerror="this.hidden=true">`
+        : '';
+    }
+
+    function renderFeatures(features) {
+      if (!Array.isArray(features) || !features.length) return '';
+      const items = features.map(feature => {
+        const definition = featureIcons[feature?.type];
+        if (!definition) return '';
+        const label = feature.label ? `<span class="feature-label">${escapeHtml(feature.label)}</span>` : '';
+        const placementClass = ['location_exclusive', 'location_exclusive_locked', 'ambassador'].includes(feature.type)
+          ? ' feature-placement-icon'
+          : '';
+        const lockedClass = feature.type === 'location_exclusive_locked'
+          ? ' feature-location-exclusive-locked-icon'
+          : '';
+        return `<span class="feature-item">${iconHtml(definition.image, definition.label, `feature-icon${placementClass}${lockedClass}`)}${label}</span>`;
+      }).filter(Boolean).join('');
+      return items ? `<span class="feature-list">${items}</span>` : '';
+    }
+
+    function renderTownSlot(townSlot) {
+      return townSlot === true
+        ? `<span class="town-slot-feature">${iconHtml('feature_town_slot.png', '区域追加', 'town-slot-icon')}</span>`
+        : '';
+    }
+
+    function renderOpenFeature(value) {
+      const open = Number(value);
+      const image = openFeatureImages.get(open);
+      return image
+        ? `<span class="open-feature">${iconHtml(image, `OPEN ${open}`, 'feature-icon open-feature-icon')}</span>`
         : '';
     }
 
@@ -360,7 +455,14 @@
     function renderEffect(effect) {
       return String(effect ?? '')
         .split(/(《[^》]*》)/g)
-        .map(part => part.startsWith('《') && part.endsWith('》') ? escapeHtml(part) : renderEffectText(part))
+        .map(part => {
+          if (!part.startsWith('《') || !part.endsWith('》')) return renderEffectText(part);
+          const name = part.slice(1, -1);
+          const icon = bracketEffectIcons[name];
+          return icon
+            ? iconHtml(icon.image, icon.label, `inline-icon effect-bracket-icon ${icon.className}`)
+            : escapeHtml(part);
+        })
         .join('');
     }
 
@@ -375,13 +477,6 @@
       const icon = victoryPointIcon(points, 'points-icon');
       if (icon) return `<div class="points has-icon" title="勝利点 ${points}">${icon}</div>`;
       return `<div class="points" title="勝利点" aria-label="勝利点 ${escapeHtml(points)}">${escapeHtml(points)}</div>`;
-    }
-
-    function renderOpen(value) {
-      const points = Number(value);
-      const icon = victoryPointIcon(points, 'open-points-icon');
-      const display = icon || `<span>${escapeHtml(points)}</span>`;
-      return `<span class="open-info"><span class="detail-label">オープン：</span>${display}</span>`;
     }
 
     function resolveLinkTargets(link) {
@@ -435,9 +530,11 @@
 
     function renderCard(card) {
       const theme = ['green', 'brown', 'red', 'blue', 'purple'].includes(card.theme) ? card.theme : 'green';
-      const openInfo = Object.hasOwn(card, 'open') ? renderOpen(card.open) : '';
       const costNote = card.cost_note ? `<span class="cost-note">（${escapeHtml(card.cost_note)}）</span>` : '';
       const setIcon = card.set === '基本' ? '' : setIconHtml(card.set, 'card-set-icon');
+      const features = renderFeatures(card.features);
+      const openFeature = Object.hasOwn(card, 'open') ? renderOpenFeature(card.open) : '';
+      const townSlot = renderTownSlot(card.town_slot);
       const isFavorite = favoriteIds.has(card.id);
 
       return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}">
@@ -445,9 +542,9 @@
           <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp">${escapeHtml(card.name_jp)}</div></div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>${renderVictoryPoints(card.victory_points)}</div>
         </div>
-        ${setIcon}<span class="badge">${escapeHtml(card.type)}</span>
+        <div class="card-info-row"><div class="card-info-left">${setIcon}<span class="badge">${escapeHtml(card.type)}</span>${features}${openFeature}</div>${townSlot}</div>
         <div class="effect">${renderEffect(card.effect)}</div>
-        <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span>${costNote}</span>${openInfo}</div>
+        <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span>${costNote}</span></div>
         ${renderRelatedInfo(card)}
       </article>`;
     }
@@ -553,16 +650,27 @@
     [elements.query, elements.set, elements.theme, elements.type].forEach(element => element.addEventListener('input', render));
     elements.categoryTabs.forEach(tab => tab.addEventListener('click', () => switchCategory(tab.dataset.category)));
 
-    function updateBackToTop() {
-      elements.backToTop.classList.toggle('is-visible', window.scrollY > 480);
+    function updateScrollButtons() {
+      const edgeThreshold = 160;
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const nearTop = window.scrollY <= edgeThreshold;
+      const nearBottom = maxScroll - window.scrollY <= edgeThreshold;
+      elements.backToTop.classList.toggle('is-visible', !nearTop);
+      elements.goToBottom.classList.toggle('is-visible', !nearBottom);
     }
 
-    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('scroll', updateScrollButtons, { passive: true });
+    window.addEventListener('resize', updateScrollButtons);
     elements.backToTop.addEventListener('click', () => {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
-    updateBackToTop();
+    elements.goToBottom.addEventListener('click', () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    new MutationObserver(() => requestAnimationFrame(updateScrollButtons)).observe(elements.grid, { childList: true });
+    updateScrollButtons();
 
     async function init() {
       const loadJsonArray = async (file, rootKey) => {
