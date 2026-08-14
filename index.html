@@ -10,6 +10,10 @@
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,sans-serif;background:#f4f1e8;color:#303229}
     header{background:linear-gradient(135deg,#314d35,#70875f);color:#fff;padding:32px 16px;text-align:center}
+    .site-title{margin:0;font-size:clamp(25px,4vw,34px);line-height:1.25}
+    .site-subtitle{margin:9px 0 0;font-size:clamp(17px,2.5vw,21px);line-height:1.4;font-weight:700}
+    .site-description{margin:9px 0 0;line-height:1.55}
+    .site-description span{display:block}
     main{max-width:1100px;margin:24px auto;padding:0 16px}
     .box,.card{background:#fffdf8;border:1px solid #ddd8ca;border-radius:16px;box-shadow:0 4px 15px #0001}
     .box{padding:18px}
@@ -58,14 +62,37 @@
     .power-titles{flex:0 1 auto;min-width:0;color:#77756d;font-size:13px;line-height:1.45}
     .power-title-jp{font-weight:700;color:#5e6059}
     .power-set-icon{display:block;width:auto;height:24px;max-width:88px;object-fit:contain;flex:0 0 auto}
+    .event-card{--theme-color:#7a6845;--theme-soft:#f1ebdd}
+    .event-name-jp{font-size:21px;font-weight:700;line-height:1.35}
+    .event-name-en{margin-top:3px;color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
+    .event-condition{display:flex;align-items:center;gap:8px;margin-top:9px;padding:8px 10px;border-radius:9px;background:#fffaf0;color:#555;font-size:13px;line-height:1.45;min-width:0}
+    .event-condition-text{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+    .event-condition-jp{font-weight:600}
+    .event-condition-jp.has-color-icons{margin-left:-.5em}
+    .event-condition-en{margin-top:2px;color:#77756d;font-size:12px}
+    .event-condition-features{display:flex;align-items:center;justify-content:center;flex:0 0 auto;align-self:center}
+    .event-condition-features .feature-placement-icon{transform:scale(2);margin-inline:13px}
+    .event-info-row{margin-top:9px}
+    .event-content{margin-top:10px;padding-top:10px;border-top:1px solid #e8e2d5}
+    .event-effect{margin-top:0}
+    .event-inline-scoring{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:6px;text-align:center}
+    .event-inline-scoring-line{max-width:100%;line-height:2.1;overflow-wrap:anywhere}
+    .event-inline-scoring .effect-vp-icon{transform:scale(1.7);margin-inline:.42em}
+    .event-vp-row{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px;min-width:0;text-align:center}
+    .event-vp-icon{display:block;width:50px;height:50px;object-fit:contain;flex:0 0 auto}
+    .event-vp-icon[src*="vp_9.png"]{transform:scale(.86)}
+    .event-vp-fallback{position:relative;display:grid;width:50px;height:50px;place-items:center;flex:0 0 auto;color:#34260c;font-size:16px;font-weight:800}
+    .event-vp-fallback img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+    .event-vp-fallback span{position:relative;z-index:1}
+    .event-vp-note{width:100%;min-width:0;color:#5d5c56;font-size:13px;line-height:1.45;overflow-wrap:anywhere}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
-    .card-set-icon{display:inline-block;width:auto;height:20px;max-width:74px;object-fit:contain;vertical-align:middle;margin:2px 1px 2px 2px;transform-origin:center}
+    .card-set-icon{display:inline-block;width:auto;height:22px;max-width:80px;object-fit:contain;vertical-align:middle;margin:2px 1px 2px 2px;transform-origin:center}
     .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.08)}
     .card-set-icon[src*="set_newleaf.png"]{transform:scale(1.23)}
     .card-set-icon[src*="set_legends.png"]{transform:scale(.86)}
     .card-set-icon[src*="set_extra.png"]{transform:scale(.85)}
     .card-set-icon[src*="set_corrin.png"]{transform:scale(.87)}
-    .card-set-icon[src*="set_rugwort.png"]{transform:scale(.85)}
+    .card-set-icon[src*="set_rugwort.png"]{transform:scale(.95)}
     .card-info-row{display:flex;align-items:center;gap:8px;min-width:0}
     .card-info-left{display:flex;flex:1 1 auto;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}
     .feature-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:5px}
@@ -117,18 +144,20 @@
     .scroll-button.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
     .scroll-button:focus-visible{outline:2px solid #66835b;outline-offset:3px}
     @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:18px;max-width:68px}.power-set-icon{height:21px;max-width:78px}.feature-icon,.town-slot-icon{height:22px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.scroll-controls{display:flex}}
+    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.feature-icon,.town-slot-icon{height:22px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.scroll-controls{display:flex}}
   </style>
 </head>
 <body>
   <header>
-    <h1>🌳 Everdell 日本語カード検索</h1>
-    <p>英語カード名・日本語名・効果から検索できます</p>
+    <h1 class="site-title">🌳 Everdell Card Database</h1>
+    <p class="site-subtitle">エバーデール 日本語カード一覧・検索</p>
+    <p class="site-description"><span>Search by English card name, Japanese name, and card effect.</span><span>英語カード名・日本語名・効果から検索できます</span></p>
   </header>
   <main>
     <div class="category-tabs" role="tablist" aria-label="表示カテゴリ">
       <button id="category-cards" class="category-tab" type="button" role="tab" aria-selected="true" data-category="cards">カード</button>
       <button id="category-powers" class="category-tab" type="button" role="tab" aria-selected="false" data-category="powers">特殊能力</button>
+      <button id="category-events" class="category-tab" type="button" role="tab" aria-selected="false" data-category="events">特殊イベント</button>
     </div>
     <div class="box">
       <input id="q" class="search" type="search" placeholder="カード名・効果を検索…" aria-label="カード名または効果を検索">
@@ -148,8 +177,9 @@
   <script>
     let cards = [];
     let powers = [];
+    let events = [];
     let activeCategory = 'cards';
-    const loadErrors = { cards: null, powers: null };
+    const loadErrors = { cards: null, powers: null, events: null };
 
     const elements = {
       query: document.getElementById('q'),
@@ -259,7 +289,8 @@
       [3, 'vp_3.png'],
       [4, 'vp_4.png'],
       [5, 'vp_5.png'],
-      [6, 'vp_6.png']
+      [6, 'vp_6.png'],
+      [9, 'vp_9.png']
     ]);
 
     function escapeHtml(value) {
@@ -378,16 +409,23 @@
           { value: '建物', label: '建物' },
           ...[...new Set(cards.map(card => card.type).filter(Boolean))].map(value => ({ value, label: value }))
         ]);
-      } else {
+      } else if (activeCategory === 'powers') {
         populateFilter(elements.set, [...new Set(powers.map(power => power.set).filter(Boolean))]);
+      } else {
+        populateFilter(elements.set, [...new Set(events.map(event => event.set).filter(Boolean))]);
       }
 
-      const isPowerView = activeCategory === 'powers';
-      elements.theme.hidden = isPowerView;
-      elements.type.hidden = isPowerView;
-      elements.filters.classList.toggle('power-mode', isPowerView);
-      elements.query.placeholder = isPowerView ? '特殊能力名・肩書・効果を検索…' : 'カード名・効果を検索…';
-      elements.query.setAttribute('aria-label', isPowerView ? '特殊能力名、肩書または効果を検索' : 'カード名または効果を検索');
+      const isCardView = activeCategory === 'cards';
+      elements.theme.hidden = !isCardView;
+      elements.type.hidden = !isCardView;
+      elements.filters.classList.toggle('power-mode', !isCardView);
+      const searchUi = activeCategory === 'powers'
+        ? { placeholder: '特殊能力名・肩書・効果を検索…', label: '特殊能力名、肩書または効果を検索' }
+        : activeCategory === 'events'
+          ? { placeholder: '特殊イベント名・条件・効果を検索…', label: '特殊イベント名、条件または効果を検索' }
+          : { placeholder: 'カード名・効果を検索…', label: 'カード名または効果を検索' };
+      elements.query.placeholder = searchUi.placeholder;
+      elements.query.setAttribute('aria-label', searchUi.label);
     }
 
     function loadFavoriteIds() {
@@ -423,7 +461,7 @@
       return items || '<span class="cost-item">なし</span>';
     }
 
-    function renderEffectText(text) {
+    function renderEffectText(text, replaceAllColors = false) {
       let html = escapeHtml(text);
 
       html = html.replace(/[1-6]勝利点/g, match => {
@@ -445,7 +483,11 @@
       }
 
       const colorByLabel = Object.fromEntries(Object.values(colorIcons).map(icon => [icon.label, icon]));
-      html = html.replace(/(?<!\p{Script=Han})([緑茶赤青紫])(?=(?:以外|[をに]|\d|の|[、。・／/（）\s]|$))/gu, (_, label) => {
+      const colorPattern = replaceAllColors
+        ? /[緑茶赤青紫]/g
+        : /(?<!\p{Script=Han})([緑茶赤青紫])(?=(?:以外|[をに]|\d|の|[、。・／/（）\s]|$))/gu;
+      html = html.replace(colorPattern, match => {
+        const label = match;
         const icon = colorByLabel[label];
         return iconHtml(icon.image, icon.label, 'inline-icon effect-color-icon');
       });
@@ -453,11 +495,11 @@
       return html;
     }
 
-    function renderEffect(effect) {
+    function renderEffect(effect, replaceAllColors = false) {
       return String(effect ?? '')
         .split(/(《[^》]*》)/g)
         .map(part => {
-          if (!part.startsWith('《') || !part.endsWith('》')) return renderEffectText(part);
+          if (!part.startsWith('《') || !part.endsWith('》')) return renderEffectText(part, replaceAllColors);
           const name = part.slice(1, -1);
           const icon = bracketEffectIcons[name];
           return icon
@@ -569,6 +611,61 @@
       </article>`;
     }
 
+    function hasDisplayValue(value) {
+      return value != null && (!(typeof value === 'string') || value.trim() !== '');
+    }
+
+    function renderEventVictoryPoints(value) {
+      if (!hasDisplayValue(value)) return '';
+      const points = Number(value);
+      const icon = victoryPointIcon(points, 'event-vp-icon');
+      if (icon) return icon;
+      return `<span class="event-vp-fallback" aria-label="${escapeHtml(points)}勝利点"><img src="${imageUrl('vp_blank.png')}" alt=""><span>${escapeHtml(points)}</span></span>`;
+    }
+
+    function renderEventEffect(effect) {
+      if (!hasDisplayValue(effect)) return '';
+      const lines = String(effect).split(/\r?\n/);
+      const hasInlineScoring = lines.length > 1 && lines.slice(1).some(line => /[1-6]勝利点/.test(line));
+      if (!hasInlineScoring) return `<div class="effect event-effect">${renderEffect(effect, true)}</div>`;
+
+      const intro = hasDisplayValue(lines[0]) ? `<div>${renderEffect(lines[0], true)}</div>` : '';
+      const scoring = lines.slice(1)
+        .filter(hasDisplayValue)
+        .map(line => `<div class="event-inline-scoring-line">${renderEffect(line, true)}</div>`)
+        .join('');
+      return `<div class="effect event-effect">${intro}<div class="event-inline-scoring">${scoring}</div></div>`;
+    }
+
+    function renderEvent(event) {
+      const isFavorite = favoriteIds.has(event.id);
+      const setIcon = event.set === '基本' ? '' : setIconHtml(event.set, 'card-set-icon');
+      const features = renderFeatures(event.features);
+      const conditionJpHasColors = /[緑茶赤青紫]/.test(String(event.condition_jp ?? ''));
+      const conditionJp = hasDisplayValue(event.condition_jp) ? `<div class="event-condition-jp${conditionJpHasColors ? ' has-color-icons' : ''}">${renderEffect(event.condition_jp, true)}</div>` : '';
+      const conditionEn = hasDisplayValue(event.condition_en) ? `<div class="event-condition-en">${renderEffect(event.condition_en, true)}</div>` : '';
+      const condition = conditionJp || conditionEn || features
+        ? `<div class="event-condition"><div class="event-condition-text">${conditionJp}${conditionEn}</div>${features ? `<div class="event-condition-features">${features}</div>` : ''}</div>`
+        : '';
+      const effect = renderEventEffect(event.effect);
+      const victoryPoints = renderEventVictoryPoints(event.victory_points);
+      const victoryNote = hasDisplayValue(event.victory_points_note)
+        ? `<div class="event-vp-note">${renderEffect(event.victory_points_note, true)}</div>`
+        : '';
+      const victoryArea = victoryPoints || victoryNote ? `<div class="event-vp-row">${victoryPoints}${victoryNote}</div>` : '';
+      const content = effect || victoryArea ? `<div class="event-content">${effect}${victoryArea}</div>` : '';
+
+      return `<article class="card event-card">
+        <div class="card-head">
+          <div class="card-title"><div class="event-name-jp">${escapeHtml(event.name_jp)}</div><div class="event-name-en">${escapeHtml(event.name_en)}</div></div>
+          <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(event.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(event.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
+        </div>
+        ${condition}
+        ${setIcon ? `<div class="card-info-row event-info-row"><div class="card-info-left">${setIcon}</div></div>` : ''}
+        ${content}
+      </article>`;
+    }
+
     function renderPowers() {
       if (loadErrors.powers) {
         elements.count.textContent = '特殊能力を読み込めませんでした。';
@@ -588,9 +685,32 @@
         : '<div class="status">該当する特殊能力がありません。</div>';
     }
 
+    function renderEvents() {
+      if (loadErrors.events) {
+        elements.count.textContent = '特殊イベントを読み込めませんでした。';
+        elements.grid.innerHTML = '<div class="status error">特殊イベントデータの読み込みに失敗しました。ページを再読み込みしてください。</div>';
+        return;
+      }
+
+      const query = elements.query.value.trim().toLocaleLowerCase('ja');
+      const selectedSet = elements.set.value;
+      const filtered = events.filter(event => {
+        const searchable = [event.name_en, event.name_jp, event.condition_en, event.condition_jp, event.effect, event.victory_points_note].join(' ').toLocaleLowerCase('ja');
+        return (!query || searchable.includes(query)) && (!selectedSet || event.set === selectedSet);
+      });
+      elements.count.textContent = `${filtered.length} / ${events.length} 件`;
+      elements.grid.innerHTML = filtered.length
+        ? renderGroupedItems(filtered, events, renderEvent)
+        : '<div class="status">該当する特殊イベントがありません。</div>';
+    }
+
     function render() {
       if (activeCategory === 'powers') {
         renderPowers();
+        return;
+      }
+      if (activeCategory === 'events') {
+        renderEvents();
         return;
       }
       if (loadErrors.cards) {
@@ -618,7 +738,7 @@
     }
 
     function switchCategory(category) {
-      if (!['cards', 'powers'].includes(category) || category === activeCategory) return;
+      if (!['cards', 'powers', 'events'].includes(category) || category === activeCategory) return;
       activeCategory = category;
       elements.categoryTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.category === category)));
       elements.query.value = '';
@@ -682,9 +802,10 @@
         return data[rootKey];
       };
 
-      const [cardsResult, powersResult] = await Promise.allSettled([
+      const [cardsResult, powersResult, eventsResult] = await Promise.allSettled([
         loadJsonArray('./cards.json', 'cards'),
-        loadJsonArray('./worker_powers.json', 'powers')
+        loadJsonArray('./worker_powers.json', 'powers'),
+        loadJsonArray('./special_events.json', 'events')
       ]);
 
       if (cardsResult.status === 'fulfilled') cards = cardsResult.value;
@@ -697,6 +818,12 @@
       else {
         loadErrors.powers = powersResult.reason;
         console.error(powersResult.reason);
+      }
+
+      if (eventsResult.status === 'fulfilled') events = eventsResult.value;
+      else {
+        loadErrors.events = eventsResult.reason;
+        console.error(eventsResult.reason);
       }
 
       configureFilters();

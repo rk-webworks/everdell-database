@@ -1,0 +1,249 @@
+{
+    "events":  [
+                   {
+                       "id":  "BASE-EVENT-001",
+                       "name_en":  "A Brilliant Marketing Plan",
+                       "name_jp":  "素晴らしい販売計画",
+                       "condition_en":  "Shopkeeper、Post Office",
+                       "condition_jp":  "店主、郵便局",
+                       "effect":  "このカードを獲得したとき、他のプレイヤー（複数でも可）に資材を合計で3個まで渡してもよい。",
+                       "victory_points":  2,
+                       "victory_points_note":  "渡した資材1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-002",
+                       "name_en":  "A Well Run City",
+                       "name_jp":  "活発な街",
+                       "condition_en":  "Chip Sweep、Clocktower",
+                       "condition_jp":  "リスの掃除屋、時計台",
+                       "effect":  "このカードを獲得したとき、配置されているあなたの労働者コマを1個選び、手元に戻す。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-003",
+                       "name_en":  "An Evening of Fireworks",
+                       "name_jp":  "花火の夕べ",
+                       "condition_en":  "Lookout、Miner Mole",
+                       "condition_jp":  "物見櫓、鉱夫モグラ",
+                       "effect":  "このカードを獲得したとき、このカードの上に小枝を3個まで置いてもよい。",
+                       "victory_points":  2,
+                       "victory_points_note":  "このカードの上の小枝1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-004",
+                       "name_en":  "Ancient Scrolls Discovered",
+                       "name_jp":  "古い巻物の発見",
+                       "condition_en":  "Historian、Ruins",
+                       "condition_jp":  "歴史家、遺跡",
+                       "effect":  "このカードを獲得したとき、カードの山から「カード」を5枚公開する。その後、任意の枚数をこのカードの下に入れ、残りは手札に加える。",
+                       "victory_points":  1,
+                       "victory_points_note":  "この下の「カード」1枚につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-005",
+                       "name_en":  "Capture of the Acorn Thieves",
+                       "name_jp":  "どんぐり泥棒の逮捕",
+                       "condition_en":  "Courthouse、Ranger",
+                       "condition_jp":  "裁判所、野伏せ",
+                       "effect":  "このカードを獲得したとき、あなたの街から動物カードを2枚までこのカードの下に置く。",
+                       "victory_points":  3,
+                       "victory_points_note":  "この下の動物カード1枚につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-006",
+                       "name_en":  "Croak Wart Cure",
+                       "name_jp":  "しゃがれ声の直し方",
+                       "condition_en":  "Undertaker、Barge Toad",
+                       "condition_jp":  "葬儀屋、船頭ガエル",
+                       "effect":  "このカードを獲得したとき、果実を2個支払い、あなたの街にある「カード」2枚を捨てる。",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-007",
+                       "name_en":  "Flying Doctor Service",
+                       "name_jp":  "空飛ぶ往診",
+                       "condition_en":  "Doctor、Postal Pigeon",
+                       "condition_jp":  "医者、伝書バト",
+                       "victory_points":  3,
+                       "victory_points_note":  "すべてのプレイヤーの街にある《旦那》《夫人》のペア1組につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-008",
+                       "name_en":  "Graduation of Scholars",
+                       "name_jp":  "学びの門出",
+                       "condition_en":  "Teacher、University",
+                       "condition_jp":  "教師、大学",
+                       "effect":  "このカードを獲得したとき、手札の動物カードを3枚までこのイベントの下に置いてもよい。",
+                       "victory_points":  2,
+                       "victory_points_note":  "この下の動物カード1枚につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-009",
+                       "name_en":  "Ministering to Miscreants",
+                       "name_jp":  "悪党たちの末路",
+                       "condition_en":  "Monk、Dungeon",
+                       "condition_jp":  "修道士、牢獄",
+                       "victory_points":  3,
+                       "victory_points_note":  "《牢獄》の下の「カード」1枚につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-010",
+                       "name_en":  "Path of the Pilgrims",
+                       "name_jp":  "巡礼者の行路",
+                       "condition_en":  "Monastery、Wanderer",
+                       "condition_jp":  "修道院、旅人",
+                       "victory_points":  3,
+                       "victory_points_note":  "《修道院》に配置された労働者コマ1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-011",
+                       "name_en":  "Performer in Residence",
+                       "name_jp":  "演奏者滞在中",
+                       "condition_en":  "Inn、Bard",
+                       "condition_jp":  "宿屋、吟遊詩人",
+                       "effect":  "このカードを獲得したとき、このカードの上に果実を3個まで置いてもよい。",
+                       "victory_points":  2,
+                       "victory_points_note":  "このカードの上の果実1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-012",
+                       "name_en":  "Pristine Chapel Ceiling",
+                       "name_jp":  "清浄なる礼拝堂の天井",
+                       "condition_en":  "Woodcarver、Chapel",
+                       "condition_jp":  "木彫師、礼拝堂",
+                       "effect":  "このカードを獲得したとき、《礼拝堂》上の「勝利点」1個につき、「カード」を1枚引き、資材を1個得る。",
+                       "victory_points":  2,
+                       "victory_points_note":  "《礼拝堂》の上の「勝利点」1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-013",
+                       "name_en":  "Remembering the Fallen",
+                       "name_jp":  "死んでいった者たちを忘れない",
+                       "condition_en":  "Cemetery、Shepherd",
+                       "condition_jp":  "墓地、牧師",
+                       "victory_points":  3,
+                       "victory_points_note":  "《墓地》の上に配置された労働者コマ1個につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-014",
+                       "name_en":  "Tax Relief",
+                       "name_jp":  "免税",
+                       "condition_en":  "Judge、Queen",
+                       "condition_jp":  "裁判官、王妃",
+                       "effect":  "このカードを獲得したとき、あなたの街の緑を好きな順番ですべて適用させる。",
+                       "victory_points":  3,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-015",
+                       "name_en":  "The Everdell Games",
+                       "name_jp":  "エバーデール",
+                       "condition_en":  "2 of each card color",
+                       "condition_jp":  "茶緑赤青紫2枚ずつ",
+                       "victory_points":  9,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   },
+                   {
+                       "id":  "BASE-EVENT-016",
+                       "name_en":  "Under New Management",
+                       "name_jp":  "新しい経営者のもとで",
+                       "condition_en":  "Peddler、General Store",
+                       "condition_jp":  "行商人、雑貨屋",
+                       "effect":  "このカードを獲得したとき、このカードの上に資材を3個まで置いてもよい。\n果実・小枝1個につき1勝利点\n樹液・小石1個につき2勝利点",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "基本"
+                   }
+               ]
+}
