@@ -64,17 +64,23 @@
     .power-titles{flex:0 1 auto;min-width:0;color:#77756d;font-size:13px;line-height:1.45}
     .power-title-jp{font-weight:700;color:#5e6059}
     .power-set-icon{display:block;width:auto;height:24px;max-width:88px;object-fit:contain;flex:0 0 auto}
+    .power-set-icon[src*="set_mistwood.png"]{transform:scale(.78);transform-origin:center}
     .event-card{--theme-color:#7a6845;--theme-soft:#f1ebdd}
-    .event-set-icon{display:block;width:auto;height:20px;max-width:72px;object-fit:contain;transform-origin:center;flex:0 0 auto}
-    .event-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.04)}
-    .event-set-icon[src*="set_bellfaire.png"]{transform:scale(1.12)}
-    .event-set-icon[src*="set_newleaf.png"]{transform:scale(1.19)}
+    .event-card .card-title{flex:1 1 auto}
+    .event-set-icon-box{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px;overflow:visible}
+    .event-set-icon{--event-set-scale:1;--event-set-shift-x:0px;--event-set-shift-y:4px;display:block;width:20px;height:20px;max-width:none;object-fit:contain;transform:translate(var(--event-set-shift-x),var(--event-set-shift-y)) scale(var(--event-set-scale));transform-origin:center;flex:0 0 auto}
+    .event-set-icon[src*="set_pearlbrook.png"]{--event-set-scale:.93;--event-set-shift-x:-.25px}
+    .event-set-icon[src*="set_bellfaire.png"]{--event-set-scale:1.19;--event-set-shift-x:-2.2px}
+    .event-set-icon[src*="set_newleaf.png"]{--event-set-scale:.965;--event-set-shift-x:-.15px}
+    .event-name-jp-row{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:8px;max-width:100%;min-width:0;vertical-align:top}
+    .event-name-jp-row>.event-name-jp{flex:0 1 auto;min-width:0;overflow-wrap:anywhere}
     .event-name-jp{font-size:21px;font-weight:700;line-height:1.35}
     .event-name-en{margin-top:3px;color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
     .event-condition{display:flex;align-items:center;gap:8px;margin-top:9px;padding:8px 10px 8px 0;border-radius:9px;background:#fffaf0;color:#555;font-size:13px;line-height:1.45;min-width:0}
     .event-condition-text{flex:1 1 auto;min-width:0;text-align:left;overflow-wrap:anywhere}
     .event-condition-jp{font-weight:600}
     .event-condition-jp .effect-color-icon:first-child{margin-left:0}
+    .event-condition .effect-color-icon{transform:scale(1.45);margin-inline:.28em}
     .event-condition-en{margin:2px 0 0;color:#77756d;font-size:12px}
     .event-condition-features{display:flex;align-items:center;justify-content:center;flex:0 0 auto;align-self:center}
     .event-condition-features .feature-placement-icon{transform:scale(2);margin-inline:13px}
@@ -93,7 +99,7 @@
     .discovery-season-foothills{--theme-color:#6d784d;--theme-soft:#edf0e2}
     .discovery-season-peaks{--theme-color:#687681;--theme-soft:#e9eef1}
     .discovery-season-ridge{--theme-color:#9a5d3f;--theme-soft:#f3e5dc}
-    .discovery-name-row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+    .discovery-name-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:7px;min-width:0}
     .discovery-name-row>span{min-width:0;overflow-wrap:anywhere}
     .discovery-name-jp{margin-top:3px;font-size:21px;font-weight:700;line-height:1.35}
     .discovery-name-en{color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
@@ -101,29 +107,33 @@
     .discovery-large-jp{font-size:21px;font-weight:700;line-height:1.35}
     .discovery-large-label{margin-top:4px;color:#696b64;font-size:12px;line-height:1.35}
     .season-icon{display:block;width:auto;height:30px;max-width:58px;object-fit:contain;transform-origin:center;flex:0 0 auto}
-    .season-icon[src*="spirecrest_foothills.png"]{transform:scale(.96)}
-    .season-icon[src*="spirecrest_peaks.png"]{transform:scale(1.02)}
-    .season-icon[src*="spirecrest_ridge.png"]{transform:scale(1)}
-    .discovery-info-row{display:flex;align-items:center;min-height:24px;margin-top:6px}
-    .discovery-content{margin-top:10px;padding-top:10px;border-top:1px solid #e8e2d5}
+    .season-icon[src*="spirecrest_foothills.png"]{transform:translateY(2px) scale(.96)}
+    .season-icon[src*="spirecrest_peaks.png"]{transform:translateY(2px) scale(1.02)}
+    .season-icon[src*="spirecrest_ridge.png"]{transform:translateY(2px) scale(1)}
+    .discovery-info-row{display:flex;align-items:center;justify-content:center;min-height:24px;margin-top:6px}
+    .discovery-info-row .card-info-left{flex:0 1 auto;justify-content:center}
+    .discovery-content{margin-top:10px}
+    .discovery-content.has-feature-divider{padding-top:10px;border-top:1px solid #e8e2d5}
     .discovery-content>.effect:first-child{margin-top:0}
     .discovery-vp-row{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px;text-align:center}
     .discovery-vp-icons{display:flex;align-items:center;justify-content:center;gap:3px}
-    .discovery-vp-note{width:100%;color:#5d5c56;font-size:13px;line-height:1.45;overflow-wrap:anywhere}
-    .discovery-set-icon{display:block;width:auto;height:22px;max-width:80px;object-fit:contain}
+    .discovery-vp-note{width:100%;color:#5d5c56;font-size:13px;line-height:1.45;text-align:left;overflow-wrap:anywhere}
+    .discovery-vp-note .discovery-effect-line{text-align:inherit}
+    .discovery-vp-note.is-single-line{text-align:center}
     .expedition-icon{display:inline-block;width:auto;height:2.2em;max-width:min(100%,180px);object-fit:contain;vertical-align:-.65em;margin:.1em .12em;transform-origin:center}
     .discovery-expedition-score-icon{display:block;width:50px;height:50px;object-fit:contain;transform:scale(.74);transform-origin:center;flex:0 0 auto}
     .discovery-peak-inline-icon{width:1.55em;height:1.55em;vertical-align:-.36em;object-fit:contain;margin-inline:.12em}
-    .discovery-effect-line{min-height:1.65em}
+    .discovery-effect-line{min-height:1.65em;text-align:left}
     .discovery-effect-score-block{margin:.15em 0;text-align:center}
+    .discovery-effect-score-block .discovery-effect-line{text-align:center}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
     .card-set-icon{display:inline-block;width:auto;height:22px;max-width:80px;object-fit:contain;vertical-align:middle;margin:2px 1px 2px 2px;transform-origin:center}
     .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.08)}
-    .card-set-icon[src*="set_newleaf.png"]{transform:scale(1.23)}
-    .card-set-icon[src*="set_legends.png"]{transform:scale(.86)}
-    .card-set-icon[src*="set_extra.png"]{transform:scale(.85)}
-    .card-set-icon[src*="set_corrin.png"]{transform:scale(.87)}
-    .card-set-icon[src*="set_rugwort.png"]{transform:scale(.95)}
+    .card-set-icon[src*="set_newleaf.png"]{transform:scale(1.05)}
+    .card-set-icon[src*="set_legends.png"]{transform:scale(.9)}
+    .card-set-icon[src*="set_extra.png"]{transform:scale(1.03)}
+    .card-set-icon[src*="set_corrin.png"]{transform:scale(.92)}
+    .card-set-icon[src*="set_rugwort.png"]{transform:scale(1)}
     .card-info-row{display:flex;align-items:center;gap:8px;min-width:0}
     .card-info-left{display:flex;flex:1 1 auto;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}
     .feature-list{display:inline-flex;flex-wrap:wrap;align-items:center;gap:5px}
@@ -138,7 +148,7 @@
     .open-feature-icon[src*="feature_open_2.png"]{transform:scale(2.45)}
     .open-feature-icon[src*="feature_open_3.png"]{transform:scale(1.92)}
     .town-slot-feature{display:flex;align-items:center;flex:0 0 auto;margin-left:auto}
-    .town-slot-icon{display:block;width:auto;height:24px;max-width:34px;object-fit:contain}
+    .town-slot-icon{display:block;width:auto;height:27px;max-width:38px;object-fit:contain}
     .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
     .detail-label{font-weight:700;color:#555}
     .cost-info{display:inline-flex;align-items:center;gap:6px}
@@ -182,7 +192,7 @@
     .scroll-button.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
     .scroll-button:focus-visible{outline:2px solid #66835b;outline-offset:3px}
     @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.event-set-icon{height:20px;max-width:72px}.discovery-set-icon{height:20px;max-width:74px}.season-icon{height:28px;max-width:54px}.feature-icon,.town-slot-icon{height:22px}.scroll-controls{display:flex}}
+    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.event-set-icon{height:20px;max-width:72px}.season-icon{height:28px;max-width:54px}.feature-icon{height:22px}.town-slot-icon{height:25px;max-width:36px}.scroll-controls{display:flex}}
   </style>
 </head>
 <body>
@@ -335,10 +345,11 @@
 
     const favoritesStorageKey = 'everdell-favorite-card-ids';
     const favoriteIds = loadFavoriteIds();
-    const imageVersion = '20260815-vp-open1';
+    const imageVersion = '20260816-minus1b';
 
     const victoryPointImages = new Map([
       [-2, 'vp_minus2.png'],
+      [-1, 'vp_minus1.png'],
       [0, 'vp_0.png'],
       [1, 'vp_1.png'],
       [2, 'vp_2.png'],
@@ -527,7 +538,7 @@
     function renderEffectText(text, replaceAllColors = false) {
       let html = escapeHtml(text);
 
-      html = html.replace(/(?:-2|[0-9])勝利点/g, match => {
+      html = html.replace(/(?:-[12]|[0-9])勝利点/g, match => {
         const value = Number.parseInt(match, 10);
         return victoryPointIcon(value, 'inline-icon effect-vp-icon') || match;
       });
@@ -659,19 +670,18 @@
     function renderPower(power) {
       const isFavorite = favoriteIds.has(power.id);
       const setIcon = setIconHtml(power.set, 'power-set-icon');
-      return `<article class="card power-card${setIcon ? ' has-set-icon' : ''}">
+      return `<article class="card power-card">
         <div class="card-head">
           <div class="card-title">
             <div class="en">${escapeHtml(power.name_en)}</div>
             <div class="jp">${escapeHtml(power.name_jp)}</div>
             <div class="power-title-row">
-              <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>
+              <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>${setIcon}
             </div>
           </div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(power.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(power.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
         <div class="effect">${renderEffect(power.effect)}</div>
-        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
     }
 
@@ -734,7 +744,7 @@
 
     function renderEvent(event) {
       const isFavorite = favoriteIds.has(event.id);
-      const setIcon = event.set === '基本' ? '' : setIconHtml(event.set, 'event-set-icon');
+      const setIcon = event.set === '基本' ? '' : `<span class="event-set-icon-box">${setIconHtml(event.set, 'event-set-icon')}</span>`;
       const features = renderFeatures(event.features);
       const conditionJpHtml = hasDisplayValue(event.condition_jp) ? renderEventConditionText(event.condition_jp) : '';
       const conditionJp = conditionJpHtml ? `<div class="event-condition-jp">${conditionJpHtml}</div>` : '';
@@ -753,14 +763,13 @@
       const victoryArea = victoryPoints || victoryNote ? `<div class="event-vp-row">${victoryPoints}${victoryNote}</div>` : '';
       const content = effect || victoryArea ? `<div class="event-content">${effect}${victoryArea}</div>` : '';
 
-      return `<article class="card event-card${setIcon ? ' has-set-icon' : ''}">
+      return `<article class="card event-card">
         <div class="card-head">
-          <div class="card-title"><div class="en">${escapeHtml(event.name_en)}</div><div class="jp">${escapeHtml(event.name_jp)}</div></div>
+          <div class="card-title"><div class="en">${escapeHtml(event.name_en)}</div><div class="event-name-jp-row"><span class="jp event-name-jp">${escapeHtml(event.name_jp)}</span>${setIcon}</div></div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(event.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(event.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
         ${condition}
         ${content}
-        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
     }
 
@@ -819,7 +828,6 @@
       const isLargeCritter = hasDisplayValue(discovery.large_critter_en) || hasDisplayValue(discovery.large_critter_jp);
       const season = discoverySeasons.find(item => item.name === discovery.season);
       const seasonIcon = season ? iconHtml(season.image, season.name, 'season-icon') : '';
-      const setIcon = setIconHtml(discovery.set, 'discovery-set-icon');
       const features = renderFeatures(discovery.features);
       const openFeature = Object.hasOwn(discovery, 'open') ? renderOpenFeature(discovery.open) : '';
       const info = features || openFeature
@@ -840,18 +848,17 @@
         ? `<div class="discovery-vp-row">${victoryPoints || expeditionIcon ? `<div class="discovery-vp-icons">${expeditionIcon}${victoryPoints}</div>` : ''}${victoryNote}</div>`
         : '';
       const content = effect || victoryArea
-        ? `<div class="discovery-content">${effect}${victoryArea}</div>`
+        ? `<div class="discovery-content${info ? ' has-feature-divider' : ''}">${effect}${victoryArea}</div>`
         : '';
       const favoriteName = discovery.name_jp || discovery.large_critter_jp || discovery.id;
 
-      return `<article class="card discovery-card ${season?.className || ''}${setIcon ? ' has-set-icon' : ''}">
+      return `<article class="card discovery-card ${season?.className || ''}">
         <div class="card-head">
           <div class="card-title">${title}</div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(discovery.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(favoriteName)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
         ${info}
         ${content}
-        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
     }
 
@@ -1008,6 +1015,33 @@
       });
     }
 
+    function updateDiscoveryVpNoteAlignment() {
+      document.querySelectorAll('.discovery-vp-note').forEach(note => {
+        note.classList.remove('is-single-line');
+        const lines = [];
+        contentRects(note).filter(rect => rect.width > 0 && rect.height > 0).forEach(rect => {
+          const line = lines.find(item => rect.top < item.bottom - 2 && rect.bottom > item.top + 2);
+          if (line) {
+            line.top = Math.min(line.top, rect.top);
+            line.bottom = Math.max(line.bottom, rect.bottom);
+          } else {
+            lines.push({ top: rect.top, bottom: rect.bottom });
+          }
+        });
+        note.classList.toggle('is-single-line', lines.length <= 1);
+      });
+    }
+
+    function scheduleDiscoveryVpNoteAlignment() {
+      requestAnimationFrame(() => {
+        updateDiscoveryVpNoteAlignment();
+        requestAnimationFrame(updateDiscoveryVpNoteAlignment);
+      });
+      document.querySelectorAll('.discovery-vp-note img').forEach(image => {
+        if (!image.complete) image.addEventListener('load', scheduleDiscoveryVpNoteAlignment, { once: true });
+      });
+    }
+
     elements.grid.addEventListener('click', event => {
       const favoriteButton = event.target.closest('[data-favorite-id]');
       if (favoriteButton) {
@@ -1045,7 +1079,10 @@
     window.addEventListener('scroll', updateScrollButtons, { passive: true });
     window.addEventListener('resize', () => {
       updateScrollButtons();
-      requestAnimationFrame(adjustSetIconClearance);
+      requestAnimationFrame(() => {
+        adjustSetIconClearance();
+        scheduleDiscoveryVpNoteAlignment();
+      });
     });
     elements.backToTop.addEventListener('click', () => {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1058,7 +1095,9 @@
     new MutationObserver(() => requestAnimationFrame(() => {
       updateScrollButtons();
       adjustSetIconClearance();
+      scheduleDiscoveryVpNoteAlignment();
     })).observe(elements.grid, { childList: true, subtree: true });
+    if (document.fonts?.ready) document.fonts.ready.then(scheduleDiscoveryVpNoteAlignment);
     updateScrollButtons();
 
     async function init() {
