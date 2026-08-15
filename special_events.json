@@ -55,7 +55,7 @@
                        "condition_jp":  "歴史家、遺跡",
                        "effect":  "このカードを獲得したとき、カードの山から「カード」を5枚公開する。その後、任意の枚数をこのカードの下に入れ、残りは手札に加える。",
                        "victory_points":  1,
-                       "victory_points_note":  "この下の「カード」1枚につき",
+                       "victory_points_note":  "このカードの下の「カード」1枚につき",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -71,7 +71,7 @@
                        "condition_jp":  "裁判所、野伏せ",
                        "effect":  "このカードを獲得したとき、あなたの街から動物カードを2枚までこのカードの下に置く。",
                        "victory_points":  3,
-                       "victory_points_note":  "この下の動物カード1枚につき",
+                       "victory_points_note":  "このカードの下の動物カード1枚につき",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -115,9 +115,9 @@
                        "name_jp":  "学びの門出",
                        "condition_en":  "Teacher、University",
                        "condition_jp":  "教師、大学",
-                       "effect":  "このカードを獲得したとき、手札の動物カードを3枚までこのイベントの下に置いてもよい。",
+                       "effect":  "このカードを獲得したとき、手札の動物カードを3枚までこのカードの下に置いてもよい。",
                        "victory_points":  2,
-                       "victory_points_note":  "この下の動物カード1枚につき",
+                       "victory_points_note":  "このカードの下の動物カード1枚につき",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -244,6 +244,350 @@
                                         }
                                     ],
                        "set":  "基本"
+                   },
+                   {
+                       "id":  "PERA-EVENT-001",
+                       "name_en":  "Masquerade Invitations",
+                       "name_jp":  "仮面舞踏会の招待状",
+                       "condition_en":  "Messenger、Fair Grounds",
+                       "condition_jp":  "伝令、移動遊園地",
+                       "effect":  "このカードを獲得したとき、手札から「カード」を6枚まで他のプレイヤー（複数でも可）に渡してもよい。渡した「カード」1枚につき1勝利点を得る。",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "PERA-EVENT-002",
+                       "name_en":  "River Race",
+                       "name_jp":  "河レース",
+                       "condition_en":  "Ferry Ferret、Twig Barge",
+                       "condition_jp":  "フェレットの船頭、小枝の運搬船",
+                       "effect":  "このカードを獲得したとき、《フェレットの船頭》または《小枝の運搬船》のどちらか1枚を、あなたの街から裏向きでこのイベントの下に置く。\n《フェレットの船頭》を置いたとき、2勝利点を得る。\n《小枝の運搬船》を置いたとき、資材を2個得る。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "PERA-EVENT-003",
+                       "name_en":  "Riverside Resort",
+                       "name_jp":  "川辺のリゾート地",
+                       "condition_en":  "Harbor、Innkeeper",
+                       "condition_jp":  "港、宿屋の主人",
+                       "effect":  "このカードを獲得したとき、広場から動物カードを3枚まで裏向きでこのカードの下に置いてもよい。",
+                       "victory_points":  2,
+                       "victory_points_note":  "このカードの下の動物カード1枚につき",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "PERA-EVENT-004",
+                       "name_en":  "Romantic Cruise",
+                       "name_jp":  "ロマンチッククルーズ",
+                       "condition_en":  "Ferry、Harvester",
+                       "condition_jp":  "渡し船、旦那",
+                       "effect":  "このカードを獲得したとき、カードの山から《夫人》を探してコストを無視してプレイしてもよい。または、5勝利点を得てもよい。",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "PERA-EVENT-005",
+                       "name_en":  "Sunken Treasure Discovered",
+                       "name_jp":  "沈没した財宝発見！",
+                       "condition_en":  "Pirate、Crane",
+                       "condition_jp":  "海賊、クレーン",
+                       "effect":  "このカードを獲得したとき、広場から3勝利点までの「カード」1枚をコストを無視してプレイしてもよい。",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "PERA-EVENT-006",
+                       "name_en":  "X Marks the Spot",
+                       "name_jp":  "宝物の目印はX印",
+                       "condition_en":  "Pirate Ship、Storehouse",
+                       "condition_jp":  "海賊船、倉庫",
+                       "effect":  "このカードを獲得したとき、《倉庫》の上にある資材1個につき1「勝利点」を《倉庫》の上に置く（最大6個）。《倉庫》に労働者コマを配置して資材を回収するとき、それらの「勝利点」も得る。",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "真珠の入り江"
+                   },
+                   {
+                       "id":  "BELL-EVENT-001",
+                       "name_en":  "Architectural Renaissance",
+                       "name_jp":  "建築学の復興",
+                       "condition_en":  "4 Unique Constructions",
+                       "condition_jp":  "特別な建物4枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-002",
+                       "name_en":  "Arts \u0026 Music Festival",
+                       "name_jp":  "芸術と音楽の祭典",
+                       "condition_en":  "4赤、pay 2樹液",
+                       "condition_jp":  "赤4枚、樹液を2個支払う",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-003",
+                       "name_en":  "Bed \u0026 Breakfast Guild",
+                       "name_jp":  "ベリーと朝メシ協同組合",
+                       "condition_en":  "5 Common Constructions",
+                       "condition_jp":  "一般の建物5枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-004",
+                       "name_en":  "City Holiday",
+                       "name_jp":  "エバーデール創立記念日",
+                       "condition_en":  "5 Common Critters",
+                       "condition_jp":  "一般の動物5枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-005",
+                       "name_en":  "Gathering of Elders",
+                       "name_jp":  "長老会議",
+                       "condition_en":  "4 Unique Critters",
+                       "condition_jp":  "特別な動物4枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-006",
+                       "name_en":  "King\u0027s Road Established",
+                       "name_jp":  "王道の確立",
+                       "condition_en":  "4茶、pay 2小枝",
+                       "condition_jp":  "茶4枚、小枝を2個支払う",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-007",
+                       "name_en":  "Pie Eating Contest",
+                       "name_jp":  "パイの大食い大会",
+                       "condition_en":  "5緑、pay 2果実",
+                       "condition_jp":  "緑5枚、果実を2個支払う",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-008",
+                       "name_en":  "Royal Wedding",
+                       "name_jp":  "王室の婚礼",
+                       "condition_en":  "4紫、discard 3「カード」",
+                       "condition_jp":  "紫4枚、「カード」を3枚捨てる",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "BELL-EVENT-009",
+                       "name_en":  "Statues Commissioned",
+                       "name_jp":  "記念像建立",
+                       "condition_en":  "4青、pay 1小石",
+                       "condition_jp":  "青4枚、小石を1個支払う",
+                       "victory_points":  6,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "大鐘の祝祭"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-001",
+                       "name_en":  "City Jubilee",
+                       "name_jp":  "街の大祝祭",
+                       "condition_en":  "10 Cards in City",
+                       "condition_jp":  "街に「カード」が10枚ある",
+                       "effect":  "このカードを獲得したとき、達成済みの基本イベント1枚につき1勝利点を得る。さらに、このカードを含む達成済みの特殊イベント1枚につき2勝利点を得る。",
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-002",
+                       "name_en":  "Ever Wall Tower Constructed",
+                       "name_jp":  "エバーウォールの塔完成",
+                       "condition_en":  "9 Constructions",
+                       "condition_jp":  "建物9枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-003",
+                       "name_en":  "Glow Light Festival",
+                       "name_jp":  "森を照らす光の祭典",
+                       "condition_en":  "緑緑緑茶茶",
+                       "condition_jp":  "緑緑緑茶茶",
+                       "effect":  "このカードを獲得したとき、あなたの街の緑1枚につき、手札から「カード」を1枚捨ててもよい。捨てた「カード」1枚につき1勝利点を得る。",
+                       "victory_points":  3,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-004",
+                       "name_en":  "Hot Air Balloon Race",
+                       "name_jp":  "熱気球レース",
+                       "condition_en":  "茶茶青青",
+                       "condition_jp":  "茶茶青青",
+                       "effect":  "このカードを獲得したとき、あなたの街の茶1枚につき、手札から「カード」を1枚捨ててもよい。捨てた「カード」1枚につき1勝利点を得る。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-005",
+                       "name_en":  "Juniper Jig Dance Contest",
+                       "name_jp":  "ジュニパー・ジグダンス大会",
+                       "condition_en":  "9 Critters",
+                       "condition_jp":  "動物9枚",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-006",
+                       "name_en":  "Magic Show",
+                       "name_jp":  "奇術ショー",
+                       "condition_en":  "赤赤紫紫",
+                       "condition_jp":  "赤赤紫紫",
+                       "effect":  "このカードを獲得したとき、あなたの街の赤1枚につき、手札から「カード」を1枚捨ててもよい。捨てた「カード」1枚につき1勝利点を得る。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-007",
+                       "name_en":  "Royal Tea",
+                       "name_jp":  "王宮のお茶会",
+                       "condition_en":  "紫紫緑緑緑",
+                       "condition_jp":  "紫紫緑緑緑",
+                       "effect":  "このカードを獲得したとき、あなたの街の紫1枚につき、手札から「カード」を1枚捨ててもよい。捨てた「カード」1枚につき1勝利点を得る。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-008",
+                       "name_en":  "Stock Market Boom",
+                       "name_jp":  "空前の株式ブーム",
+                       "condition_en":  "青青赤赤",
+                       "condition_jp":  "青青赤赤",
+                       "effect":  "このカードを獲得したとき、あなたの街の青1枚につき、手札から「カード」を1枚捨ててもよい。捨てた「カード」1枚につき1勝利点を得る。",
+                       "victory_points":  4,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
+                   },
+                   {
+                       "id":  "NEWL-EVENT-009",
+                       "name_en":  "Sunflower Parade",
+                       "name_jp":  "ヒマワリパレード",
+                       "condition_en":  "Have achieved at least 3 Events",
+                       "condition_jp":  "イベントを3つ以上達成している",
+                       "victory_points":  5,
+                       "features":  [
+                                        {
+                                            "type":  "location_exclusive"
+                                        }
+                                    ],
+                       "set":  "新緑の汽笛"
                    }
                ]
 }

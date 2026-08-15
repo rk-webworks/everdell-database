@@ -1,0 +1,416 @@
+{
+    "discoveries":  [
+                        {
+                            "id":  "SPIRE-DIS-001",
+                            "name_en":  "Archeologist",
+                            "name_jp":  "考古学者",
+                            "effect":  "あなたの手札や広場（もしくはその両方）から、このカードの下に建物カードを3枚まで移す。\nあなたはこのカードの下にあるカードをプレイしてもよい。その場合はコストを－1資材する。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-002",
+                            "name_en":  "Cartographer\u0027s Caravan",
+                            "name_jp":  "地図製作家の一団",
+                            "effect":  "「カード」を3枚引き、配置したばかりのコマを含め、このカード上の労働者コマの数だけ資材を得る。\n※各プレイヤーは1個までしか配置できない",
+                            "season":  "丘陵（春）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "open":  1,
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-003",
+                            "name_en":  "Everblossom Trail",
+                            "name_jp":  "永久に花咲く街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、あなたの街に3枚以上紫がある場合。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-004",
+                            "name_en":  "Forager",
+                            "name_jp":  "収穫者",
+                            "effect":  "果実を獲得したとき、獲得した果実の数だけ「カード」を1枚引く。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-005",
+                            "name_en":  "Greensprout Trail",
+                            "name_jp":  "緑芽吹く街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、街に緑の生産カードが4枚以上ある場合。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-006",
+                            "name_en":  "Map Seller",
+                            "name_jp":  "地図売り",
+                            "effect":  "広場や捨て札の山（またはその両方）から手札上限まで「カード」を引いてもよい。\n※各プレイヤーは1個までしか配置できない",
+                            "season":  "丘陵（春）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "open":  1,
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-007",
+                            "name_en":  "Mistrise Trail",
+                            "name_jp":  "霧煙る街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、あなたの街に3枚以上茶がある場合。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-008",
+                            "name_en":  "Mountaineer",
+                            "name_jp":  "登山家",
+                            "effect":  "春の天候カードの効果を無視する。峰の探索時、発見カードを2枚まで獲得してもよい。その場合でもコストは通常通り支払う。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-009",
+                            "name_en":  "Prospector",
+                            "name_jp":  "金鉱労働者",
+                            "effect":  "あなたが「勝利点」を得るとき、その1「勝利点」ごとに手札から「カード」を1枚捨て、カードの山から「カード」を1枚引いてもよい。（どちらかのみも可）",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-010",
+                            "name_en":  "Starfall Trail",
+                            "name_jp":  "星降る街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、あなたの街に3枚以上青がある場合。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-011",
+                            "large_critter_en":  "Stubblehoof",
+                            "large_critter_jp":  "スタブルフーフ",
+                            "effect":  "次の季節の準備時、スタブルフーフを配置したままにして、そのマスの効果を適用してもよい。さらに「カード」を1枚引き、資材を1個得る。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-012",
+                            "name_en":  "Sunblaze Trail",
+                            "name_jp":  "日照り街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、あなたの街に3枚以上赤がある場合。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-013",
+                            "name_en":  "Trail Guide",
+                            "name_jp":  "街道の案内人",
+                            "effect":  "あなたの手札、広場（もしくはその両方）から、このカードの下に動物カードを3枚まで移す。\nあなたはこのカードの下にあるカードをプレイしてもよい。その場合はコスト－2果実する。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-014",
+                            "large_critter_en":  "Truffle",
+                            "large_critter_jp":  "トリュフ",
+                            "effect":  "トリュフを自分または他プレイヤーの街の緑の上に配置し、その効果をあなたに適用する。その後、資材を1個得て、「カード」を1枚引く。",
+                            "season":  "丘陵（春）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-015",
+                            "name_en":  "Ancient Orchard",
+                            "name_jp":  "いにしえの果樹園",
+                            "effect":  "果実を5個得る。",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-016",
+                            "name_en":  "Bellsong Trail",
+                            "name_jp":  "鐘の音街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、旅人が遠征で最後の地図まで到達した場合。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-017",
+                            "name_en":  "Cloudrim Peak",
+                            "name_jp":  "雲貫岳",
+                            "effect":  "手札から異なる色の「カード」を5枚捨て札にし、8勝利点を得る。",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-018",
+                            "large_critter_en":  "Corliander",
+                            "large_critter_jp":  "コリンアンダー",
+                            "effect":  "イベントを達成するために必要となるカード枚数が半分になる（端数切り上げ）。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-019",
+                            "large_critter_en":  "Firebeak",
+                            "large_critter_jp":  "ファイアービーク",
+                            "effect":  "ファイアービークを捨て山に配置することで、捨て山からカードを3枚引く。捨て山に配置されている間、他プレイヤーが「カード」を捨て札にするたび、その「カード」を確認し、その中から任意のカードを手札に加えることができる。\n※1人用ゲームでは使えない。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-020",
+                            "name_en":  "Grey Cloak\u0027s Hideout",
+                            "name_jp":  "グレイクロークの隠れ家",
+                            "effect":  "すでに配置されている自分の労働者コマ1個をこのカードに移すことで、そのコマが移動前に配置されていたマスの効果をもう1度適用する。",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-021",
+                            "large_critter_en":  "Honeypaw",
+                            "large_critter_jp":  "ハニーポゥ",
+                            "effect":  "ハニーポゥをマスに配置しても果実を獲得できなかった場合、そのマスで他に獲得した資材1個につき果実を1個得る（最大3個）。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-022",
+                            "large_critter_en":  "King Rhun",
+                            "large_critter_jp":  "ルーン王",
+                            "effect":  "あなたの街の紫にルーン王を配置することで、そのカードの勝利点と同じ数の資材を得る。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-023",
+                            "name_en":  "Moleia Mines",
+                            "name_jp":  "モレイア鉱山",
+                            "effect":  "自分の手札上限となる数までカードの山から1枚ずつ公開してもよい。公開をやめた時点で、公開したすべての「カード」を手札に加え、公開した枚数だけ1勝利点を得る。\nただし、公開した「カード」が広場の「カード」と同じだったなら、そこで公開を終了する。公開した「カード」はすべて捨て札にし、勝利点も得られない。\n※各プレイヤーは1個までしか配置できない",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             },
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "open":  1,
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-024",
+                            "name_en":  "Ruins of Spire",
+                            "name_jp":  "尖塔の廃墟",
+                            "effect":  "小枝樹液小石を任意の組み合わせで合計3個まで得る。",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-025",
+                            "name_en":  "Stormvale",
+                            "name_jp":  "嵐の谷",
+                            "effect":  "「カード」を3枚引き、表向きでこのカードの側に配置する。配置したカードはすべてのプレイヤーが広場の「カード」と同様にプレイでる。他のプレイヤーがこのカードをプレイするたびあなたは1勝利点を得る。\nこの側のカードがプレイされたら、すぐに「カード」を補充する。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-026",
+                            "name_en":  "Tezel\u0027s Laboratory",
+                            "name_jp":  "テゼルの研究室",
+                            "effect":  "あなたは手札から任意の枚数の「カード」を捨ててもよい。その後、捨てた枚数だけコストの資材を減らした上で、カード1枚をただちにプレイする。",
+                            "season":  "峰（夏）",
+                            "features":  [
+                                             {
+                                                 "type":  "location_exclusive"
+                                             }
+                                         ],
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-027",
+                            "large_critter_en":  "Whisper",
+                            "large_critter_jp":  "ウィスパー",
+                            "effect":  "イベントカード以外の、すべての占有地に配置されている労働者コマを無視して配置できる。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-028",
+                            "large_critter_en":  "Windlore",
+                            "large_critter_jp":  "ウィンドロア",
+                            "effect":  "ウィンドロアをカードの山の一番上に置き、その後「カード」を3枚引く。ウィンドロアが山に配置されている間、他プレイヤーがカードの山から「カード」を引いた場合、あなたも「カード」を2枚引く。\nこの効果が適用されている間、あなたは手札上限を超えて「カード」を引けるが、上限を超えた分はただちに「カード」を選んで捨て札とする。\n※1人用ゲームでは使えない。",
+                            "season":  "峰（夏）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-029",
+                            "name_en":  "Bellsong City",
+                            "name_jp":  "鐘の音街",
+                            "victory_points":  3,
+                            "victory_points_note":  "ゲーム終了時、あなたの街にある最も少ない色の「カード」1枚につき1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-030",
+                            "name_en":  "Bounty Hunter",
+                            "name_jp":  "賞金稼ぎ",
+                            "effect":  "任意の動物カード名を1つ宣言し、カードの山を確認する。宣言した動物カードが山にあるなら、手札上限を超えたとしても手札に加えてよい。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-031",
+                            "name_en":  "Cave of Dancing Lights",
+                            "name_jp":  "光躍る洞窟",
+                            "effect":  "カードの山から「カード」を4枚公開し、その色に対応する資材を得る。\n緑：1果実\n茶：1小枝\n赤：1樹液\n青：1小石\n紫：1資材\nその後、公開された「カード」から任意の枚数を手札に加え、残りを捨て札にする。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-032",
+                            "name_en":  "Cloudsong",
+                            "name_jp":  "雲の歌",
+                            "effect":  "任意の建物カード名を1つ宣言し、カードの山を確認する。宣言した建物カードが山にあるなら、手札上限を超えたとしても手札に加えてよい。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-033",
+                            "name_en":  "Everblossom City",
+                            "name_jp":  "永久に花咲く街",
+                            "victory_points":  6,
+                            "victory_points_note":  "ゲーム終了時、あなたの街の紫1枚につき-1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-034",
+                            "name_en":  "Gatherwind Trail",
+                            "name_jp":  "風集う街道",
+                            "victory_points":  4,
+                            "victory_points_note":  "ゲーム終了時、イベントを2つ以上達成している場合。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-035",
+                            "name_en":  "Greensprout City",
+                            "name_jp":  "緑芽吹く街",
+                            "victory_points":  6,
+                            "victory_points_note":  "ゲーム終了時、あなたの街の緑2枚につき-1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-036",
+                            "name_en":  "Hopewatch Trail",
+                            "name_jp":  "希望を見守る街道",
+                            "victory_points_note":  "ゲーム終了時、旅マスで獲得した1勝利点につき1勝利点。（最大7点）",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-037",
+                            "name_en":  "Mistrise City",
+                            "name_jp":  "霧煙る街",
+                            "victory_points":  6,
+                            "victory_points_note":  "ゲーム終了時、あなたの街の茶1枚につき-1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-038",
+                            "name_en":  "Serpent\u0027s Pass",
+                            "name_jp":  "大蛇の山道",
+                            "effect":  "遠征計画の最初の地図として配置する。\n《遠征（資材6個）》",
+                            "victory_points":  7,
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-039",
+                            "name_en":  "Star Weavers",
+                            "name_jp":  "星の結び手",
+                            "effect":  "手札から任意の枚数の「カード」を捨て札にしてもよい。その後、手札上限まで補充する。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-040",
+                            "name_en":  "Starfall City",
+                            "name_jp":  "星降る街",
+                            "victory_points":  6,
+                            "victory_points_note":  "ゲーム終了時、あなたの街の青1枚につき-1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-041",
+                            "name_en":  "Sunblaze City",
+                            "name_jp":  "日照り街",
+                            "victory_points":  6,
+                            "victory_points_note":  "ゲーム終了時、あなたの街の赤1枚につき-1勝利点。",
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        },
+                        {
+                            "id":  "SPIRE-DIS-042",
+                            "name_en":  "The Distant Shore",
+                            "name_jp":  "海を越えた岸",
+                            "effect":  "遠征計画の最後の地図として配置する。\n《遠征（カード6枚）》",
+                            "victory_points":  7,
+                            "season":  "尾根（秋）",
+                            "set":  "剣々峰"
+                        }
+                    ]
+}

@@ -17,8 +17,9 @@
     main{max-width:1100px;margin:24px auto;padding:0 16px}
     .box,.card{background:#fffdf8;border:1px solid #ddd8ca;border-radius:16px;box-shadow:0 4px 15px #0001}
     .box{padding:18px}
-    .category-tabs{display:inline-flex;gap:4px;margin-bottom:12px;padding:4px;border:1px solid #d8d2c4;border-radius:12px;background:#ebe7dc}
-    .category-tab{min-width:96px;padding:9px 16px;border:0;border-radius:9px;background:transparent;color:#65665f;font:inherit;font-weight:700;cursor:pointer}
+    .category-tabs{display:flex;width:max-content;max-width:100%;gap:4px;margin:0 auto 12px;padding:4px;border:1px solid #d8d2c4;border-radius:12px;background:#ebe7dc;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .category-tabs::-webkit-scrollbar{display:none}
+    .category-tab{flex:0 0 auto;min-width:96px;padding:9px 16px;border:0;border-radius:9px;background:transparent;color:#65665f;font:inherit;font-weight:700;white-space:nowrap;cursor:pointer}
     .category-tab[aria-selected="true"]{background:#fffdf8;color:#314d35;box-shadow:0 1px 5px #0002}
     .category-tab:focus-visible{outline:2px solid #66835b;outline-offset:2px}
     .search,select{padding:12px;border:1px solid #d8d2c4;border-radius:10px;background:white;font-size:15px}
@@ -34,7 +35,10 @@
     .set-heading{display:flex;align-items:center;gap:9px;margin:0 2px 12px;padding:0 2px 8px;border-bottom:2px solid #d8d2c4;color:#4e5149;font-size:18px;line-height:1.3}
     .set-heading-icon{display:block;width:auto;height:1.7em;max-width:5.5em;object-fit:contain;flex:0 0 auto}
     .section-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .card{padding:17px;border:2px solid var(--theme-color,#66835b);border-top-width:9px;background:linear-gradient(180deg,var(--theme-soft,#edf3e9) 0,#fffdf8 105px);scroll-margin-top:16px;transition:transform .15s,box-shadow .15s}
+    .card{position:relative;padding:17px;border:2px solid var(--theme-color,#66835b);border-top-width:9px;background:linear-gradient(180deg,var(--theme-soft,#edf3e9) 0,#fffdf8 105px);scroll-margin-top:16px;transition:transform .15s,box-shadow .15s}
+    .card.has-set-icon-row{padding-bottom:43px}
+    .set-icon-corner{position:absolute;right:12px;bottom:9px;display:flex;width:88px;height:26px;align-items:center;justify-content:flex-end;pointer-events:none}
+    .set-icon-corner .card-set-icon{margin:0}
     .card:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0002}
     .card:target{outline:3px solid var(--theme-color,#66835b);outline-offset:3px}
     .theme-green{--theme-color:var(--green);--theme-soft:#e7efe3}
@@ -53,38 +57,61 @@
     .jp{font-size:21px;margin:4px 0 0}
     .points{flex:0 0 auto;min-width:38px;padding:7px 8px;border:2px solid #8b651d;border-radius:50%;background:linear-gradient(145deg,#f0d47a,#c89a34);box-shadow:inset 0 1px 1px #fff8c8,0 2px 4px #5c431f33;color:#302307;text-align:center;font-weight:800}
     .points.has-icon{min-width:0;padding:0;border:0;background:none;box-shadow:none}
-    .points-icon{display:block;width:56px;height:56px;object-fit:contain;transform-origin:center}
-    .points-icon[src*="vp_minus2.png"],.points-icon[src*="vp_0.png"]{transform:scale(.9)}
-    .points-icon[src*="vp_4.png"],.points-icon[src*="vp_6.png"]{transform:scale(.989)}
-    .points-icon[src*="vp_5.png"]{transform:scale(.993)}
+    .points-icon{display:block;width:56px;height:56px;object-fit:contain;transform:scale(.74);transform-origin:center}
     .power-card{--theme-color:#4f7773;--theme-soft:#e4efed}
     .power-title-row{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:100%;margin-top:7px;min-width:0}
     .power-titles{flex:0 1 auto;min-width:0;color:#77756d;font-size:13px;line-height:1.45}
     .power-title-jp{font-weight:700;color:#5e6059}
     .power-set-icon{display:block;width:auto;height:24px;max-width:88px;object-fit:contain;flex:0 0 auto}
     .event-card{--theme-color:#7a6845;--theme-soft:#f1ebdd}
+    .event-set-icon{display:block;width:auto;height:20px;max-width:72px;object-fit:contain;transform-origin:center;flex:0 0 auto}
+    .event-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.04)}
+    .event-set-icon[src*="set_bellfaire.png"]{transform:scale(1.12)}
+    .event-set-icon[src*="set_newleaf.png"]{transform:scale(1.19)}
     .event-name-jp{font-size:21px;font-weight:700;line-height:1.35}
     .event-name-en{margin-top:3px;color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
-    .event-condition{display:flex;align-items:center;gap:8px;margin-top:9px;padding:8px 10px;border-radius:9px;background:#fffaf0;color:#555;font-size:13px;line-height:1.45;min-width:0}
-    .event-condition-text{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+    .event-condition{display:flex;align-items:center;gap:8px;margin-top:9px;padding:8px 10px 8px 0;border-radius:9px;background:#fffaf0;color:#555;font-size:13px;line-height:1.45;min-width:0}
+    .event-condition-text{flex:1 1 auto;min-width:0;text-align:left;overflow-wrap:anywhere}
     .event-condition-jp{font-weight:600}
-    .event-condition-jp.has-color-icons{margin-left:-.5em}
-    .event-condition-en{margin-top:2px;color:#77756d;font-size:12px}
+    .event-condition-jp .effect-color-icon:first-child{margin-left:0}
+    .event-condition-en{margin:2px 0 0;color:#77756d;font-size:12px}
     .event-condition-features{display:flex;align-items:center;justify-content:center;flex:0 0 auto;align-self:center}
     .event-condition-features .feature-placement-icon{transform:scale(2);margin-inline:13px}
-    .event-info-row{margin-top:9px}
     .event-content{margin-top:10px;padding-top:10px;border-top:1px solid #e8e2d5}
     .event-effect{margin-top:0}
     .event-inline-scoring{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:6px;text-align:center}
     .event-inline-scoring-line{max-width:100%;line-height:2.1;overflow-wrap:anywhere}
-    .event-inline-scoring .effect-vp-icon{transform:scale(1.7);margin-inline:.42em}
+    .event-inline-scoring .effect-vp-icon{transform:scale(1.26);margin-inline:.42em}
     .event-vp-row{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px;min-width:0;text-align:center}
-    .event-vp-icon{display:block;width:50px;height:50px;object-fit:contain;flex:0 0 auto}
-    .event-vp-icon[src*="vp_9.png"]{transform:scale(.86)}
+    .event-vp-icon{display:block;width:50px;height:50px;object-fit:contain;transform:scale(.74);transform-origin:center;flex:0 0 auto}
     .event-vp-fallback{position:relative;display:grid;width:50px;height:50px;place-items:center;flex:0 0 auto;color:#34260c;font-size:16px;font-weight:800}
-    .event-vp-fallback img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+    .event-vp-fallback img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(.74);transform-origin:center}
     .event-vp-fallback span{position:relative;z-index:1}
     .event-vp-note{width:100%;min-width:0;color:#5d5c56;font-size:13px;line-height:1.45;overflow-wrap:anywhere}
+    .discovery-card{--theme-color:#596f62;--theme-soft:#e7eee8}
+    .discovery-name-row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+    .discovery-name-row>span{min-width:0;overflow-wrap:anywhere}
+    .discovery-name-jp{margin-top:3px;font-size:21px;font-weight:700;line-height:1.35}
+    .discovery-name-en{color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
+    .discovery-large-en{font-size:17px;font-weight:700;line-height:1.35}
+    .discovery-large-jp{font-size:21px;font-weight:700;line-height:1.35}
+    .discovery-large-label{margin-top:4px;color:#696b64;font-size:12px;line-height:1.35}
+    .season-icon{display:block;width:auto;height:30px;max-width:58px;object-fit:contain;transform-origin:center;flex:0 0 auto}
+    .season-icon[src*="spirecrest_foothills.png"]{transform:scale(.96)}
+    .season-icon[src*="spirecrest_peaks.png"]{transform:scale(1.02)}
+    .season-icon[src*="spirecrest_ridge.png"]{transform:scale(1)}
+    .discovery-info-row{display:flex;align-items:center;min-height:24px;margin-top:6px}
+    .discovery-content{margin-top:10px;padding-top:10px;border-top:1px solid #e8e2d5}
+    .discovery-content>.effect:first-child{margin-top:0}
+    .discovery-vp-row{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px;text-align:center}
+    .discovery-vp-icons{display:flex;align-items:center;justify-content:center;gap:3px}
+    .discovery-vp-note{width:100%;color:#5d5c56;font-size:13px;line-height:1.45;overflow-wrap:anywhere}
+    .discovery-set-icon{display:block;width:auto;height:22px;max-width:80px;object-fit:contain}
+    .expedition-icon{display:inline-block;width:auto;height:2.2em;max-width:min(100%,180px);object-fit:contain;vertical-align:-.65em;margin:.1em .12em;transform-origin:center}
+    .discovery-expedition-score-icon{display:block;width:50px;height:50px;object-fit:contain;transform:scale(.74);transform-origin:center;flex:0 0 auto}
+    .discovery-peak-inline-icon{width:1.55em;height:1.55em;vertical-align:-.36em;object-fit:contain;margin-inline:.12em}
+    .discovery-effect-line{min-height:1.65em}
+    .discovery-effect-score-block{margin:.15em 0;text-align:center}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
     .card-set-icon{display:inline-block;width:auto;height:22px;max-width:80px;object-fit:contain;vertical-align:middle;margin:2px 1px 2px 2px;transform-origin:center}
     .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.08)}
@@ -102,7 +129,10 @@
     .feature-location-exclusive-locked-icon{transform:scale(2.2);margin-inline:15px}
     .feature-label{font-size:10px;font-weight:400;line-height:1.2;color:#666}
     .open-feature{display:inline-flex;align-items:center;flex:0 0 auto}
-    .open-feature-icon{transform:scale(1.5);transform-origin:center;margin-inline:6px}
+    .open-feature-icon{transform-origin:center;margin-inline:6px}
+    .open-feature-icon[src*="feature_open_1.png"]{transform:scale(2.25)}
+    .open-feature-icon[src*="feature_open_2.png"]{transform:scale(2.45)}
+    .open-feature-icon[src*="feature_open_3.png"]{transform:scale(1.92)}
     .town-slot-feature{display:flex;align-items:center;flex:0 0 auto;margin-left:auto}
     .town-slot-icon{display:block;width:auto;height:24px;max-width:34px;object-fit:contain}
     .details{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px;padding-top:11px;border-top:1px solid #e8e2d5;font-size:13px}
@@ -116,13 +146,17 @@
     .cost-note{color:#666;font-size:1em;font-weight:400;line-height:1.35}
     .inline-icon{display:inline-block;object-fit:contain;margin:0 .06em}
     .effect-resource-icon,.effect-card-icon,.effect-vp-icon,.effect-pearl-icon,.effect-color-icon{width:1.35em;height:1.35em;vertical-align:-.28em;transform-origin:center}
-    .effect-vp-icon{transform:scale(1.25);margin-inline:.2em}
+    .effect-vp-icon{transform:scale(.93);margin-inline:.2em}
     .effect-pearl-icon{transform:scale(1.6);margin-inline:.42em}
     .effect-color-icon{transform:scale(1.3);margin-inline:.24em}
     .effect-bracket-icon{width:1.55em;height:1.3em;vertical-align:-.3em;object-fit:contain;transform-origin:center}
     .effect-bracket-location-icon,.effect-bracket-ambassador-icon{transform:scale(1.15);margin-inline:.14em}
     .effect-bracket-locked-icon{transform:scale(1.55);margin-inline:.42em}
     .effect-bracket-tuck-icon{transform:scale(1.05);margin-inline:.1em}
+    .effect-bracket-open-icon{margin-inline:.1em}
+    .effect-bracket-open-icon[src*="feature_open_1.png"]{transform:scale(1.58)}
+    .effect-bracket-open-icon[src*="feature_open_2.png"]{transform:scale(1.7)}
+    .effect-bracket-open-icon[src*="feature_open_3.png"]{transform:scale(1.34)}
     .effect-bracket-set-icon{transform:scale(1.25);margin-inline:.22em}
     .related-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px;margin-top:9px;font-size:13px}
     .related-row>.detail-label{flex:0 0 auto}
@@ -144,20 +178,21 @@
     .scroll-button.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
     .scroll-button:focus-visible{outline:2px solid #66835b;outline-offset:3px}
     @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.feature-icon,.town-slot-icon{height:22px}.category-tabs{display:flex}.category-tab{flex:1;min-width:0}.scroll-controls{display:flex}}
+    @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.event-set-icon{height:20px;max-width:72px}.discovery-set-icon{height:20px;max-width:74px}.season-icon{height:28px;max-width:54px}.feature-icon,.town-slot-icon{height:22px}.scroll-controls{display:flex}}
   </style>
 </head>
 <body>
   <header>
     <h1 class="site-title">🌳 Everdell Card Database</h1>
     <p class="site-subtitle">エバーデール 日本語カード一覧・検索</p>
-    <p class="site-description"><span>Search by English card name, Japanese name, and card effect.</span><span>英語カード名・日本語名・効果から検索できます</span></p>
+    <p class="site-description"><span>英語カード名・日本語名・効果から検索できます</span></p>
   </header>
   <main>
     <div class="category-tabs" role="tablist" aria-label="表示カテゴリ">
       <button id="category-cards" class="category-tab" type="button" role="tab" aria-selected="true" data-category="cards">カード</button>
       <button id="category-powers" class="category-tab" type="button" role="tab" aria-selected="false" data-category="powers">特殊能力</button>
       <button id="category-events" class="category-tab" type="button" role="tab" aria-selected="false" data-category="events">特殊イベント</button>
+      <button id="category-discoveries" class="category-tab" type="button" role="tab" aria-selected="false" data-category="discoveries">発見</button>
     </div>
     <div class="box">
       <input id="q" class="search" type="search" placeholder="カード名・効果を検索…" aria-label="カード名または効果を検索">
@@ -178,8 +213,9 @@
     let cards = [];
     let powers = [];
     let events = [];
+    let discoveries = [];
     let activeCategory = 'cards';
-    const loadErrors = { cards: null, powers: null, events: null };
+    const loadErrors = { cards: null, powers: null, events: null, discoveries: null };
 
     const elements = {
       query: document.getElementById('q'),
@@ -236,7 +272,8 @@
       'CORRIN': 'set_corrin.png',
       'RUGWORT': 'set_rugwort.png',
       '大鐘の祝祭': 'set_bellfaire.png',
-      'Mistwood': 'set_mistwood.png'
+      'Mistwood': 'set_mistwood.png',
+      '剣々峰': 'set_spirecrest.png'
     };
 
     const featureIcons = {
@@ -258,9 +295,9 @@
       'カエル大使': { image: 'feature_ambassador.png', label: 'カエル大使', className: 'effect-bracket-ambassador-icon' },
       '大使': { image: 'feature_ambassador.png', label: '大使', className: 'effect-bracket-ambassador-icon' },
       '区域追加': { image: 'feature_town_slot.png', label: '区域追加', className: 'effect-bracket-tuck-icon' },
-      'OPEN 1': { image: 'feature_open_1.png', label: 'OPEN 1', className: 'effect-bracket-tuck-icon' },
-      'OPEN 2': { image: 'feature_open_2.png', label: 'OPEN 2', className: 'effect-bracket-tuck-icon' },
-      'OPEN 3': { image: 'feature_open_3.png', label: 'OPEN 3', className: 'effect-bracket-tuck-icon' },
+      'OPEN 1': { image: 'feature_open_1.png', label: 'OPEN 1', className: 'effect-bracket-open-icon' },
+      'OPEN 2': { image: 'feature_open_2.png', label: 'OPEN 2', className: 'effect-bracket-open-icon' },
+      'OPEN 3': { image: 'feature_open_3.png', label: 'OPEN 3', className: 'effect-bracket-open-icon' },
       '真珠の入り江': { image: 'set_pearlbrook.png', label: '真珠の入り江', className: 'effect-bracket-set-icon' },
       '新緑の汽笛': { image: 'set_newleaf.png', label: '新緑の汽笛', className: 'effect-bracket-set-icon' },
       'LEGENDS': { image: 'set_legends.png', label: 'LEGENDS', className: 'effect-bracket-set-icon' },
@@ -271,6 +308,21 @@
       'Mistwood': { image: 'set_mistwood.png', label: 'Mistwood', className: 'effect-bracket-set-icon' }
     };
 
+    const discoveryExpeditionIcons = {
+      '遠征（カード6枚）': { image: 'spirecrest_expedition_6_card.png', label: '遠征（カード6枚）' },
+      '遠征（資材6個）': { image: 'spirecrest_expedition_6_resource.png', label: '遠征（資材6個）' }
+    };
+
+    const discoveryBracketIcons = {
+      '峰': { image: 'spirecrest_peaks.png', label: '峰', className: 'discovery-peak-inline-icon' }
+    };
+
+    const discoverySeasons = [
+      { name: '丘陵（春）', image: 'spirecrest_foothills.png' },
+      { name: '峰（夏）', image: 'spirecrest_peaks.png' },
+      { name: '尾根（秋）', image: 'spirecrest_ridge.png' }
+    ];
+
     const openFeatureImages = new Map([
       [1, 'feature_open_1.png'],
       [2, 'feature_open_2.png'],
@@ -279,7 +331,7 @@
 
     const favoritesStorageKey = 'everdell-favorite-card-ids';
     const favoriteIds = loadFavoriteIds();
-    const imageVersion = '20260814-scroll1';
+    const imageVersion = '20260815-vp-open1';
 
     const victoryPointImages = new Map([
       [-2, 'vp_minus2.png'],
@@ -290,6 +342,8 @@
       [4, 'vp_4.png'],
       [5, 'vp_5.png'],
       [6, 'vp_6.png'],
+      [7, 'vp_7.png'],
+      [8, 'vp_8.png'],
       [9, 'vp_9.png']
     ]);
 
@@ -397,7 +451,7 @@
     }
 
     function configureFilters() {
-      resetFilter(elements.set, 'セット：すべて');
+      resetFilter(elements.set, activeCategory === 'discoveries' ? '季節：すべて' : 'セット：すべて');
       resetFilter(elements.theme, '色：すべて');
       resetFilter(elements.type, '種類：すべて');
 
@@ -411,8 +465,10 @@
         ]);
       } else if (activeCategory === 'powers') {
         populateFilter(elements.set, [...new Set(powers.map(power => power.set).filter(Boolean))]);
-      } else {
+      } else if (activeCategory === 'events') {
         populateFilter(elements.set, [...new Set(events.map(event => event.set).filter(Boolean))]);
+      } else {
+        populateFilter(elements.set, discoverySeasons.map(season => season.name));
       }
 
       const isCardView = activeCategory === 'cards';
@@ -423,9 +479,12 @@
         ? { placeholder: '特殊能力名・肩書・効果を検索…', label: '特殊能力名、肩書または効果を検索' }
         : activeCategory === 'events'
           ? { placeholder: '特殊イベント名・条件・効果を検索…', label: '特殊イベント名、条件または効果を検索' }
+          : activeCategory === 'discoveries'
+            ? { placeholder: '発見カード名・効果を検索…', label: '発見カード名または効果を検索' }
           : { placeholder: 'カード名・効果を検索…', label: 'カード名または効果を検索' };
       elements.query.placeholder = searchUi.placeholder;
       elements.query.setAttribute('aria-label', searchUi.label);
+      elements.set.setAttribute('aria-label', activeCategory === 'discoveries' ? '季節で絞り込む' : 'セットで絞り込む');
     }
 
     function loadFavoriteIds() {
@@ -464,9 +523,9 @@
     function renderEffectText(text, replaceAllColors = false) {
       let html = escapeHtml(text);
 
-      html = html.replace(/[1-6]勝利点/g, match => {
-        const value = match.charAt(0);
-        return victoryPointIcon(value, 'inline-icon effect-vp-icon');
+      html = html.replace(/(?:-2|[0-9])勝利点/g, match => {
+        const value = Number.parseInt(match, 10);
+        return victoryPointIcon(value, 'inline-icon effect-vp-icon') || match;
       });
 
       for (const [text, icon] of Object.entries(effectIcons)) {
@@ -580,34 +639,35 @@
       const townSlot = renderTownSlot(card.town_slot);
       const isFavorite = favoriteIds.has(card.id);
 
-      return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}">
+      return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}${setIcon ? ' has-set-icon' : ''}">
         <div class="card-head">
           <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp">${escapeHtml(card.name_jp)}</div></div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>${renderVictoryPoints(card.victory_points)}</div>
         </div>
-        <div class="card-info-row"><div class="card-info-left">${setIcon}<span class="badge">${escapeHtml(card.type)}</span>${features}${openFeature}</div>${townSlot}</div>
+        <div class="card-info-row"><div class="card-info-left"><span class="badge">${escapeHtml(card.type)}</span>${features}${openFeature}</div>${townSlot}</div>
         <div class="effect">${renderEffect(card.effect)}</div>
         <div class="details"><span class="cost-info"><span class="detail-label">コスト：</span><span class="cost-list">${renderCost(card.cost)}</span>${costNote}</span></div>
         ${renderRelatedInfo(card)}
+        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
     }
 
     function renderPower(power) {
       const isFavorite = favoriteIds.has(power.id);
       const setIcon = setIconHtml(power.set, 'power-set-icon');
-      return `<article class="card power-card">
+      return `<article class="card power-card${setIcon ? ' has-set-icon' : ''}">
         <div class="card-head">
           <div class="card-title">
             <div class="en">${escapeHtml(power.name_en)}</div>
             <div class="jp">${escapeHtml(power.name_jp)}</div>
             <div class="power-title-row">
               <div class="power-titles"><span class="power-title-jp">${escapeHtml(power.title_jp)}</span> / <span>${escapeHtml(power.title_en)}</span></div>
-              ${setIcon}
             </div>
           </div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(power.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(power.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
         <div class="effect">${renderEffect(power.effect)}</div>
+        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
     }
 
@@ -637,13 +697,47 @@
       return `<div class="effect event-effect">${intro}<div class="event-inline-scoring">${scoring}</div></div>`;
     }
 
+    function renderEventConditionText(value) {
+      const source = String(value ?? '');
+      const cardNames = [...new Set(cards.map(card => card.name_jp).filter(hasDisplayValue))]
+        .sort((a, b) => b.length - a.length);
+      let html = '';
+      let position = 0;
+
+      while (position < source.length) {
+        let nextIndex = -1;
+        let nextName = '';
+        for (const name of cardNames) {
+          const index = source.indexOf(name, position);
+          if (index !== -1 && (nextIndex === -1 || index < nextIndex || (index === nextIndex && name.length > nextName.length))) {
+            nextIndex = index;
+            nextName = name;
+          }
+        }
+
+        if (nextIndex === -1) {
+          html += renderEffect(source.slice(position), true);
+          break;
+        }
+
+        html += renderEffect(source.slice(position, nextIndex), true);
+        html += escapeHtml(nextName);
+        position = nextIndex + nextName.length;
+      }
+
+      return html;
+    }
+
     function renderEvent(event) {
       const isFavorite = favoriteIds.has(event.id);
-      const setIcon = event.set === '基本' ? '' : setIconHtml(event.set, 'card-set-icon');
+      const setIcon = event.set === '基本' ? '' : setIconHtml(event.set, 'event-set-icon');
       const features = renderFeatures(event.features);
-      const conditionJpHasColors = /[緑茶赤青紫]/.test(String(event.condition_jp ?? ''));
-      const conditionJp = hasDisplayValue(event.condition_jp) ? `<div class="event-condition-jp${conditionJpHasColors ? ' has-color-icons' : ''}">${renderEffect(event.condition_jp, true)}</div>` : '';
-      const conditionEn = hasDisplayValue(event.condition_en) ? `<div class="event-condition-en">${renderEffect(event.condition_en, true)}</div>` : '';
+      const conditionJpHtml = hasDisplayValue(event.condition_jp) ? renderEventConditionText(event.condition_jp) : '';
+      const conditionJp = conditionJpHtml ? `<div class="event-condition-jp">${conditionJpHtml}</div>` : '';
+      const conditionEnHtml = hasDisplayValue(event.condition_en) ? renderEffect(event.condition_en, true) : '';
+      const conditionEn = conditionEnHtml && !/<img\b/i.test(conditionEnHtml)
+        ? `<div class="event-condition-en">${conditionEnHtml}</div>`
+        : '';
       const condition = conditionJp || conditionEn || features
         ? `<div class="event-condition"><div class="event-condition-text">${conditionJp}${conditionEn}</div>${features ? `<div class="event-condition-features">${features}</div>` : ''}</div>`
         : '';
@@ -655,15 +749,124 @@
       const victoryArea = victoryPoints || victoryNote ? `<div class="event-vp-row">${victoryPoints}${victoryNote}</div>` : '';
       const content = effect || victoryArea ? `<div class="event-content">${effect}${victoryArea}</div>` : '';
 
-      return `<article class="card event-card">
+      return `<article class="card event-card${setIcon ? ' has-set-icon' : ''}">
         <div class="card-head">
-          <div class="card-title"><div class="event-name-jp">${escapeHtml(event.name_jp)}</div><div class="event-name-en">${escapeHtml(event.name_en)}</div></div>
+          <div class="card-title"><div class="en">${escapeHtml(event.name_en)}</div><div class="jp">${escapeHtml(event.name_jp)}</div></div>
           <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(event.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(event.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
         </div>
         ${condition}
-        ${setIcon ? `<div class="card-info-row event-info-row"><div class="card-info-left">${setIcon}</div></div>` : ''}
         ${content}
+        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
       </article>`;
+    }
+
+    function renderDiscoveryEffectLine(value) {
+      return String(value ?? '')
+        .split(/(《[^》]*》)/g)
+        .map(part => {
+          if (!part.startsWith('《') || !part.endsWith('》')) return renderEffect(part, true);
+          const name = part.slice(1, -1);
+          if (discoveryExpeditionIcons[name]) return '';
+          const discoveryIcon = discoveryBracketIcons[name];
+          return discoveryIcon
+            ? iconHtml(discoveryIcon.image, discoveryIcon.label, `inline-icon ${discoveryIcon.className}`)
+            : renderEffect(part, true);
+        })
+        .join('');
+    }
+
+    function renderDiscoveryEffect(value) {
+      const lines = String(value ?? '').split(/\r?\n/);
+      const colorResourceLine = /^[緑茶赤青紫]：/;
+      const parts = [];
+      let scoringLines = [];
+
+      const flushScoringLines = () => {
+        if (!scoringLines.length) return;
+        parts.push(`<div class="discovery-effect-score-block">${scoringLines.map(line => `<div class="discovery-effect-line">${renderDiscoveryEffectLine(line)}</div>`).join('')}</div>`);
+        scoringLines = [];
+      };
+
+      for (const line of lines) {
+        if (colorResourceLine.test(line)) {
+          scoringLines.push(line);
+          continue;
+        }
+        flushScoringLines();
+        const rendered = renderDiscoveryEffectLine(line);
+        if (rendered) parts.push(`<div class="discovery-effect-line">${rendered}</div>`);
+      }
+      flushScoringLines();
+      return parts.join('');
+    }
+
+    function discoveryExpeditionIcon(effect) {
+      const source = String(effect ?? '');
+      for (const [name, icon] of Object.entries(discoveryExpeditionIcons)) {
+        if (source.includes(`《${name}》`)) {
+          return iconHtml(icon.image, icon.label, 'discovery-expedition-score-icon');
+        }
+      }
+      return '';
+    }
+
+    function renderDiscovery(discovery) {
+      const isFavorite = favoriteIds.has(discovery.id);
+      const isLargeCritter = hasDisplayValue(discovery.large_critter_en) || hasDisplayValue(discovery.large_critter_jp);
+      const season = discoverySeasons.find(item => item.name === discovery.season);
+      const seasonIcon = season ? iconHtml(season.image, season.name, 'season-icon') : '';
+      const setIcon = setIconHtml(discovery.set, 'discovery-set-icon');
+      const features = renderFeatures(discovery.features);
+      const openFeature = Object.hasOwn(discovery, 'open') ? renderOpenFeature(discovery.open) : '';
+      const info = features || openFeature
+        ? `<div class="discovery-info-row"><div class="card-info-left">${features}${openFeature}</div></div>`
+        : '';
+      const title = isLargeCritter
+        ? `<div class="discovery-large-en">${escapeHtml(discovery.large_critter_en)}</div><div class="discovery-name-row discovery-large-jp"><span>${escapeHtml(discovery.large_critter_jp)}</span>${seasonIcon}</div><div class="discovery-large-label">大型動物</div>`
+        : `<div class="discovery-name-en">${escapeHtml(discovery.name_en)}</div><div class="discovery-name-row discovery-name-jp"><span>${escapeHtml(discovery.name_jp)}</span>${seasonIcon}</div>`;
+      const effect = hasDisplayValue(discovery.effect)
+        ? `<div class="effect">${renderDiscoveryEffect(discovery.effect)}</div>`
+        : '';
+      const victoryPoints = renderEventVictoryPoints(discovery.victory_points);
+      const expeditionIcon = discoveryExpeditionIcon(discovery.effect);
+      const victoryNote = hasDisplayValue(discovery.victory_points_note)
+        ? `<div class="discovery-vp-note">${renderDiscoveryEffect(discovery.victory_points_note)}</div>`
+        : '';
+      const victoryArea = victoryPoints || victoryNote || expeditionIcon
+        ? `<div class="discovery-vp-row">${victoryPoints || expeditionIcon ? `<div class="discovery-vp-icons">${expeditionIcon}${victoryPoints}</div>` : ''}${victoryNote}</div>`
+        : '';
+      const content = effect || victoryArea
+        ? `<div class="discovery-content">${effect}${victoryArea}</div>`
+        : '';
+      const favoriteName = discovery.name_jp || discovery.large_critter_jp || discovery.id;
+
+      return `<article class="card discovery-card${setIcon ? ' has-set-icon' : ''}">
+        <div class="card-head">
+          <div class="card-title">${title}</div>
+          <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(discovery.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(favoriteName)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button></div>
+        </div>
+        ${info}
+        ${content}
+        ${setIcon ? `<span class="set-icon-corner">${setIcon}</span>` : ''}
+      </article>`;
+    }
+
+    function renderDiscoveryGroups(items) {
+      const favorites = items.filter(item => favoriteIds.has(item.id));
+      const regularItems = items.filter(item => !favoriteIds.has(item.id));
+      const sections = [];
+
+      if (favorites.length) {
+        sections.push(`<section class="set-section favorite-section"><h2 class="set-heading">お気に入り</h2><div class="section-grid">${favorites.map(renderDiscovery).join('')}</div></section>`);
+      }
+
+      for (const season of discoverySeasons) {
+        const members = regularItems.filter(item => item.season === season.name);
+        if (!members.length) continue;
+        sections.push(`<section class="set-section" data-season="${escapeHtml(season.name)}"><h2 class="set-heading"><span>${escapeHtml(season.name)}</span></h2><div class="section-grid">${members.map(renderDiscovery).join('')}</div></section>`);
+      }
+
+      return sections.join('');
     }
 
     function renderPowers() {
@@ -704,6 +907,25 @@
         : '<div class="status">該当する特殊イベントがありません。</div>';
     }
 
+    function renderDiscoveries() {
+      if (loadErrors.discoveries) {
+        elements.count.textContent = '発見カードを読み込めませんでした。';
+        elements.grid.innerHTML = '<div class="status error">発見カードデータの読み込みに失敗しました。ページを再読み込みしてください。</div>';
+        return;
+      }
+
+      const query = elements.query.value.trim().toLocaleLowerCase('ja');
+      const selectedSeason = elements.set.value;
+      const filtered = discoveries.filter(discovery => {
+        const searchable = [discovery.name_en, discovery.name_jp, discovery.large_critter_en, discovery.large_critter_jp, discovery.effect, discovery.victory_points_note, discovery.season].join(' ').toLocaleLowerCase('ja');
+        return (!query || searchable.includes(query)) && (!selectedSeason || discovery.season === selectedSeason);
+      });
+      elements.count.textContent = `${filtered.length} / ${discoveries.length} 件`;
+      elements.grid.innerHTML = filtered.length
+        ? renderDiscoveryGroups(filtered)
+        : '<div class="status">該当する発見カードがありません。</div>';
+    }
+
     function render() {
       if (activeCategory === 'powers') {
         renderPowers();
@@ -711,6 +933,10 @@
       }
       if (activeCategory === 'events') {
         renderEvents();
+        return;
+      }
+      if (activeCategory === 'discoveries') {
+        renderDiscoveries();
         return;
       }
       if (loadErrors.cards) {
@@ -738,12 +964,44 @@
     }
 
     function switchCategory(category) {
-      if (!['cards', 'powers', 'events'].includes(category) || category === activeCategory) return;
+      if (!['cards', 'powers', 'events', 'discoveries'].includes(category) || category === activeCategory) return;
       activeCategory = category;
       elements.categoryTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.category === category)));
       elements.query.value = '';
       configureFilters();
       render();
+    }
+
+    function contentRects(element) {
+      const rects = [];
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+      });
+      while (walker.nextNode()) {
+        const range = document.createRange();
+        range.selectNodeContents(walker.currentNode);
+        rects.push(...range.getClientRects());
+      }
+      element.querySelectorAll('img').forEach(image => rects.push(image.getBoundingClientRect()));
+      return rects;
+    }
+
+    function adjustSetIconClearance() {
+      document.querySelectorAll('.card.has-set-icon-row').forEach(card => card.classList.remove('has-set-icon-row'));
+
+      document.querySelectorAll('.card .set-icon-corner').forEach(corner => {
+        const card = corner.closest('.card');
+        if (!card) return;
+        const iconRect = corner.getBoundingClientRect();
+        const candidates = [...card.querySelectorAll('.effect,.details,.related-row,.event-condition,.event-vp-note,.discovery-vp-note,.discovery-content')].reverse();
+        const nearby = candidates.some(candidate => contentRects(candidate).some(rect => (
+          rect.bottom > iconRect.top - 3
+          && rect.top < iconRect.bottom + 3
+          && rect.right > iconRect.left - 12
+        )));
+        if (!nearby) return;
+        card.classList.add('has-set-icon-row');
+      });
     }
 
     elements.grid.addEventListener('click', event => {
@@ -781,7 +1039,10 @@
     }
 
     window.addEventListener('scroll', updateScrollButtons, { passive: true });
-    window.addEventListener('resize', updateScrollButtons);
+    window.addEventListener('resize', () => {
+      updateScrollButtons();
+      requestAnimationFrame(adjustSetIconClearance);
+    });
     elements.backToTop.addEventListener('click', () => {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -790,7 +1051,10 @@
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: document.documentElement.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
-    new MutationObserver(() => requestAnimationFrame(updateScrollButtons)).observe(elements.grid, { childList: true });
+    new MutationObserver(() => requestAnimationFrame(() => {
+      updateScrollButtons();
+      adjustSetIconClearance();
+    })).observe(elements.grid, { childList: true, subtree: true });
     updateScrollButtons();
 
     async function init() {
@@ -802,10 +1066,11 @@
         return data[rootKey];
       };
 
-      const [cardsResult, powersResult, eventsResult] = await Promise.allSettled([
+      const [cardsResult, powersResult, eventsResult, discoveriesResult] = await Promise.allSettled([
         loadJsonArray('./cards.json', 'cards'),
         loadJsonArray('./worker_powers.json', 'powers'),
-        loadJsonArray('./special_events.json', 'events')
+        loadJsonArray('./special_events.json', 'events'),
+        loadJsonArray('./discovery.json', 'discoveries')
       ]);
 
       if (cardsResult.status === 'fulfilled') cards = cardsResult.value;
@@ -824,6 +1089,12 @@
       else {
         loadErrors.events = eventsResult.reason;
         console.error(eventsResult.reason);
+      }
+
+      if (discoveriesResult.status === 'fulfilled') discoveries = discoveriesResult.value;
+      else {
+        loadErrors.discoveries = discoveriesResult.reason;
+        console.error(discoveriesResult.reason);
       }
 
       configureFilters();
