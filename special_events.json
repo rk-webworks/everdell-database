@@ -265,7 +265,7 @@
                        "name_jp":  "河レース",
                        "condition_en":  "Ferry Ferret、Twig Barge",
                        "condition_jp":  "フェレットの船頭、小枝の運搬船",
-                       "effect":  "このカードを獲得したとき、《フェレットの船頭》または《小枝の運搬船》のどちらか1枚を、あなたの街から裏向きでこのイベントの下に置く。\n《フェレットの船頭》を置いたとき、2勝利点を得る。\n《小枝の運搬船》を置いたとき、資材を2個得る。",
+                       "effect":  "このカードを獲得したとき、《フェレットの船頭》または《小枝の運搬船》のどちらか1枚を、あなたの街から裏向きでこのカードの下に置く。\n《フェレットの船頭》を置いたとき、2勝利点を得る。\n《小枝の運搬船》を置いたとき、資材を2個得る。",
                        "victory_points":  4,
                        "features":  [
                                         {
@@ -580,7 +580,7 @@
                        "name_en":  "Sunflower Parade",
                        "name_jp":  "ヒマワリパレード",
                        "condition_en":  "Have achieved at least 3 Events",
-                       "condition_jp":  "イベントを3つ以上達成している",
+                       "condition_jp":  "他のイベントを3つ以上達成している",
                        "victory_points":  5,
                        "features":  [
                                         {

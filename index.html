@@ -70,11 +70,11 @@
     .event-set-icon-box{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px;overflow:visible}
     .event-set-icon{--event-set-scale:1;--event-set-shift-x:0px;--event-set-shift-y:4px;display:block;width:20px;height:20px;max-width:none;object-fit:contain;transform:translate(var(--event-set-shift-x),var(--event-set-shift-y)) scale(var(--event-set-scale));transform-origin:center;flex:0 0 auto}
     .event-set-icon[src*="set_pearlbrook.png"]{--event-set-scale:.93;--event-set-shift-x:-.25px}
-    .event-set-icon[src*="set_bellfaire.png"]{--event-set-scale:1.19;--event-set-shift-x:-2.2px}
+    .event-set-icon[src*="set_bellfaire.png"]{--event-set-scale:1.12;--event-set-shift-x:-2.2px}
     .event-set-icon[src*="set_newleaf.png"]{--event-set-scale:.965;--event-set-shift-x:-.15px}
     .event-name-jp-row{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:8px;max-width:100%;min-width:0;vertical-align:top}
     .event-name-jp-row>.event-name-jp{flex:0 1 auto;min-width:0;overflow-wrap:anywhere}
-    .event-name-jp{font-size:21px;font-weight:700;line-height:1.35}
+    .event-name-jp{font-size:21px;font-weight:400;line-height:1.35}
     .event-name-en{margin-top:3px;color:#696b64;font-size:15px;font-weight:600;line-height:1.4}
     .event-condition{display:flex;align-items:center;gap:8px;margin-top:9px;padding:8px 10px 8px 0;border-radius:9px;background:#fffaf0;color:#555;font-size:13px;line-height:1.45;min-width:0}
     .event-condition-text{flex:1 1 auto;min-width:0;text-align:left;overflow-wrap:anywhere}
@@ -107,9 +107,9 @@
     .discovery-large-jp{font-size:21px;font-weight:700;line-height:1.35}
     .discovery-large-label{margin-top:4px;color:#696b64;font-size:12px;line-height:1.35}
     .season-icon{display:block;width:auto;height:30px;max-width:58px;object-fit:contain;transform-origin:center;flex:0 0 auto}
-    .season-icon[src*="spirecrest_foothills.png"]{transform:translateY(2px) scale(.96)}
-    .season-icon[src*="spirecrest_peaks.png"]{transform:translateY(2px) scale(1.02)}
-    .season-icon[src*="spirecrest_ridge.png"]{transform:translateY(2px) scale(1)}
+    .season-icon[src*="spirecrest_foothills.png"]{transform:translateY(2px) scale(.864)}
+    .season-icon[src*="spirecrest_peaks.png"]{transform:translateY(2px) scale(.918)}
+    .season-icon[src*="spirecrest_ridge.png"]{transform:translateY(2px) scale(.9)}
     .discovery-info-row{display:flex;align-items:center;justify-content:center;min-height:24px;margin-top:6px}
     .discovery-info-row .card-info-left{flex:0 1 auto;justify-content:center}
     .discovery-content{margin-top:10px}
@@ -1003,12 +1003,14 @@
       document.querySelectorAll('.card .set-icon-corner').forEach(corner => {
         const card = corner.closest('.card');
         if (!card) return;
-        const iconRect = corner.getBoundingClientRect();
+        const icon = corner.querySelector('.card-set-icon');
+        const iconRect = (icon || corner).getBoundingClientRect();
         const candidates = [...card.querySelectorAll('.effect,.details,.related-row,.event-condition,.event-vp-note,.discovery-vp-note,.discovery-content')].reverse();
         const nearby = candidates.some(candidate => contentRects(candidate).some(rect => (
-          rect.bottom > iconRect.top - 3
-          && rect.top < iconRect.bottom + 3
-          && rect.right > iconRect.left - 12
+          rect.bottom > iconRect.top - 2
+          && rect.top < iconRect.bottom + 2
+          && rect.right > iconRect.left - 2
+          && rect.left < iconRect.right + 2
         )));
         if (!nearby) return;
         card.classList.add('has-set-icon-row');
