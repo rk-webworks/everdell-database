@@ -24,8 +24,9 @@
     .camera-stage{position:relative;margin-top:14px;overflow:hidden;border-radius:14px;background:#171a17}
     .camera-stage[hidden]{display:none}
     video{display:block;width:100%;height:auto;min-height:180px;background:#171a17}
-    .title-guide{position:absolute;top:10%;left:8%;width:78%;height:11%;border:3px solid #f4d35e;border-radius:8px;box-shadow:0 0 0 999px #0004;pointer-events:none}
-    .guide-label{position:absolute;top:calc(21% + 7px);left:8%;padding:4px 8px;border-radius:7px;background:#000b;color:#fff;font-size:12px;pointer-events:none}
+    .card-guide{position:absolute;border:3px solid #f4d35e;border-radius:10px;box-shadow:0 0 0 999px #0004;pointer-events:none}
+    .title-zone{position:absolute;top:2%;left:3%;width:94%;height:15%;border:2px dashed #fff;border-radius:5px;background:#ffffff12}
+    .guide-label{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:max-content;max-width:94%;padding:4px 8px;border-radius:7px;background:#000b;color:#fff;font-size:11px;text-align:center;white-space:nowrap}
     .status{min-height:24px;margin:13px 2px 0;color:var(--muted);font-size:14px;line-height:1.5}
     .status.error{color:#a13333}
     .debug-block,.preview{margin-top:16px}
@@ -37,7 +38,7 @@
     .image-debug canvas{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
     .result-block{margin-top:16px}
     #ocr-result{min-height:62px;margin:0;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#1e3324;font:700 20px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}
-    #raw-result{min-height:46px;margin:0;padding:10px;border:1px solid var(--line);border-radius:10px;background:#f8f6ef;color:#444;font:13px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+    #raw-result,#variant-results{min-height:46px;margin:0;padding:10px;border:1px solid var(--line);border-radius:10px;background:#f8f6ef;color:#444;font:13px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
     .confidence{margin:8px 0 0;color:var(--muted);font-size:13px}
     .note{margin:14px 2px 0;color:var(--muted);font-size:12px;line-height:1.55}
     @media(max-width:360px){.controls{grid-template-columns:1fr}.controls button,#start-camera{grid-column:auto}h1{font-size:21px}}
@@ -46,7 +47,7 @@
 <body>
   <main>
     <h1>カード名OCRテスト</h1>
-    <p class="lead">英語カードを縦向きに映し、カード上部の英語名を黄色い枠に合わせて撮影してください。</p>
+    <p class="lead">カード全体を黄色い枠に合わせて撮影してください。枠内のカード領域を基準に、上部の英語名候補を複数範囲でOCRします。</p>
 
     <section class="panel" aria-label="カメラOCR">
       <div class="controls">
@@ -61,10 +62,19 @@
         </select>
       </label>
 
+      <label class="camera-picker">カードの向き
+        <select id="card-layout">
+          <option value="portrait">縦長カード</option>
+          <option value="landscape">横長カード</option>
+        </select>
+      </label>
+
       <div id="camera-stage" class="camera-stage" hidden>
         <video id="camera" autoplay muted playsinline></video>
-        <div class="title-guide" aria-hidden="true"></div>
-        <div class="guide-label" aria-hidden="true">英語カード名をここに合わせる</div>
+        <div id="card-guide" class="card-guide" aria-hidden="true">
+          <div class="title-zone"></div>
+          <div class="guide-label">カード全体を黄色枠に合わせる</div>
+        </div>
       </div>
 
       <p id="status" class="status" role="status" aria-live="polite">「カメラを起動」を押してください。</p>
@@ -82,11 +92,15 @@
             <canvas id="capture-preview"></canvas>
           </figure>
           <figure class="image-debug">
-            <figcaption>カード名として切り出した画像</figcaption>
+            <figcaption>カード領域として使用した画像</figcaption>
+            <canvas id="card-area-preview"></canvas>
+          </figure>
+          <figure class="image-debug">
+            <figcaption id="raw-crop-caption">最終採用されたカード名切り出し画像</figcaption>
             <canvas id="raw-crop-preview"></canvas>
           </figure>
           <figure class="image-debug">
-            <figcaption>Tesseractへ渡す前処理後画像</figcaption>
+            <figcaption id="processed-caption">最終的にTesseractへ渡した画像</figcaption>
             <canvas id="processed-preview"></canvas>
           </figure>
         </div>
@@ -99,11 +113,16 @@
       </div>
 
       <div class="result-block">
-        <h2>Tesseractの生OCR結果</h2>
+        <h2>最終採用パターンの生OCR結果</h2>
         <pre id="raw-result">未撮影</pre>
       </div>
 
-      <p class="note">初回OCR時は英語認識データを読み込むため時間がかかります。カメラ利用にはHTTPSまたは端末自身のlocalhost環境が必要です。</p>
+      <div class="result-block">
+        <h2>ROI・前処理パターン別の比較結果</h2>
+        <pre id="variant-results">未撮影</pre>
+      </div>
+
+      <p class="note">3つのタイトル候補範囲×3つの前処理を比較するため、初回OCRには時間がかかります。カメラ利用にはHTTPSまたは端末自身のlocalhost環境が必要です。</p>
     </section>
   </main>
 
@@ -111,7 +130,9 @@
   <script>
     const camera = document.getElementById('camera');
     const cameraStage = document.getElementById('camera-stage');
+    const cardGuide = document.getElementById('card-guide');
     const cameraSelect = document.getElementById('camera-select');
+    const cardLayoutSelect = document.getElementById('card-layout');
     const cameraInfo = document.getElementById('camera-info');
     const startButton = document.getElementById('start-camera');
     const captureButton = document.getElementById('capture');
@@ -119,16 +140,26 @@
     const statusText = document.getElementById('status');
     const resultText = document.getElementById('ocr-result');
     const rawResultText = document.getElementById('raw-result');
+    const variantResultsText = document.getElementById('variant-results');
     const confidenceText = document.getElementById('confidence');
     const preview = document.getElementById('preview');
     const captureCanvas = document.getElementById('capture-preview');
+    const cardAreaCanvas = document.getElementById('card-area-preview');
     const rawCropCanvas = document.getElementById('raw-crop-preview');
     const processedCanvas = document.getElementById('processed-preview');
+    const rawCropCaption = document.getElementById('raw-crop-caption');
+    const processedCaption = document.getElementById('processed-caption');
     const captureContext = captureCanvas.getContext('2d');
+    const cardAreaContext = cardAreaCanvas.getContext('2d');
     const rawCropContext = rawCropCanvas.getContext('2d');
     const processedContext = processedCanvas.getContext('2d', { willReadFrequently: true });
 
-    const titleRegion = { x: 0.08, y: 0.10, width: 0.78, height: 0.11 };
+    const cardAspectRatios = { portrait: 63 / 88, landscape: 88 / 63 };
+    const titleRegions = [
+      { id: 'title-band', label: 'タイトル帯のみ', x: 0.18, y: 0.025, width: 0.64, height: 0.105 },
+      { id: 'upper-center', label: '上部中央', x: 0.10, y: 0.015, width: 0.80, height: 0.135 },
+      { id: 'upper-wide', label: '上部やや広め', x: 0.03, y: 0.005, width: 0.94, height: 0.165 }
+    ];
     const rearCameraPattern = /back|rear|environment|背面|外側|後置|后置/i;
     const frontCameraPattern = /front|user|facetime|前面|内側|前置/i;
 
@@ -136,6 +167,7 @@
     let ocrWorker = null;
     let ocrWorkerPromise = null;
     let recognizing = false;
+    let activeOcrAttempt = '';
 
     function setStatus(message, isError = false) {
       statusText.textContent = message;
@@ -211,11 +243,29 @@
       return settings;
     }
 
+    function updateCardGuide() {
+      const stageWidth = camera.clientWidth;
+      const stageHeight = camera.clientHeight;
+      if (!stageWidth || !stageHeight) return;
+
+      const aspectRatio = cardAspectRatios[cardLayoutSelect.value] || cardAspectRatios.portrait;
+      const maxWidth = stageWidth * 0.88;
+      const maxHeight = stageHeight * 0.90;
+      const width = Math.min(maxWidth, maxHeight * aspectRatio);
+      const height = width / aspectRatio;
+
+      cardGuide.style.left = `${(stageWidth - width) / 2}px`;
+      cardGuide.style.top = `${(stageHeight - height) / 2}px`;
+      cardGuide.style.width = `${width}px`;
+      cardGuide.style.height = `${height}px`;
+    }
+
     async function attachCameraStream(stream) {
       cameraStream = stream;
       camera.srcObject = stream;
       await camera.play();
       cameraStage.hidden = false;
+      requestAnimationFrame(updateCardGuide);
       captureButton.disabled = false;
       stopButton.disabled = false;
 
@@ -278,7 +328,7 @@
         }
 
         const actualFacing = active.settings.facingMode ? `（${active.settings.facingMode}）` : '';
-        setStatus(`カメラを起動しました${actualFacing}。英語カード名だけを黄色い枠に合わせてください。`);
+        setStatus(`カメラを起動しました${actualFacing}。カード全体を黄色い枠に合わせてください。`);
       } catch (error) {
         releaseCamera();
         cameraStage.hidden = true;
@@ -315,73 +365,137 @@
       return bestThreshold;
     }
 
-    function prepareTitleImages() {
-      const sourceWidth = camera.videoWidth;
-      const sourceHeight = camera.videoHeight;
-      if (!sourceWidth || !sourceHeight) throw new Error('カメラ映像を取得できていません。');
+    function createWorkingCanvas(width, height) {
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(width));
+      canvas.height = Math.max(1, Math.round(height));
+      return canvas;
+    }
 
-      const crop = {
-        x: Math.round(sourceWidth * titleRegion.x),
-        y: Math.round(sourceHeight * titleRegion.y),
-        width: Math.round(sourceWidth * titleRegion.width),
-        height: Math.round(sourceHeight * titleRegion.height)
-      };
-      const scale = Math.min(3, Math.max(2, 1600 / crop.width));
+    function copyCanvas(source, target, targetContext) {
+      target.width = source.width;
+      target.height = source.height;
+      targetContext.clearRect(0, 0, target.width, target.height);
+      targetContext.drawImage(source, 0, 0);
+    }
 
-      captureCanvas.width = sourceWidth;
-      captureCanvas.height = sourceHeight;
-      captureContext.drawImage(camera, 0, 0, sourceWidth, sourceHeight);
+    function getCardCrop(sourceWidth, sourceHeight) {
+      const videoRect = camera.getBoundingClientRect();
+      const guideRect = cardGuide.getBoundingClientRect();
+      if (!videoRect.width || !videoRect.height || !guideRect.width || !guideRect.height) {
+        throw new Error('カード枠の位置を取得できませんでした。');
+      }
 
-      rawCropCanvas.width = crop.width;
-      rawCropCanvas.height = crop.height;
-      rawCropContext.drawImage(captureCanvas, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
+      const x = Math.max(0, Math.round((guideRect.left - videoRect.left) / videoRect.width * sourceWidth));
+      const y = Math.max(0, Math.round((guideRect.top - videoRect.top) / videoRect.height * sourceHeight));
+      const width = Math.min(sourceWidth - x, Math.round(guideRect.width / videoRect.width * sourceWidth));
+      const height = Math.min(sourceHeight - y, Math.round(guideRect.height / videoRect.height * sourceHeight));
+      return { x, y, width: Math.max(1, width), height: Math.max(1, height) };
+    }
 
-      processedCanvas.width = Math.round(crop.width * scale);
-      processedCanvas.height = Math.round(crop.height * scale);
-      processedContext.imageSmoothingEnabled = true;
-      processedContext.imageSmoothingQuality = 'high';
-      processedContext.drawImage(
-        rawCropCanvas,
-        0, 0, crop.width, crop.height,
-        0, 0, processedCanvas.width, processedCanvas.height
-      );
+    function createPreprocessingVariants(rawCanvas) {
+      const scale = Math.min(3, Math.max(2, 1200 / rawCanvas.width));
+      const width = Math.round(rawCanvas.width * scale);
+      const height = Math.round(rawCanvas.height * scale);
 
-      const image = processedContext.getImageData(0, 0, processedCanvas.width, processedCanvas.height);
-      const grayscale = new Uint8Array(processedCanvas.width * processedCanvas.height);
+      const enlarged = createWorkingCanvas(width, height);
+      const enlargedContext = enlarged.getContext('2d');
+      enlargedContext.imageSmoothingEnabled = true;
+      enlargedContext.imageSmoothingQuality = 'high';
+      enlargedContext.drawImage(rawCanvas, 0, 0, width, height);
+
+      const grayContrast = createWorkingCanvas(width, height);
+      const grayContext = grayContrast.getContext('2d', { willReadFrequently: true });
+      grayContext.drawImage(enlarged, 0, 0);
+      const grayImage = grayContext.getImageData(0, 0, width, height);
+      const grayscale = new Uint8Array(width * height);
       const histogram = new Uint32Array(256);
       let edgeBrightness = 0;
       let edgePixels = 0;
 
-      for (let index = 0; index < image.data.length; index += 4) {
-        const gray = image.data[index] * 0.299 + image.data[index + 1] * 0.587 + image.data[index + 2] * 0.114;
-        const contrasted = Math.round(Math.max(0, Math.min(255, (gray - 128) * 1.8 + 128)));
+      for (let index = 0; index < grayImage.data.length; index += 4) {
+        const gray = grayImage.data[index] * 0.299 + grayImage.data[index + 1] * 0.587 + grayImage.data[index + 2] * 0.114;
+        const contrasted = Math.round(Math.max(0, Math.min(255, (gray - 128) * 1.65 + 128)));
         const pixelIndex = index / 4;
-        const x = pixelIndex % processedCanvas.width;
-        const y = Math.floor(pixelIndex / processedCanvas.width);
+        const x = pixelIndex % width;
+        const y = Math.floor(pixelIndex / width);
         grayscale[pixelIndex] = contrasted;
         histogram[contrasted] += 1;
-        if (x < processedCanvas.width * 0.05 || x > processedCanvas.width * 0.95 || y < processedCanvas.height * 0.12 || y > processedCanvas.height * 0.88) {
+        grayImage.data[index] = contrasted;
+        grayImage.data[index + 1] = contrasted;
+        grayImage.data[index + 2] = contrasted;
+        if (x < width * 0.05 || x > width * 0.95 || y < height * 0.12 || y > height * 0.88) {
           edgeBrightness += contrasted;
           edgePixels += 1;
         }
       }
+      grayContext.putImageData(grayImage, 0, 0);
 
       const threshold = calculateOtsuThreshold(histogram, grayscale.length);
-      const darkBackground = edgeBrightness / edgePixels < 128;
+      const darkBackground = edgePixels ? edgeBrightness / edgePixels < 128 : false;
+      const binary = createWorkingCanvas(width, height);
+      const binaryContext = binary.getContext('2d', { willReadFrequently: true });
+      const binaryImage = binaryContext.createImageData(width, height);
 
       for (let pixelIndex = 0; pixelIndex < grayscale.length; pixelIndex += 1) {
         const value = darkBackground
           ? (grayscale[pixelIndex] > threshold ? 0 : 255)
           : (grayscale[pixelIndex] > threshold ? 255 : 0);
         const dataIndex = pixelIndex * 4;
-        image.data[dataIndex] = value;
-        image.data[dataIndex + 1] = value;
-        image.data[dataIndex + 2] = value;
+        binaryImage.data[dataIndex] = value;
+        binaryImage.data[dataIndex + 1] = value;
+        binaryImage.data[dataIndex + 2] = value;
+        binaryImage.data[dataIndex + 3] = 255;
       }
+      binaryContext.putImageData(binaryImage, 0, 0);
 
-      processedContext.putImageData(image, 0, 0);
+      return {
+        scale,
+        threshold,
+        variants: [
+          { id: 'enlarged', label: '拡大のみ', canvas: enlarged },
+          { id: 'gray-contrast', label: '拡大＋グレースケール＋コントラスト', canvas: grayContrast },
+          { id: 'binary', label: '拡大＋二値化', canvas: binary }
+        ]
+      };
+    }
+
+    function prepareTitleCandidates() {
+      const sourceWidth = camera.videoWidth;
+      const sourceHeight = camera.videoHeight;
+      if (!sourceWidth || !sourceHeight) throw new Error('カメラ映像を取得できていません。');
+
+      captureCanvas.width = sourceWidth;
+      captureCanvas.height = sourceHeight;
+      captureContext.drawImage(camera, 0, 0, sourceWidth, sourceHeight);
+
+      const cardCrop = getCardCrop(sourceWidth, sourceHeight);
+      cardAreaCanvas.width = cardCrop.width;
+      cardAreaCanvas.height = cardCrop.height;
+      cardAreaContext.drawImage(
+        captureCanvas,
+        cardCrop.x, cardCrop.y, cardCrop.width, cardCrop.height,
+        0, 0, cardCrop.width, cardCrop.height
+      );
+
+      const candidates = titleRegions.map(region => {
+        const crop = {
+          x: Math.round(cardAreaCanvas.width * region.x),
+          y: Math.round(cardAreaCanvas.height * region.y),
+          width: Math.round(cardAreaCanvas.width * region.width),
+          height: Math.round(cardAreaCanvas.height * region.height)
+        };
+        const rawCanvas = createWorkingCanvas(crop.width, crop.height);
+        rawCanvas.getContext('2d').drawImage(
+          cardAreaCanvas,
+          crop.x, crop.y, crop.width, crop.height,
+          0, 0, crop.width, crop.height
+        );
+        return { ...region, rawCanvas, preprocessing: createPreprocessingVariants(rawCanvas) };
+      });
+
       preview.hidden = false;
-      return { threshold, darkBackground, scale };
+      return { cardCrop, candidates };
     }
 
     async function getOcrWorker() {
@@ -393,7 +507,7 @@
         const worker = await Tesseract.createWorker('eng', 1, {
           logger(message) {
             if (message.status === 'recognizing text') {
-              setStatus(`文字を認識しています… ${Math.round((message.progress || 0) * 100)}%`);
+              setStatus(`${activeOcrAttempt || '文字'}を認識しています… ${Math.round((message.progress || 0) * 100)}%`);
             } else if (message.status) {
               setStatus('OCRを準備しています…');
             }
@@ -416,6 +530,14 @@
       }
     }
 
+    function normalizeOcrText(rawText) {
+      return rawText.replace(/[^A-Za-z' -]+/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function formatConfidence(confidence) {
+      return Number.isFinite(confidence) && confidence >= 0 ? `${confidence.toFixed(1)}%` : '取得できませんでした';
+    }
+
     async function captureAndRecognize() {
       if (recognizing || !cameraStream) return;
       recognizing = true;
@@ -423,27 +545,75 @@
       startButton.disabled = true;
       resultText.textContent = '認識中…';
       rawResultText.textContent = '認識中…';
+      variantResultsText.textContent = '認識中…';
       confidenceText.textContent = 'confidence：計測中…';
 
       try {
-        const preprocessing = prepareTitleImages();
+        const prepared = prepareTitleCandidates();
         setStatus('OCRを準備しています…');
         const worker = await getOcrWorker();
-        const result = await worker.recognize(processedCanvas);
-        const rawText = String(result.data.text || '');
-        const recognized = rawText.replace(/[^A-Za-z' -]+/g, ' ').replace(/\s+/g, ' ').trim();
-        rawResultText.textContent = rawText || '（空欄）';
-        resultText.textContent = recognized || '文字を認識できませんでした。';
-        confidenceText.textContent = `confidence：${Number.isFinite(result.data.confidence) ? `${result.data.confidence.toFixed(1)}%` : '取得できませんでした'}`;
-        setStatus(recognized
-          ? `認識が完了しました（二値化しきい値 ${preprocessing.threshold}、${preprocessing.scale.toFixed(1)}倍）。`
-          : '文字を認識できませんでした。カード名だけを枠の中央へ大きく合わせて再撮影してください。');
+        const attempts = [];
+        const totalAttempts = prepared.candidates.reduce((total, candidate) => total + candidate.preprocessing.variants.length, 0);
+        let attemptNumber = 0;
+
+        for (const candidate of prepared.candidates) {
+          for (const variant of candidate.preprocessing.variants) {
+            attemptNumber += 1;
+            activeOcrAttempt = `${attemptNumber}/${totalAttempts}「${candidate.label}・${variant.label}」`;
+            try {
+              const result = await worker.recognize(variant.canvas);
+              const rawText = String(result.data.text || '');
+              attempts.push({
+                candidate,
+                variant,
+                rawText,
+                recognized: normalizeOcrText(rawText),
+                confidence: Number.isFinite(result.data.confidence) ? result.data.confidence : -1
+              });
+            } catch (error) {
+              attempts.push({ candidate, variant, rawText: '', recognized: '', confidence: -1, error });
+            }
+          }
+        }
+
+        const completedAttempts = attempts.filter(attempt => !attempt.error);
+        const recognizedAttempts = completedAttempts.filter(attempt => attempt.recognized);
+        const selectableAttempts = recognizedAttempts.length ? recognizedAttempts : completedAttempts;
+        if (!selectableAttempts.length) throw new Error('すべてのOCRパターンで認識に失敗しました。');
+
+        const best = selectableAttempts.reduce((selected, attempt) => (
+          !selected || attempt.confidence > selected.confidence ? attempt : selected
+        ), null);
+
+        copyCanvas(best.candidate.rawCanvas, rawCropCanvas, rawCropContext);
+        copyCanvas(best.variant.canvas, processedCanvas, processedContext);
+        rawCropCaption.textContent = `最終採用されたカード名切り出し画像（${best.candidate.label}）`;
+        processedCaption.textContent = `最終的にTesseractへ渡した画像（${best.variant.label}）`;
+
+        rawResultText.textContent = best.rawText || '（空欄）';
+        resultText.textContent = best.recognized || '文字を認識できませんでした。';
+        confidenceText.textContent = `confidence：${formatConfidence(best.confidence)}／採用：${best.candidate.label} × ${best.variant.label}`;
+        variantResultsText.textContent = attempts.map((attempt, index) => {
+          const rawSingleLine = attempt.rawText.replace(/\s+/g, ' ').trim() || '（空欄）';
+          return [
+            `${index + 1}. ${attempt.candidate.label} × ${attempt.variant.label}`,
+            `結果：${attempt.recognized || '（認識なし）'}`,
+            `confidence：${formatConfidence(attempt.confidence)}`,
+            `生OCR：${attempt.error ? `エラー：${attempt.error.message || '不明'}` : rawSingleLine}`
+          ].join('\n');
+        }).join('\n\n');
+
+        setStatus(best.recognized
+          ? `${totalAttempts}パターンを比較し、最もconfidenceが高い結果を採用しました。`
+          : '文字を認識できませんでした。カード全体を黄色い枠へ合わせて再撮影してください。');
       } catch (error) {
         resultText.textContent = 'OCRに失敗しました。';
         rawResultText.textContent = 'OCRに失敗しました。';
+        variantResultsText.textContent = 'OCRに失敗しました。';
         confidenceText.textContent = 'confidence：取得できませんでした';
         setStatus(`OCRに失敗しました：${error?.message || '不明なエラー'}`, true);
       } finally {
+        activeOcrAttempt = '';
         recognizing = false;
         captureButton.disabled = !cameraStream;
         startButton.disabled = false;
@@ -456,6 +626,9 @@
     cameraSelect.addEventListener('change', () => {
       if (cameraSelect.value) startCamera(cameraSelect.value);
     });
+    cardLayoutSelect.addEventListener('change', updateCardGuide);
+    camera.addEventListener('loadedmetadata', updateCardGuide);
+    window.addEventListener('resize', updateCardGuide);
 
     window.addEventListener('pagehide', () => {
       releaseCamera();
