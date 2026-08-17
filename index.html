@@ -54,7 +54,7 @@
     .card-color-slot{display:grid;width:30px;height:30px;place-items:center;flex:0 0 30px}
     .card-color-icon{display:block;width:38px;height:38px;max-width:none;object-fit:contain}
     .points-favorite-wrap{position:relative;flex:0 0 auto}
-    .card-favorite-button{position:absolute;z-index:2;top:-14px;right:-15px}
+    .card-favorite-button{position:absolute;z-index:2;top:-16px;right:-13px}
     .favorite-button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:transparent;color:#817a6d;font:inherit;font-size:22px;line-height:1;cursor:pointer}
     .favorite-button:hover{background:#fff9;color:#9a6b16}
     .favorite-button[aria-pressed="true"]{color:#b47b12}
@@ -705,13 +705,6 @@
       return `<span class="event-vp-fallback" aria-label="${escapeHtml(points)}勝利点"><img src="${imageUrl('vp_blank.png')}" alt=""><span>${escapeHtml(points)}</span></span>`;
     }
 
-    function renderDiscoveryVictoryPoints(discovery) {
-      if (discovery.id === 'SPIRE-DIS-036') {
-        return iconHtml('vp_blank.png', '勝利点', 'event-vp-icon');
-      }
-      return renderEventVictoryPoints(discovery.victory_points);
-    }
-
     function renderEventEffect(effect) {
       if (!hasDisplayValue(effect)) return '';
       const lines = String(effect).split(/\r?\n/);
@@ -854,7 +847,7 @@
       const effect = hasDisplayValue(discovery.effect)
         ? `<div class="effect">${renderDiscoveryEffect(discovery.effect)}</div>`
         : '';
-      const victoryPoints = renderDiscoveryVictoryPoints(discovery);
+      const victoryPoints = renderEventVictoryPoints(discovery.victory_points);
       const expeditionIcon = discoveryExpeditionIcon(discovery.effect);
       const victoryNote = hasDisplayValue(discovery.victory_points_note)
         ? `<div class="discovery-vp-note">${renderDiscoveryEffect(discovery.victory_points_note)}</div>`
