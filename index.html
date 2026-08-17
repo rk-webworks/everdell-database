@@ -705,6 +705,13 @@
       return `<span class="event-vp-fallback" aria-label="${escapeHtml(points)}勝利点"><img src="${imageUrl('vp_blank.png')}" alt=""><span>${escapeHtml(points)}</span></span>`;
     }
 
+    function renderDiscoveryVictoryPoints(discovery) {
+      if (discovery.id === 'SPIRE-DIS-036') {
+        return iconHtml('vp_blank.png', '勝利点', 'event-vp-icon');
+      }
+      return renderEventVictoryPoints(discovery.victory_points);
+    }
+
     function renderEventEffect(effect) {
       if (!hasDisplayValue(effect)) return '';
       const lines = String(effect).split(/\r?\n/);
@@ -847,7 +854,7 @@
       const effect = hasDisplayValue(discovery.effect)
         ? `<div class="effect">${renderDiscoveryEffect(discovery.effect)}</div>`
         : '';
-      const victoryPoints = renderEventVictoryPoints(discovery.victory_points);
+      const victoryPoints = renderDiscoveryVictoryPoints(discovery);
       const expeditionIcon = discoveryExpeditionIcon(discovery.effect);
       const victoryNote = hasDisplayValue(discovery.victory_points_note)
         ? `<div class="discovery-vp-note">${renderDiscoveryEffect(discovery.victory_points_note)}</div>`
