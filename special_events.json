@@ -85,7 +85,7 @@
                        "name_jp":  "しゃがれ声の直し方",
                        "condition_en":  "Undertaker、Barge Toad",
                        "condition_jp":  "葬儀屋、船頭ガエル",
-                       "effect":  "このカードを獲得したとき、果実を2個支払い、あなたの街にある「カード」2枚を捨てる。",
+                       "effect":  "このカードを獲得したとき、果実を2個支払い、あなたの街にある「カード」を2枚捨てる。",
                        "victory_points":  6,
                        "features":  [
                                         {

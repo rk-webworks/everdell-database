@@ -50,12 +50,18 @@
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:-2px -2px 12px;padding:2px 2px 10px;border-bottom:2px solid color-mix(in srgb,var(--theme-color,#66835b) 48%,transparent)}
     .card-title{min-width:0}
     .card-tools{display:flex;align-items:flex-start;gap:4px;flex:0 0 auto}
+    .normal-card-tools{position:relative}
+    .card-color-slot{display:grid;width:30px;height:30px;place-items:center;flex:0 0 30px}
+    .card-color-icon{display:block;width:38px;height:38px;max-width:none;object-fit:contain}
+    .points-favorite-wrap{position:relative;flex:0 0 auto}
+    .card-favorite-button{position:absolute;z-index:2;top:-8px;right:-9px}
     .favorite-button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:transparent;color:#817a6d;font:inherit;font-size:22px;line-height:1;cursor:pointer}
     .favorite-button:hover{background:#fff9;color:#9a6b16}
     .favorite-button[aria-pressed="true"]{color:#b47b12}
     .favorite-button:focus-visible{outline:2px solid var(--theme-color,#66835b);outline-offset:2px}
     .en{font-weight:700;font-size:17px}
     .jp{font-size:21px;margin:4px 0 0}
+    .card-name-jp{white-space:nowrap}
     .points{flex:0 0 auto;min-width:38px;padding:7px 8px;border:2px solid #8b651d;border-radius:50%;background:linear-gradient(145deg,#f0d47a,#c89a34);box-shadow:inset 0 1px 1px #fff8c8,0 2px 4px #5c431f33;color:#302307;text-align:center;font-weight:800}
     .points.has-icon{min-width:0;padding:0;border:0;background:none;box-shadow:none}
     .points-icon{display:block;width:56px;height:56px;object-fit:contain;transform:scale(.74);transform-origin:center}
@@ -128,10 +134,10 @@
     .discovery-effect-score-block .discovery-effect-line{text-align:center}
     .badge{display:inline-block;background:#eee9dc;border-radius:999px;padding:4px 8px;margin:2px;font-size:12px}
     .card-set-icon{display:inline-block;width:auto;height:22px;max-width:80px;object-fit:contain;vertical-align:middle;margin:2px 1px 2px 2px;transform-origin:center}
-    .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1.08)}
-    .card-set-icon[src*="set_newleaf.png"]{transform:scale(1.05)}
+    .card-set-icon[src*="set_pearlbrook.png"]{transform:scale(1)}
+    .card-set-icon[src*="set_newleaf.png"]{transform:scale(.97)}
     .card-set-icon[src*="set_legends.png"]{transform:scale(.9)}
-    .card-set-icon[src*="set_extra.png"]{transform:scale(1.03)}
+    .card-set-icon[src*="set_extra.png"]{transform:scale(.95)}
     .card-set-icon[src*="set_corrin.png"]{transform:scale(.92)}
     .card-set-icon[src*="set_rugwort.png"]{transform:scale(1)}
     .card-info-row{display:flex;align-items:center;gap:8px;min-width:0}
@@ -204,8 +210,8 @@
   <main>
     <div class="category-tabs" role="tablist" aria-label="表示カテゴリ">
       <button id="category-cards" class="category-tab" type="button" role="tab" aria-selected="true" data-category="cards">カード</button>
-      <button id="category-powers" class="category-tab" type="button" role="tab" aria-selected="false" data-category="powers">特殊能力</button>
       <button id="category-events" class="category-tab" type="button" role="tab" aria-selected="false" data-category="events">特殊イベント</button>
+      <button id="category-powers" class="category-tab" type="button" role="tab" aria-selected="false" data-category="powers">特殊能力</button>
       <button id="category-discoveries" class="category-tab" type="button" role="tab" aria-selected="false" data-category="discoveries">発見</button>
     </div>
     <div class="box">
@@ -653,11 +659,13 @@
       const openFeature = Object.hasOwn(card, 'open') ? renderOpenFeature(card.open) : '';
       const townSlot = renderTownSlot(card.town_slot);
       const isFavorite = favoriteIds.has(card.id);
+      const colorIcon = colorIcons[theme];
+      const favoriteButton = `<button class="favorite-button card-favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>`;
 
       return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}${setIcon ? ' has-set-icon' : ''}">
         <div class="card-head">
-          <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp">${escapeHtml(card.name_jp)}</div></div>
-          <div class="card-tools"><button class="favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>${renderVictoryPoints(card.victory_points)}</div>
+          <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp card-name-jp">${escapeHtml(card.name_jp)}</div></div>
+          <div class="card-tools normal-card-tools"><span class="card-color-slot">${iconHtml(colorIcon.image, colorIcon.label, 'card-color-icon')}</span><span class="points-favorite-wrap">${renderVictoryPoints(card.victory_points)}${favoriteButton}</span></div>
         </div>
         <div class="card-info-row"><div class="card-info-left"><span class="badge">${escapeHtml(card.type)}</span>${features}${openFeature}</div>${townSlot}</div>
         <div class="effect">${renderEffect(card.effect)}</div>
