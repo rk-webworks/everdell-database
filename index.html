@@ -37,6 +37,7 @@
     .set-heading-icon{display:block;width:auto;height:1.7em;max-width:5.5em;object-fit:contain;flex:0 0 auto}
     .section-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
     .card{position:relative;padding:17px;border:2px solid var(--theme-color,#66835b);border-top-width:9px;background:linear-gradient(180deg,var(--theme-soft,#edf3e9) 0,#fffdf8 105px);scroll-margin-top:16px;transition:transform .15s,box-shadow .15s}
+    .normal-card{min-width:0;max-width:100%}
     .card.has-set-icon-row{padding-bottom:43px}
     .set-icon-corner{position:absolute;right:12px;bottom:9px;display:flex;width:88px;height:26px;align-items:center;justify-content:flex-end;pointer-events:none}
     .set-icon-corner .card-set-icon{margin:0}
@@ -662,7 +663,7 @@
       const colorIcon = colorIcons[theme];
       const favoriteButton = `<button class="favorite-button card-favorite-button" type="button" data-favorite-id="${escapeHtml(card.id)}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}：${escapeHtml(card.name_jp)}" title="${isFavorite ? 'お気に入りから削除' : 'お気に入りに追加'}">${isFavorite ? '★' : '☆'}</button>`;
 
-      return `<article id="${escapeHtml(cardAnchor(card))}" class="card theme-${theme}${setIcon ? ' has-set-icon' : ''}">
+      return `<article id="${escapeHtml(cardAnchor(card))}" class="card normal-card theme-${theme}${setIcon ? ' has-set-icon' : ''}">
         <div class="card-head">
           <div class="card-title"><div class="en">${escapeHtml(card.name_en)}</div><div class="jp card-name-jp">${escapeHtml(card.name_jp)}</div></div>
           <div class="card-tools normal-card-tools"><span class="card-color-slot">${iconHtml(colorIcon.image, colorIcon.label, 'card-color-icon')}</span><span class="points-favorite-wrap">${renderVictoryPoints(card.victory_points)}${favoriteButton}</span></div>
