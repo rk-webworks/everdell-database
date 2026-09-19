@@ -204,7 +204,8 @@
     .icon-select-button,.icon-option{display:flex;align-items:center;gap:9px;width:100%;min-height:44px;padding:10px 12px;font:inherit;font-size:15px;color:inherit;text-align:left;background:white;border:1px solid #d8d2c4;border-radius:10px;cursor:pointer}
     .icon-select-button::after{content:'▾';margin-left:auto}
     .icon-options{position:absolute;z-index:30;top:calc(100% + 5px);left:0;width:100%;max-height:300px;max-height:min(300px,50vh);overflow:auto;padding:4px;background:#fffdf8;border:1px solid #d8d2c4;border-radius:10px;box-shadow:0 5px 18px #0003}
-    .icon-option{border:0;border-radius:6px}
+    .icon-option{border:0;border-radius:6px;height:36px;min-height:36px;padding:6px 12px;line-height:24px}
+    #type-button{height:44px;min-height:44px;padding-block:0;line-height:1.4}
     .icon-option[aria-selected="true"]{background:#e7efe3;font-weight:700}
     .icon-option:hover,.icon-option:focus{background:#e7efe3;outline:2px solid #66835b;outline-offset:-2px}
     .icon-select-button:focus-visible,.clear-filters:focus-visible{outline:2px solid #66835b;outline-offset:2px}
@@ -245,7 +246,11 @@
           <button id="theme-button" class="icon-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="theme-options">色：すべて</button>
           <div id="theme-options" class="icon-options" role="listbox" aria-label="色・分類で絞り込む" hidden></div>
         </div>
-        <select id="type" aria-label="種類で絞り込む"><option value="">種類：すべて</option></select>
+        <div id="type-control" class="icon-select">
+          <select id="type" hidden aria-hidden="true" tabindex="-1"><option value="">種類：すべて</option></select>
+          <button id="type-button" class="icon-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="type-options">種類：すべて</button>
+          <div id="type-options" class="icon-options" role="listbox" aria-label="種類で絞り込む" hidden></div>
+        </div>
       </div>
       <button id="clear-filters" class="clear-filters" type="button">絞り込みをクリア</button>
     </div>
@@ -550,7 +555,7 @@
       const isCardView = activeCategory === 'cards';
       document.getElementById('theme-control').hidden = !isCardView;
       const isDiscoveryView = activeCategory === 'discoveries';
-      elements.type.hidden = !isCardView && !isDiscoveryView;
+      document.getElementById('type-control').hidden = !isCardView && !isDiscoveryView;
       elements.filters.classList.toggle('power-mode', !isCardView && !isDiscoveryView);
       elements.filters.classList.toggle('discovery-mode', isDiscoveryView);
       const searchUi = activeCategory === 'powers'
@@ -1003,7 +1008,8 @@
 
     function renderFavorites() {
       const entries = new Map();
-      for (const [items, renderer] of [[cards,renderCard],[events,renderEvent],[powers,renderPower],[discoveries,renderDiscovery]]) {
+      const categoryItems = {cards:[cards,renderCard],events:[events,renderEvent],powers:[powers,renderPower],discoveries:[discoveries,renderDiscovery]};
+      for (const [items, renderer] of [categoryItems[activeCategory]]) {
         const groups = items === discoveries ? discoverySeasons.map(season => season.name) : setOrder(items);
         for (const group of groups) items.filter(item => (items === discoveries ? item.season : item.set) === group)
           .forEach(item => entries.set(item.id, {item,renderer}));
@@ -1156,6 +1162,8 @@
       elements.setButton.setAttribute('aria-expanded', 'false');
       document.getElementById('theme-options').hidden = true;
       document.getElementById('theme-button').setAttribute('aria-expanded', 'false');
+      document.getElementById('type-options').hidden = true;
+      document.getElementById('type-button').setAttribute('aria-expanded', 'false');
     }
     function syncSetMenu() {
       const isSeason = activeCategory === 'discoveries';
@@ -1175,6 +1183,16 @@
       elements.setOptions.setAttribute('aria-label',label);
       elements.setOptions.innerHTML = options.map((option,index) => '<div class="icon-option" role="option" tabindex="-1" data-index="'+index+'" aria-selected="'+option.selected+'">'+content(option)+'</div>').join('');
       syncThemeMenu();
+      syncTypeMenu();
+    }
+    function syncTypeMenu() {
+      const options = [...elements.type.options];
+      const selected = options[elements.type.selectedIndex] || options[0];
+      const button = document.getElementById('type-button');
+      button.textContent = selected.textContent;
+      button.setAttribute('aria-label', '種類で絞り込む：'+selected.textContent);
+      document.getElementById('type-options').innerHTML = options.map((option,index) =>
+        '<div class="icon-option" role="option" tabindex="-1" data-index="'+index+'" aria-selected="'+option.selected+'">'+escapeHtml(option.textContent)+'</div>').join('');
     }
     const themeCategories = {green:'生産',brown:'旅行者',blue:'政治',red:'目的地',purple:'祝福'};
     function syncThemeMenu() {
@@ -1188,82 +1206,49 @@
       button.setAttribute('aria-label','色・分類で絞り込む：'+label(selected));
       list.innerHTML = options.map((option,index) => '<div class="icon-option" role="option" tabindex="-1" data-index="'+index+'" aria-label="'+label(option)+'" aria-selected="'+option.selected+'">'+content(option)+'</div>').join('');
     }
-    function openSetMenu() {
-      closeSetMenu();
-      elements.setOptions.hidden = false;
-      elements.setButton.setAttribute('aria-expanded','true');
-      elements.setOptions.children[elements.set.selectedIndex]?.focus();
-    }
-    function selectSet(index) {
-      elements.set.selectedIndex = index;
-      closeSetMenu();
-      render();
-      elements.setButton.focus();
-    }
-    elements.setButton.addEventListener('click', () => elements.setOptions.hidden ? openSetMenu() : closeSetMenu());
-    elements.setButton.addEventListener('keydown', event => {
-      if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
-        event.preventDefault(); openSetMenu();
-        if (event.key === 'Home') elements.setOptions.firstElementChild.focus();
-        if (event.key === 'End') elements.setOptions.lastElementChild.focus();
+    // All filters share the same pointer and keyboard interaction.
+    function bindFilterMenu(name) {
+      const select = elements[name];
+      const button = document.getElementById(name+'-button');
+      const list = document.getElementById(name+'-options');
+      function open() {
+        closeSetMenu();
+        list.hidden = false;
+        button.setAttribute('aria-expanded','true');
+        list.children[select.selectedIndex]?.focus();
       }
-    });
-    elements.setOptions.addEventListener('click', event => {
-      const option = event.target.closest('[data-index]');
-      if (option) selectSet(Number(option.dataset.index));
-    });
-    elements.setOptions.addEventListener('keydown', event => {
-      const options = [...elements.setOptions.children];
-      const index = options.indexOf(document.activeElement);
-      let next = index;
-      if (event.key === 'ArrowDown') next = (index+1)%options.length;
-      else if (event.key === 'ArrowUp') next = (index-1+options.length)%options.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = options.length-1;
-      else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectSet(index); return; }
-      else if (event.key === 'Escape') { event.preventDefault(); closeSetMenu(); elements.setButton.focus(); return; }
-      else if (event.key === 'Tab') { closeSetMenu(); elements.setButton.focus(); return; }
-      else return;
-      event.preventDefault(); options[next].focus();
-    });
-    const themeButton = document.getElementById('theme-button');
-    const themeOptions = document.getElementById('theme-options');
-    function openThemeMenu() {
-      closeSetMenu();
-      themeOptions.hidden = false;
-      themeButton.setAttribute('aria-expanded','true');
-      themeOptions.children[elements.theme.selectedIndex]?.focus();
-    }
-    function selectTheme(index) {
-      elements.theme.selectedIndex = index;
-      closeSetMenu(); render(); themeButton.focus();
-    }
-    themeButton.addEventListener('click', () => themeOptions.hidden ? openThemeMenu() : closeSetMenu());
-    themeButton.addEventListener('keydown', event => {
-      if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
-        event.preventDefault(); openThemeMenu();
-        if (event.key === 'Home') themeOptions.firstElementChild.focus();
-        if (event.key === 'End') themeOptions.lastElementChild.focus();
+      function choose(index) {
+        select.selectedIndex = index;
+        closeSetMenu(); render(); button.focus();
       }
-    });
-    themeOptions.addEventListener('click', event => {
-      const option = event.target.closest('[data-index]');
-      if (option) selectTheme(Number(option.dataset.index));
-    });
-    themeOptions.addEventListener('keydown', event => {
-      const options = [...themeOptions.children];
-      const index = options.indexOf(document.activeElement);
-      let next = index;
-      if (event.key === 'ArrowDown') next = (index+1)%options.length;
-      else if (event.key === 'ArrowUp') next = (index-1+options.length)%options.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = options.length-1;
-      else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectTheme(index); return; }
-      else if (event.key === 'Escape') { event.preventDefault(); closeSetMenu(); themeButton.focus(); return; }
-      else if (event.key === 'Tab') { closeSetMenu(); themeButton.focus(); return; }
-      else return;
-      event.preventDefault(); options[next].focus();
-    });
+      button.addEventListener('click', () => list.hidden ? open() : closeSetMenu());
+      button.addEventListener('keydown', event => {
+        if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
+          event.preventDefault(); open();
+          if (event.key === 'Home') list.firstElementChild.focus();
+          if (event.key === 'End') list.lastElementChild.focus();
+        }
+      });
+      list.addEventListener('click', event => {
+        const option = event.target.closest('[data-index]');
+        if (option) choose(Number(option.dataset.index));
+      });
+      list.addEventListener('keydown', event => {
+        const options = [...list.children];
+        const index = options.indexOf(document.activeElement);
+        let next = index;
+        if (event.key === 'ArrowDown') next = (index+1)%options.length;
+        else if (event.key === 'ArrowUp') next = (index-1+options.length)%options.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = options.length-1;
+        else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(index); return; }
+        else if (event.key === 'Escape') { event.preventDefault(); closeSetMenu(); button.focus(); return; }
+        else if (event.key === 'Tab') { closeSetMenu(); button.focus(); return; }
+        else return;
+        event.preventDefault(); options[next].focus();
+      });
+    }
+    ['set','theme','type'].forEach(bindFilterMenu);
     document.addEventListener('pointerdown', event => { if (!event.target.closest('.icon-select')) closeSetMenu(); });
     document.addEventListener('focusin', event => { if (!event.target.closest('.icon-select')) closeSetMenu(); });
     document.getElementById('clear-filters').addEventListener('click', () => {
