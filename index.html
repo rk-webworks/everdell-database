@@ -75,10 +75,6 @@
     .event-card{--theme-color:#7a6845;--theme-soft:#f1ebdd}
     .event-card .card-title{flex:1 1 auto}
     .event-set-icon-box{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px;overflow:visible}
-    .event-set-icon{--event-set-scale:1;--event-set-shift-x:0px;--event-set-shift-y:4px;display:block;width:20px;height:20px;max-width:none;object-fit:contain;transform:translate(var(--event-set-shift-x),var(--event-set-shift-y)) scale(var(--event-set-scale));transform-origin:center;flex:0 0 auto}
-    .event-set-icon[src*="set_pearlbrook.png"]{--event-set-scale:.93;--event-set-shift-x:-.25px}
-    .event-set-icon[src*="set_bellfaire.png"]{--event-set-scale:1.12;--event-set-shift-x:-2.2px}
-    .event-set-icon[src*="set_newleaf.png"]{--event-set-scale:.965;--event-set-shift-x:-.15px}
     .event-name-jp-row{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:8px;max-width:100%;min-width:0;vertical-align:top}
     .event-name-jp-row>.event-name-jp{flex:0 1 auto;min-width:0;overflow-wrap:anywhere}
     .event-name-jp{font-size:21px;font-weight:400;line-height:1.35}
@@ -116,7 +112,7 @@
     .season-icon{display:block;width:auto;height:30px;max-width:58px;object-fit:contain;transform-origin:center;flex:0 0 auto}
     .season-icon[src*="spirecrest_foothills.png"]{transform:translateY(2px) scale(.864)}
     .season-icon[src*="spirecrest_peaks.png"]{transform:translateY(2px) scale(.918)}
-    .season-icon[src*="spirecrest_ridge.png"]{transform:translateY(2px) scale(.9)}
+    .season-icon[src*="spirecrest_ridge.png"]{transform:translateY(4px) scale(.9)}
     .discovery-info-row{display:flex;align-items:center;justify-content:center;min-height:24px;margin-top:6px}
     .discovery-info-row .card-info-left{flex:0 1 auto;justify-content:center}
     .discovery-content{margin-top:10px}
@@ -200,6 +196,25 @@
     .scroll-button:focus-visible{outline:2px solid #66835b;outline-offset:3px}
     @media(max-width:900px){.section-grid,.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:500px){.section-grid,.filters{grid-template-columns:1fr}.set-heading{font-size:16px}.set-heading-icon{height:1.55em;max-width:5em}.card-set-icon{height:20px;max-width:74px}.power-set-icon{height:21px;max-width:78px}.event-set-icon{height:20px;max-width:72px}.season-icon{height:28px;max-width:54px}.feature-icon{height:22px}.town-slot-icon{height:25px;max-width:36px}.scroll-controls{display:flex}}
+    .normalized-icon{display:inline-block;position:relative;flex:none;overflow:hidden;vertical-align:middle}
+    .normalized-icon img{position:absolute;max-width:none;display:block}
+    .icon-select{position:relative;min-width:0}
+    .icon-select-button,.icon-option{display:flex;align-items:center;gap:9px;width:100%;min-height:44px;padding:10px 12px;font:inherit;font-size:15px;color:inherit;text-align:left;background:white;border:1px solid #d8d2c4;border-radius:10px;cursor:pointer}
+    .icon-select-button::after{content:'▾';margin-left:auto}
+    .icon-options{position:absolute;z-index:30;top:calc(100% + 5px);left:0;width:100%;max-height:300px;max-height:min(300px,50vh);overflow:auto;padding:4px;background:#fffdf8;border:1px solid #d8d2c4;border-radius:10px;box-shadow:0 5px 18px #0003}
+    .icon-option{border:0;border-radius:6px}
+    .icon-option[aria-selected="true"]{background:#e7efe3;font-weight:700}
+    .icon-option:hover,.icon-option:focus{background:#e7efe3;outline:2px solid #66835b;outline-offset:-2px}
+    .icon-select-button:focus-visible,.clear-filters:focus-visible{outline:2px solid #66835b;outline-offset:2px}
+    .clear-filters{margin-top:12px;padding:9px 14px;min-height:44px;border:1px solid #b8bba9;border-radius:9px;background:#f4f1e8;color:#314d35;font:inherit;cursor:pointer}
+    .event-name-jp-row{align-items:flex-end}
+    .event-set-icon-box{width:auto;height:auto;flex:none;margin-bottom:4px;--event-icon-scale:1}
+    @media(max-width:500px){.event-set-icon-box{--event-icon-scale:.9090909091}}
+    .autumn-menu-icon,.summer-menu-icon{display:inline-flex;margin-left:-2px}
+    .season-heading-summer>.normalized-icon{transform:translateY(1px)}
+    .season-heading-autumn>.normalized-icon{transform:translateY(2px)}
+    .section-grid>.card{min-width:0;overflow-wrap:anywhere}
+    .favorite-section{margin-top:24px}
   </style>
 </head>
 <body>
@@ -218,11 +233,21 @@
     <div class="box">
       <input id="q" class="search" type="search" placeholder="カード名・効果を検索…" aria-label="カード名または効果を検索">
       <div class="filters">
-        <select id="set" aria-label="セットで絞り込む"><option value="">セット：すべて</option></select>
-        <select id="theme" aria-label="色で絞り込む"><option value="">色：すべて</option></select>
+        <div class="icon-select">
+          <select id="set" hidden aria-hidden="true" tabindex="-1"><option value="">セット：すべて</option></select>
+          <button id="set-button" class="icon-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="set-options">セット：すべて</button>
+          <div id="set-options" class="icon-options" role="listbox" aria-label="セットで絞り込む" hidden></div>
+        </div>
+        <div id="theme-control" class="icon-select">
+          <select id="theme" hidden aria-hidden="true" tabindex="-1"><option value="">色：すべて</option></select>
+          <button id="theme-button" class="icon-select-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="theme-options">色：すべて</button>
+          <div id="theme-options" class="icon-options" role="listbox" aria-label="色・分類で絞り込む" hidden></div>
+        </div>
         <select id="type" aria-label="種類で絞り込む"><option value="">種類：すべて</option></select>
       </div>
+      <button id="clear-filters" class="clear-filters" type="button">絞り込みをクリア</button>
     </div>
+    <section id="favorites" class="set-section favorite-section" aria-label="お気に入り" hidden></section>
     <div id="count" class="count" aria-live="polite">カードを読み込んでいます…</div>
     <div id="grid" class="grid" aria-busy="true"><div class="status">カードを読み込んでいます…</div></div>
   </main>
@@ -236,10 +261,14 @@
     let events = [];
     let discoveries = [];
     let activeCategory = 'cards';
+    const filterStates = {};
     const loadErrors = { cards: null, powers: null, events: null, discoveries: null };
 
     const elements = {
       query: document.getElementById('q'),
+      favorites: document.getElementById('favorites'),
+      setButton: document.getElementById('set-button'),
+      setOptions: document.getElementById('set-options'),
       set: document.getElementById('set'),
       theme: document.getElementById('theme'),
       type: document.getElementById('type'),
@@ -339,9 +368,9 @@
     };
 
     const discoverySeasons = [
-      { name: '丘陵（春）', image: 'spirecrest_foothills.png', className: 'discovery-season-foothills' },
-      { name: '峰（夏）', image: 'spirecrest_peaks.png', className: 'discovery-season-peaks' },
-      { name: '尾根（秋）', image: 'spirecrest_ridge.png', className: 'discovery-season-ridge' }
+      { name: '丘陵（春）', label: '春', image: 'spirecrest_foothills.png', className: 'discovery-season-foothills' },
+      { name: '峰（夏）', label: '夏', image: 'spirecrest_peaks.png', className: 'discovery-season-peaks' },
+      { name: '尾根（秋）', label: '秋', image: 'spirecrest_ridge.png', className: 'discovery-season-ridge' }
     ];
 
     const openFeatureImages = new Map([
@@ -390,6 +419,33 @@
       return `<img class="${className}" src="${imageUrl(image)}" alt="${escapeHtml(label)}" title="${escapeHtml(label)}">`;
     }
 
+    // Alpha bounds of the original 384 × 384 PNGs. Only transparent margins
+    // are excluded; the original image and its aspect ratio are preserved.
+    const iconBounds = {
+      'set_bellfaire.png':[105,75,247,233], 'set_corrin.png':[45,37,294,310],
+      'set_extra.png':[38,36,308,316], 'set_legends.png':[61,36,261,314],
+      'set_mistwood.png':[37,42,310,299], 'set_newleaf.png':[36,83,312,218],
+      'set_pearlbrook.png':[32,67,320,250], 'set_rugwort.png':[61,35,261,317],
+      'green.png':[95,57,194,270], 'brown.png':[92,61,200,262],
+      'blue.png':[91,61,201,261], 'red.png':[91,61,202,261], 'purple.png':[93,60,198,263],
+      'set_spirecrest.png':[32,64,320,256], 'spirecrest_foothills.png':[26,25,328,323],
+      'spirecrest_peaks.png':[19,36,348,321], 'spirecrest_ridge.png':[17,57,350,273]
+    };
+    function normalizedIcon(image, height = 24, responsiveScale = '') {
+      if (!image) return '';
+      const [x,y,w,h] = iconBounds[image];
+      const scale = height / h;
+      const size = value => responsiveScale ? 'calc('+value+'px * '+responsiveScale+')' : value+'px';
+      return '<span class="normalized-icon" aria-hidden="true" style="width:'+size(w*scale)+';height:'+size(height)+'"><img src="'+imageUrl(image)+'" alt="" style="width:'+size(384*scale)+';height:'+size(384*scale)+';left:'+size(-x*scale)+';top:'+size(-y*scale)+'"></span>';
+    }
+    function eventSetIcon(setName) {
+      const image = setIcons[setName];
+      if (!image) return '';
+      // Match the visible alpha bounds of the unchanged normal-card icon:
+      // 22px image height on desktop, 20px on mobile, with Newleaf's .97 scale.
+      const scale = setName === '新緑の汽笛' ? .97 : 1;
+      return normalizedIcon(image, 22 * iconBounds[image][3] / 384 * scale, 'var(--event-icon-scale)');
+    }
     function setIconHtml(setName, className) {
       const image = setIcons[setName];
       return image
@@ -433,19 +489,14 @@
     }
 
     function renderGroupedItems(items, allItems, renderItem) {
-      const favorites = items.filter(item => favoriteIds.has(item.id));
-      const regularItems = items.filter(item => !favoriteIds.has(item.id));
+      const regularItems = items;
       const sections = [];
-
-      if (favorites.length) {
-        sections.push(`<section class="set-section favorite-section"><h2 class="set-heading">お気に入り</h2><div class="section-grid">${favorites.map(renderItem).join('')}</div></section>`);
-      }
 
       for (const setName of setOrder(allItems)) {
         const members = regularItems.filter(item => item.set === setName);
         if (!members.length) continue;
-        const headingIcon = setName === '基本' ? '' : setIconHtml(setName, 'set-heading-icon');
-        sections.push(`<section class="set-section" data-set="${escapeHtml(setName)}"><h2 class="set-heading">${headingIcon}<span>${escapeHtml(setName)}</span></h2><div class="section-grid">${members.map(renderItem).join('')}</div></section>`);
+        const headingIcon = setName === '基本' ? '' : normalizedIcon(setIcons[setName], 16);
+        sections.push(`<section class="set-section" data-set="${escapeHtml(setName)}"><h2 class="set-heading"><span>${escapeHtml(setName)}</span>${headingIcon}</h2><div class="section-grid">${members.map(renderItem).join('')}</div></section>`);
       }
 
       return sections.join('');
@@ -490,11 +541,11 @@
       } else if (activeCategory === 'events') {
         populateFilter(elements.set, [...new Set(events.map(event => event.set).filter(Boolean))]);
       } else {
-        populateFilter(elements.set, discoverySeasons.map(season => season.name));
+        populateFilter(elements.set, discoverySeasons.map(season => ({ value: season.name, label: season.label })));
       }
 
       const isCardView = activeCategory === 'cards';
-      elements.theme.hidden = !isCardView;
+      document.getElementById('theme-control').hidden = !isCardView;
       elements.type.hidden = !isCardView;
       elements.filters.classList.toggle('power-mode', !isCardView);
       const searchUi = activeCategory === 'powers'
@@ -753,7 +804,7 @@
 
     function renderEvent(event) {
       const isFavorite = favoriteIds.has(event.id);
-      const setIcon = event.set === '基本' ? '' : `<span class="event-set-icon-box">${setIconHtml(event.set, 'event-set-icon')}</span>`;
+      const setIcon = event.set === '基本' ? '' : `<span class="event-set-icon-box">${eventSetIcon(event.set)}</span>`;
       const features = renderFeatures(event.features);
       const conditionJpHtml = hasDisplayValue(event.condition_jp) ? renderEventConditionText(event.condition_jp) : '';
       const conditionJp = conditionJpHtml ? `<div class="event-condition-jp">${conditionJpHtml}</div>` : '';
@@ -872,18 +923,14 @@
     }
 
     function renderDiscoveryGroups(items) {
-      const favorites = items.filter(item => favoriteIds.has(item.id));
-      const regularItems = items.filter(item => !favoriteIds.has(item.id));
+      const regularItems = items;
       const sections = [];
-
-      if (favorites.length) {
-        sections.push(`<section class="set-section favorite-section"><h2 class="set-heading">お気に入り</h2><div class="section-grid">${favorites.map(renderDiscovery).join('')}</div></section>`);
-      }
 
       for (const season of discoverySeasons) {
         const members = regularItems.filter(item => item.season === season.name);
         if (!members.length) continue;
-        sections.push(`<section class="set-section" data-season="${escapeHtml(season.name)}"><h2 class="set-heading">${iconHtml(season.image, '', 'season-heading-icon')}<span>${escapeHtml(season.name)}</span></h2><div class="section-grid">${members.map(renderDiscovery).join('')}</div></section>`);
+        const headingClass = season.label === '夏' ? ' season-heading-summer' : season.label === '秋' ? ' season-heading-autumn' : '';
+        sections.push(`<section class="set-section" data-season="${escapeHtml(season.name)}"><h2 class="set-heading${headingClass}"><span>${escapeHtml(season.label)}</span>${normalizedIcon(season.image)}</h2><div class="section-grid">${members.map(renderDiscovery).join('')}</div></section>`);
       }
 
       return sections.join('');
@@ -946,7 +993,25 @@
         : '<div class="status">該当する発見カードがありません。</div>';
     }
 
+    function renderFavorites() {
+      const entries = new Map();
+      for (const [items, renderer] of [[cards,renderCard],[events,renderEvent],[powers,renderPower],[discoveries,renderDiscovery]]) {
+        const groups = items === discoveries ? discoverySeasons.map(season => season.name) : setOrder(items);
+        for (const group of groups) items.filter(item => (items === discoveries ? item.season : item.set) === group)
+          .forEach(item => entries.set(item.id, {item,renderer}));
+      }
+      const content = [...entries.keys()].filter(id => favoriteIds.has(id)).map(id => {
+        const {item,renderer} = entries.get(id);
+        // Normal cards have link anchors: keep those unique in the regular list.
+        return renderer(item).replace(/ id="card-[^"]*"/g, '');
+      }).join('');
+      elements.favorites.hidden = !content;
+      elements.favorites.innerHTML = content ? '<h2 class="set-heading">お気に入り</h2><div class="section-grid">' + content + '</div>' : '';
+    }
+
     function render() {
+      syncSetMenu();
+      renderFavorites();
       if (activeCategory === 'powers') {
         renderPowers();
         return;
@@ -985,10 +1050,12 @@
 
     function switchCategory(category) {
       if (!['cards', 'powers', 'events', 'discoveries'].includes(category) || category === activeCategory) return;
+      filterStates[activeCategory] = Object.fromEntries(['query','set','theme','type'].map(key => [key,elements[key].value]));
+      closeSetMenu();
       activeCategory = category;
       elements.categoryTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.category === category)));
-      elements.query.value = '';
       configureFilters();
+      for (const key of ['query','set','theme','type']) elements[key].value = filterStates[category]?.[key] || '';
       render();
     }
 
@@ -1053,7 +1120,7 @@
       });
     }
 
-    elements.grid.addEventListener('click', event => {
+    document.querySelector('main').addEventListener('click', event => {
       const favoriteButton = event.target.closest('[data-favorite-id]');
       if (favoriteButton) {
         toggleFavorite(favoriteButton.dataset.favoriteId);
@@ -1063,6 +1130,7 @@
       if (!link) return;
       event.preventDefault();
       const targetId = link.dataset.cardId;
+      switchCategory('cards');
       elements.query.value = '';
       elements.set.value = '';
       elements.theme.value = '';
@@ -1073,6 +1141,127 @@
         history.replaceState(null, '', `#${target.id}`);
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+    });
+
+    function closeSetMenu() {
+      elements.setOptions.hidden = true;
+      elements.setButton.setAttribute('aria-expanded', 'false');
+      document.getElementById('theme-options').hidden = true;
+      document.getElementById('theme-button').setAttribute('aria-expanded', 'false');
+    }
+    function syncSetMenu() {
+      const isSeason = activeCategory === 'discoveries';
+      const label = isSeason ? '季節で絞り込む' : 'セットで絞り込む';
+      const options = [...elements.set.options];
+      const content = option => {
+        const image = isSeason ? discoverySeasons.find(s => s.name === option.value)?.image : setIcons[option.value];
+        const setScale = { '真珠の入り江': .8, '新緑の汽笛': .8, 'CORRIN': .9, 'Mistwood': .95 };
+        const isAutumn = isSeason && option.value === '尾根（秋）';
+        const isSummer = isSeason && option.value === '峰（夏）';
+        const icon = normalizedIcon(image, isSeason ? (isAutumn ? 19 : 22) : 18 * (setScale[option.value] || 1));
+        const positionClass = isAutumn ? 'autumn-menu-icon' : isSummer ? 'summer-menu-icon' : '';
+        return '<span>' + escapeHtml(option.textContent) + '</span>' + (positionClass ? '<span class="'+positionClass+'">'+icon+'</span>' : icon);
+      };
+      elements.setButton.innerHTML = content(options[elements.set.selectedIndex] || options[0]);
+      elements.setButton.setAttribute('aria-label', label + '：' + elements.set.selectedOptions[0]?.textContent);
+      elements.setOptions.setAttribute('aria-label',label);
+      elements.setOptions.innerHTML = options.map((option,index) => '<div class="icon-option" role="option" tabindex="-1" data-index="'+index+'" aria-selected="'+option.selected+'">'+content(option)+'</div>').join('');
+      syncThemeMenu();
+    }
+    const themeCategories = {green:'生産',brown:'旅行者',blue:'政治',red:'目的地',purple:'祝福'};
+    function syncThemeMenu() {
+      const button = document.getElementById('theme-button');
+      const list = document.getElementById('theme-options');
+      const options = [...elements.theme.options];
+      const label = option => option.value ? themeLabels[option.value]+'・'+themeCategories[option.value] : '色：すべて';
+      const content = option => option.value ? normalizedIcon(colorIcons[option.value].image,24) : '色：すべて';
+      const selected = options[elements.theme.selectedIndex] || options[0];
+      button.innerHTML = content(selected);
+      button.setAttribute('aria-label','色・分類で絞り込む：'+label(selected));
+      list.innerHTML = options.map((option,index) => '<div class="icon-option" role="option" tabindex="-1" data-index="'+index+'" aria-label="'+label(option)+'" aria-selected="'+option.selected+'">'+content(option)+'</div>').join('');
+    }
+    function openSetMenu() {
+      closeSetMenu();
+      elements.setOptions.hidden = false;
+      elements.setButton.setAttribute('aria-expanded','true');
+      elements.setOptions.children[elements.set.selectedIndex]?.focus();
+    }
+    function selectSet(index) {
+      elements.set.selectedIndex = index;
+      closeSetMenu();
+      render();
+      elements.setButton.focus();
+    }
+    elements.setButton.addEventListener('click', () => elements.setOptions.hidden ? openSetMenu() : closeSetMenu());
+    elements.setButton.addEventListener('keydown', event => {
+      if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
+        event.preventDefault(); openSetMenu();
+        if (event.key === 'Home') elements.setOptions.firstElementChild.focus();
+        if (event.key === 'End') elements.setOptions.lastElementChild.focus();
+      }
+    });
+    elements.setOptions.addEventListener('click', event => {
+      const option = event.target.closest('[data-index]');
+      if (option) selectSet(Number(option.dataset.index));
+    });
+    elements.setOptions.addEventListener('keydown', event => {
+      const options = [...elements.setOptions.children];
+      const index = options.indexOf(document.activeElement);
+      let next = index;
+      if (event.key === 'ArrowDown') next = (index+1)%options.length;
+      else if (event.key === 'ArrowUp') next = (index-1+options.length)%options.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = options.length-1;
+      else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectSet(index); return; }
+      else if (event.key === 'Escape') { event.preventDefault(); closeSetMenu(); elements.setButton.focus(); return; }
+      else if (event.key === 'Tab') { closeSetMenu(); elements.setButton.focus(); return; }
+      else return;
+      event.preventDefault(); options[next].focus();
+    });
+    const themeButton = document.getElementById('theme-button');
+    const themeOptions = document.getElementById('theme-options');
+    function openThemeMenu() {
+      closeSetMenu();
+      themeOptions.hidden = false;
+      themeButton.setAttribute('aria-expanded','true');
+      themeOptions.children[elements.theme.selectedIndex]?.focus();
+    }
+    function selectTheme(index) {
+      elements.theme.selectedIndex = index;
+      closeSetMenu(); render(); themeButton.focus();
+    }
+    themeButton.addEventListener('click', () => themeOptions.hidden ? openThemeMenu() : closeSetMenu());
+    themeButton.addEventListener('keydown', event => {
+      if (['ArrowDown','ArrowUp','Home','End'].includes(event.key)) {
+        event.preventDefault(); openThemeMenu();
+        if (event.key === 'Home') themeOptions.firstElementChild.focus();
+        if (event.key === 'End') themeOptions.lastElementChild.focus();
+      }
+    });
+    themeOptions.addEventListener('click', event => {
+      const option = event.target.closest('[data-index]');
+      if (option) selectTheme(Number(option.dataset.index));
+    });
+    themeOptions.addEventListener('keydown', event => {
+      const options = [...themeOptions.children];
+      const index = options.indexOf(document.activeElement);
+      let next = index;
+      if (event.key === 'ArrowDown') next = (index+1)%options.length;
+      else if (event.key === 'ArrowUp') next = (index-1+options.length)%options.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = options.length-1;
+      else if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectTheme(index); return; }
+      else if (event.key === 'Escape') { event.preventDefault(); closeSetMenu(); themeButton.focus(); return; }
+      else if (event.key === 'Tab') { closeSetMenu(); themeButton.focus(); return; }
+      else return;
+      event.preventDefault(); options[next].focus();
+    });
+    document.addEventListener('pointerdown', event => { if (!event.target.closest('.icon-select')) closeSetMenu(); });
+    document.addEventListener('focusin', event => { if (!event.target.closest('.icon-select')) closeSetMenu(); });
+    document.getElementById('clear-filters').addEventListener('click', () => {
+      for (const key of ['query','set','theme','type']) elements[key].value = '';
+      delete filterStates[activeCategory];
+      closeSetMenu(); render();
     });
 
     [elements.query, elements.set, elements.theme, elements.type].forEach(element => element.addEventListener('input', render));
@@ -1108,10 +1297,21 @@
       adjustSetIconClearance();
       scheduleDiscoveryVpNoteAlignment();
     })).observe(elements.grid, { childList: true, subtree: true });
+    new MutationObserver(() => requestAnimationFrame(() => {
+      adjustSetIconClearance(); scheduleDiscoveryVpNoteAlignment();
+    })).observe(elements.favorites, { childList: true, subtree: true });
     if (document.fonts?.ready) document.fonts.ready.then(scheduleDiscoveryVpNoteAlignment);
     updateScrollButtons();
 
     async function init() {
+      if (location.protocol === 'file:') {
+        elements.count.textContent = 'サイトの起動方法をご確認ください。';
+        elements.grid.setAttribute('aria-busy', 'false');
+        elements.grid.innerHTML = '<div class="status error">HTMLファイルを直接開くと、ブラウザーの制限でJSONを読み込めません。<br>この画面を閉じて、同じフォルダーの「サイトを開く.bat」をダブルクリックしてください。<br>サーバーが起動し、カードを表示できる画面が開きます。</div>';
+        document.querySelector('.box').hidden = true;
+        elements.categoryTabs.forEach(tab => { tab.disabled = true; });
+        return;
+      }
       const loadJsonArray = async (file, rootKey) => {
         const response = await fetch(file, { cache: 'no-cache' });
         if (!response.ok) throw new Error(`${file}: HTTP ${response.status}`);
@@ -1151,6 +1351,7 @@
         console.error(discoveriesResult.reason);
       }
 
+      elements.query.value = '';
       configureFilters();
       elements.grid.setAttribute('aria-busy', 'false');
       render();

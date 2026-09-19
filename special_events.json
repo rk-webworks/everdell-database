@@ -6,9 +6,9 @@
                        "name_jp":  "素晴らしい販売計画",
                        "condition_en":  "Shopkeeper、Post Office",
                        "condition_jp":  "店主、郵便局",
-                       "effect":  "このカードを獲得したとき、他のプレイヤー（複数でも可）に資材を合計で3個まで渡してもよい。",
+                       "effect":  "このカードを獲得したとき、他のプレイヤー（複数でも可）に資材を合計で3個まで与えてもよい。",
                        "victory_points":  2,
-                       "victory_points_note":  "渡した資材1個につき",
+                       "victory_points_note":  "与えた資材1個につき",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -179,7 +179,7 @@
                        "condition_jp":  "木彫師、礼拝堂",
                        "effect":  "このカードを獲得したとき、《礼拝堂》上の「勝利点」1個につき、「カード」を1枚引き、資材を1個得る。",
                        "victory_points":  2,
-                       "victory_points_note":  "《礼拝堂》の上の「勝利点」1個につき",
+                       "victory_points_note":  "《礼拝堂》上の「勝利点」1個につき",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -251,7 +251,7 @@
                        "name_jp":  "仮面舞踏会の招待状",
                        "condition_en":  "Messenger、Fair Grounds",
                        "condition_jp":  "伝令、移動遊園地",
-                       "effect":  "このカードを獲得したとき、手札から「カード」を6枚まで他のプレイヤー（複数でも可）に渡してもよい。渡した「カード」1枚につき1勝利点を得る。",
+                       "effect":  "このカードを獲得したとき、手札から「カード」を6枚まで他のプレイヤー（複数でも可）に与えてもよい。与えた「カード」1枚につき1勝利点を得る。",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
@@ -296,7 +296,7 @@
                        "name_jp":  "ロマンチッククルーズ",
                        "condition_en":  "Ferry、Harvester",
                        "condition_jp":  "渡し船、旦那",
-                       "effect":  "このカードを獲得したとき、カードの山から《夫人》を探してコストを無視してプレイしてもよい。または、5勝利点を得てもよい。",
+                       "effect":  "このカードを獲得したとき、カードの山から《夫人》を探してコストを無視してプレイしてもよい。または、5勝利点を得る。",
                        "features":  [
                                         {
                                             "type":  "location_exclusive"
