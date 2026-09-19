@@ -28,6 +28,8 @@
     select option{font-family:inherit;font-size:15px;font-weight:400;line-height:1.4;padding-block:8px}
     .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
     .filters.power-mode{grid-template-columns:1fr}
+    .filters.discovery-mode{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media(max-width:500px){.filters.discovery-mode{grid-template-columns:1fr}}
     .filters select{width:100%;height:44px;padding-block:0;line-height:1.4}
     .season-heading-icon{display:block;width:32px;height:24px;object-fit:contain;flex:0 0 auto}
     .count{color:#6b6c65;margin:18px 2px 10px;min-height:24px}
@@ -542,12 +544,15 @@
         populateFilter(elements.set, [...new Set(events.map(event => event.set).filter(Boolean))]);
       } else {
         populateFilter(elements.set, discoverySeasons.map(season => ({ value: season.name, label: season.label })));
+        populateFilter(elements.type, [{ value: 'large-critter', label: '大型動物' }]);
       }
 
       const isCardView = activeCategory === 'cards';
       document.getElementById('theme-control').hidden = !isCardView;
-      elements.type.hidden = !isCardView;
-      elements.filters.classList.toggle('power-mode', !isCardView);
+      const isDiscoveryView = activeCategory === 'discoveries';
+      elements.type.hidden = !isCardView && !isDiscoveryView;
+      elements.filters.classList.toggle('power-mode', !isCardView && !isDiscoveryView);
+      elements.filters.classList.toggle('discovery-mode', isDiscoveryView);
       const searchUi = activeCategory === 'powers'
         ? { placeholder: '特殊能力名・肩書・効果を検索…', label: '特殊能力名、肩書または効果を検索' }
         : activeCategory === 'events'
@@ -983,9 +988,12 @@
 
       const query = elements.query.value.trim().toLocaleLowerCase('ja');
       const selectedSeason = elements.set.value;
+      const onlyLargeCritters = elements.type.value === 'large-critter';
       const filtered = discoveries.filter(discovery => {
         const searchable = [discovery.name_en, discovery.name_jp, discovery.large_critter_en, discovery.large_critter_jp, discovery.effect, discovery.victory_points_note, discovery.season].join(' ').toLocaleLowerCase('ja');
-        return (!query || searchable.includes(query)) && (!selectedSeason || discovery.season === selectedSeason);
+        return (!query || searchable.includes(query))
+          && (!selectedSeason || discovery.season === selectedSeason)
+          && (!onlyLargeCritters || hasDisplayValue(discovery.large_critter_en) || hasDisplayValue(discovery.large_critter_jp));
       });
       elements.count.textContent = `${filtered.length} / ${discoveries.length} 件`;
       elements.grid.innerHTML = filtered.length
